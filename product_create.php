@@ -13,6 +13,23 @@
 <body>
     <!-- container -->
     <div class="container">
+        <div class="py-4">
+            <ul class="nav nav-pills nav-fill">
+                <li class="nav-item">
+                    <a class="nav-link" href="index.php">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="product_create.php">Create Product</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="customer_create.php">Create Customer</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="contact.php">Contact Us</a>
+                </li>
+            </ul>
+        </div>
+
         <div class="page-header">
             <h1>Create Product</h1>
         </div>
@@ -24,7 +41,7 @@
             // include database connection
             include 'config/database.php';
             try {
-                $success = true;
+
                 // posted values
                 $name = htmlspecialchars(strip_tags($_POST['name']));
                 $description = htmlspecialchars(strip_tags($_POST['description']));
@@ -39,43 +56,40 @@
 
                 if (empty($name) || empty($description) || empty($price) || empty($manufactureDate) || empty($expiredDate)) {
                     echo "<div class='alert alert-danger'>Please fill in all the field other than Promo Price.</div>";
-                    $success = false;
                 }
 
                 if ($promoPrice > $price) {
                     echo "<div class='alert alert-danger'>Promo price must be lesser than price.</div>";
-                    $success = false;
                 }
 
                 if ($manufactureDate >= $expiredDate) {
                     echo "<div class='alert alert-danger'>Manufacturing Date must be ealier than Expired Date</div>";
-                    $success = false;
                 }
 
-                if ($success == true) {
-                    // insert query + add ex
-                    $query = "INSERT INTO products SET name=:name, description=:description, price=:price, created=:created, promoPrice=:promoPrice, manufactureDate=:manufactureDate, expiredDate=:expiredDate";
-                    // prepare query for execution
-                    $stmt = $con->prepare($query);
-                    // bind the parameters
-                    $stmt->bindParam(':name', $name);
-                    $stmt->bindParam(':description', $description);
-                    $stmt->bindParam(':price', $price);
 
-                    //add ex
-                    $stmt->bindParam(':promoPrice', $promoPrice);
-                    $stmt->bindParam(':manufactureDate', $manufactureDate);
-                    $stmt->bindParam(':expiredDate', $expiredDate);
+                // insert query + add ex
+                $query = "INSERT INTO products SET name=:name, description=:description, price=:price, created=:created, promoPrice=:promoPrice, manufactureDate=:manufactureDate, expiredDate=:expiredDate";
+                // prepare query for execution
+                $stmt = $con->prepare($query);
+                // bind the parameters
+                $stmt->bindParam(':name', $name);
+                $stmt->bindParam(':description', $description);
+                $stmt->bindParam(':price', $price);
 
-                    // specify when this record was inserted to the database
-                    $created = date('Y-m-d H:i:s');
-                    $stmt->bindParam(':created', $created);
-                    // Execute the query
-                    if ($stmt->execute()) {
-                        echo "<div class='alert alert-success'>Record was saved.</div>";
-                    } else {
-                        echo "<div class='alert alert-danger'>Unable to save record.</div>";
-                    }
+                //add ex
+                $stmt->bindParam(':promoPrice', $promoPrice);
+                $stmt->bindParam(':manufactureDate', $manufactureDate);
+                $stmt->bindParam(':expiredDate', $expiredDate);
+
+                // specify when this record was inserted to the database
+                $created = date('Y-m-d H:i:s');
+                $stmt->bindParam(':created', $created);
+
+                // Execute the query
+                if ($stmt->execute()) {
+                    echo "<div class='alert alert-success'>Record was saved.</div>";
+                } else {
+                    echo "<div class='alert alert-danger'>Unable to save record.</div>";
                 }
             }
             // show error
