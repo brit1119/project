@@ -81,12 +81,11 @@
 
                 if ($success == true) {
                     // insert query + add ex
-                    $query = "INSERT INTO products SET username=:username, pw=:pw, fName=:fName, lName=:lName, gender=:gender, dOB=:dOB, regDateNTime=:regDateNTime, accStatus=:accStatus";
+                    $query = "INSERT INTO customers SET username=:username, pw=:pw, fName=:fName, lName=:lName, gender=:gender, dOB=:dOB, regDateNTime=:regDateNTime, accStatus=:accStatus";
                     // prepare query for execution
                     $stmt = $con->prepare($query);
                     // bind the parameters
                     $stmt->bindParam(':username', $username);
-                    $stmt->bindParam(':pw', $pw);
                     $stmt->bindParam(':pw', $pw);
                     $stmt->bindParam(':fName', $fName);
                     $stmt->bindParam(':lName', $lName);
