@@ -42,7 +42,7 @@
             include 'config/database.php';
             try {
 
-
+                $success = true;
 
                 // posted values
                 $name = htmlspecialchars(strip_tags($_POST['name']));
@@ -59,46 +59,51 @@
 
 
                 if (empty($name) || empty($description) || empty($price) || empty($manufactureDate)) {
-                    echo "<div class='alert alert-danger'>Please fill in all the field other than Promo Price.</div>";
+                    echo "<div class='alert alert-danger'>Please fill in all the field other than Promo Price and Expired Date.</div>";
+                    $success = false;
                 }
 
                 if (!empty($promoPrice)) {
                     if ($promoPrice > $price) {
                         echo "<div class='alert alert-danger'>Promo price must be lesser than price.</div>";
+                        $success = false;
                     }
                 }
 
                 if (!empty($expiredDate)) {
                     if ($manufactureDate >= $expiredDate) {
                         echo "<div class='alert alert-danger'>Manufacturing Date must be ealier than Expired Date</div>";
+                        $success = false;
                     }
                 }
 
 
-                // insert query + add ex
+                if ($success == true) {
+                    // insert query + add ex
 
-                $query = "INSERT INTO products SET name=:name, description=:description, price=:price, created=:created, promoPrice=:promoPrice, manufactureDate=:manufactureDate, expiredDate=:expiredDate";
-                // prepare query for execution
-                $stmt = $con->prepare($query);
-                // bind the parameters
-                $stmt->bindParam(':name', $name);
-                $stmt->bindParam(':description', $description);
-                $stmt->bindParam(':price', $price);
+                    $query = "INSERT INTO products SET name=:name, description=:description, price=:price, created=:created, promoPrice=:promoPrice, manufactureDate=:manufactureDate, expiredDate=:expiredDate";
+                    // prepare query for execution
+                    $stmt = $con->prepare($query);
+                    // bind the parameters
+                    $stmt->bindParam(':name', $name);
+                    $stmt->bindParam(':description', $description);
+                    $stmt->bindParam(':price', $price);
 
-                //add ex
-                $stmt->bindParam(':promoPrice', $promoPrice);
-                $stmt->bindParam(':manufactureDate', $manufactureDate);
-                $stmt->bindParam(':expiredDate', $expiredDate);
+                    //add ex
+                    $stmt->bindParam(':promoPrice', $promoPrice);
+                    $stmt->bindParam(':manufactureDate', $manufactureDate);
+                    $stmt->bindParam(':expiredDate', $expiredDate);
 
-                // specify when this record was inserted to the database
-                $created = date('Y-m-d H:i:s');
-                $stmt->bindParam(':created', $created);
+                    // specify when this record was inserted to the database
+                    $created = date('Y-m-d H:i:s');
+                    $stmt->bindParam(':created', $created);
 
-                // Execute the query
-                if ($stmt->execute()) {
-                    echo "<div class='alert alert-success'>Record was saved.</div>";
-                } else {
-                    echo "<div class='alert alert-danger'>Unable to save record.</div>";
+                    // Execute the query
+                    if ($stmt->execute()) {
+                        echo "<div class='alert alert-success'>Record was saved.</div>";
+                    } else {
+                        echo "<div class='alert alert-danger'>Unable to save record.</div>";
+                    }
                 }
             }
 
