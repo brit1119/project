@@ -42,6 +42,8 @@
             include 'config/database.php';
             try {
 
+
+
                 // posted values
                 $name = htmlspecialchars(strip_tags($_POST['name']));
                 $description = htmlspecialchars(strip_tags($_POST['description']));
@@ -54,20 +56,27 @@
 
 
 
-                if (empty($name) || empty($description) || empty($price) || empty($manufactureDate) || empty($expiredDate)) {
+
+
+                if (empty($name) || empty($description) || empty($price) || empty($manufactureDate)) {
                     echo "<div class='alert alert-danger'>Please fill in all the field other than Promo Price.</div>";
                 }
 
-                if ($promoPrice > $price) {
-                    echo "<div class='alert alert-danger'>Promo price must be lesser than price.</div>";
+                if (!empty($promoPrice)) {
+                    if ($promoPrice > $price) {
+                        echo "<div class='alert alert-danger'>Promo price must be lesser than price.</div>";
+                    }
                 }
 
-                if ($manufactureDate >= $expiredDate) {
-                    echo "<div class='alert alert-danger'>Manufacturing Date must be ealier than Expired Date</div>";
+                if (!empty($expiredDate)) {
+                    if ($manufactureDate >= $expiredDate) {
+                        echo "<div class='alert alert-danger'>Manufacturing Date must be ealier than Expired Date</div>";
+                    }
                 }
 
 
                 // insert query + add ex
+
                 $query = "INSERT INTO products SET name=:name, description=:description, price=:price, created=:created, promoPrice=:promoPrice, manufactureDate=:manufactureDate, expiredDate=:expiredDate";
                 // prepare query for execution
                 $stmt = $con->prepare($query);
@@ -92,11 +101,15 @@
                     echo "<div class='alert alert-danger'>Unable to save record.</div>";
                 }
             }
+
+
             // show error
             catch (PDOException $exception) {
                 die('ERROR: ' . $exception->getMessage());
             }
         }
+
+
         ?>
 
 
