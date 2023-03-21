@@ -81,7 +81,7 @@
                 if ($success == true) {
                     // insert query + add ex
 
-                    $query = "INSERT INTO products SET name=:name, description=:description, price=:price, created=:created, promoPrice=:promoPrice, manufactureDate=:manufactureDate, expiredDate=:expiredDate";
+                    $query = "INSERT INTO products SET name=:name, description=:description, price=:price, created=:created, manufactureDate=:manufactureDate";
                     // prepare query for execution
                     $stmt = $con->prepare($query);
                     // bind the parameters
@@ -90,9 +90,9 @@
                     $stmt->bindParam(':price', $price);
 
                     //add ex
-                    $stmt->bindParam(':promoPrice', $promoPrice);
+
                     $stmt->bindParam(':manufactureDate', $manufactureDate);
-                    $stmt->bindParam(':expiredDate', $expiredDate);
+
 
                     // specify when this record was inserted to the database
                     $created = date('Y-m-d H:i:s');
