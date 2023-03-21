@@ -44,7 +44,8 @@
 
                 // posted values
                 $username = htmlspecialchars(strip_tags($_POST['username']));
-                $pw = htmlspecialchars(strip_tags($_POST['password']));
+                $pw = htmlspecialchars(strip_tags($_POST['pw']));
+                $cpw =  htmlspecialchars(strip_tags($_POST['cpw']));
                 $fName = htmlspecialchars(strip_tags($_POST['fName']));
                 $lName = htmlspecialchars(strip_tags($_POST['lName']));
                 if (isset($_POST['gender'])) $gender = $_POST['gender'];
@@ -71,20 +72,22 @@
                     $success = false;
                 }
 
-                if (strlen($pw) || strlen($cpw) < 8) {
+                if (strlen($pw) < 8 || strlen($cpw) < 8) {
                     echo "<div class='alert alert-danger'>Password must be at least 8 characters.</div>";
                     $success = false;
                 }
 
 
+
                 if ($success == true) {
                     // insert query + add ex
-                    $query = "INSERT INTO products SET username=:username, password=:password, fName=:fName, lName=:lName, gender=:gender, dOB=:dOB, regDateNTime=:regDateNTime, accStatus=:accStatus";
+                    $query = "INSERT INTO products SET username=:username, pw=:pw, fName=:fName, lName=:lName, gender=:gender, dOB=:dOB, regDateNTime=:regDateNTime, accStatus=:accStatus";
                     // prepare query for execution
                     $stmt = $con->prepare($query);
                     // bind the parameters
                     $stmt->bindParam(':username', $username);
-                    $stmt->bindParam(':password', $password);
+                    $stmt->bindParam(':pw', $pw);
+                    $stmt->bindParam(':pw', $pw);
                     $stmt->bindParam(':fName', $fName);
                     $stmt->bindParam(':lName', $lName);
                     $stmt->bindParam(':gender', $gender);
@@ -136,8 +139,8 @@
                 </tr>
                 <tr>
                     <td>Gender</td>
-                    <td><input type="radio" name="gender" value="male"> Male
-                        <input type="radio" name="gender" value="female"> Female
+                    <td><input type="radio" name="gender" value="male" /> Male
+                        <input type="radio" name="gender" value="female" /> Female
                 </tr>
                 <tr>
                     <td>Date of Birth</td>
