@@ -66,7 +66,7 @@
 
 
                 // insert query + add ex
-                $query = "INSERT INTO products SET username=:username, password=:password, fName=:fName, lName=:lName, gender=:gender, dOB=:dOB, expiredDate=:expiredDate";
+                $query = "INSERT INTO products SET username=:username, password=:password, fName=:fName, lName=:lName, gender=:gender, dOB=:dOB, expiredDate=:expiredDate, regDateNTime=:regDateNTime";
                 // prepare query for execution
                 $stmt = $con->prepare($query);
                 // bind the parameters
@@ -78,8 +78,8 @@
                 $stmt->bindParam(':dOB', $dOB);
 
                 // specify when this record was inserted to the database
-                $created = date('Y-m-d H:i:s');
-                $stmt->bindParam(':created', $created);
+                $regDateNTime = date('Y-m-d H:i:s');
+                $stmt->bindParam(':regDateNTime', $regDateNTime);
 
                 // Execute the query
                 if ($stmt->execute()) {
