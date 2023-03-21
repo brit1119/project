@@ -56,8 +56,6 @@
 
 
 
-
-
                 if (empty($name) || empty($description) || empty($price) || empty($manufactureDate)) {
                     echo "<div class='alert alert-danger'>Please fill in all the field other than Promo Price and Expired Date.</div>";
                     $success = false;
