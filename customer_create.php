@@ -44,48 +44,63 @@
 
                 // posted values
                 $username = htmlspecialchars(strip_tags($_POST['username']));
-                $password = htmlspecialchars(strip_tags($_POST['password']));
+                $pw = htmlspecialchars(strip_tags($_POST['password']));
                 $fName = htmlspecialchars(strip_tags($_POST['fName']));
                 $lName = htmlspecialchars(strip_tags($_POST['lName']));
-                $gender = htmlspecialchars(strip_tags($_POST['gender']));
+                if (isset($_POST['gender'])) $gender = $_POST['gender'];
                 $dOB = htmlspecialchars(strip_tags($_POST['dOB']));
+                if (isset($_POST['accStatus'])) $accStatus = $_POST['accStatus'];
+
+
+                $success = true;
 
 
 
-                if (empty($username) || empty($password) || empty($fName) || empty($lName) || empty($dOB)) {
+                if (empty($username) || empty($pw) || empty($cpw) || empty($fName) || empty($lName) || empty($dOB) || empty($accStatus)) {
                     echo "<div class='alert alert-danger'>Please fill in all the field other than gender.</div>";
+                    $success = false;
+                }
+
+                if ($cpw !== $pw) {
+                    echo "<div class='alert alert-danger'>Password is not matched.</div>";
+                    $success = false;
                 }
 
                 if (strlen($username) < 6) {
                     echo "<div class='alert alert-danger'>Username must be at least 6 characters.</div>";
+                    $success = false;
                 }
 
-                if (strlen($password) < 8) {
+                if (strlen($pw) || strlen($cpw) < 8) {
                     echo "<div class='alert alert-danger'>Password must be at least 8 characters.</div>";
+                    $success = false;
                 }
 
 
-                // insert query + add ex
-                $query = "INSERT INTO products SET username=:username, password=:password, fName=:fName, lName=:lName, gender=:gender, dOB=:dOB, expiredDate=:expiredDate, regDateNTime=:regDateNTime";
-                // prepare query for execution
-                $stmt = $con->prepare($query);
-                // bind the parameters
-                $stmt->bindParam(':username', $username);
-                $stmt->bindParam(':password', $password);
-                $stmt->bindParam(':fName', $fName);
-                $stmt->bindParam(':lName', $lName);
-                $stmt->bindParam(':gender', $gender);
-                $stmt->bindParam(':dOB', $dOB);
+                if ($success == true) {
+                    // insert query + add ex
+                    $query = "INSERT INTO products SET username=:username, password=:password, fName=:fName, lName=:lName, gender=:gender, dOB=:dOB, expiredDate=:expiredDate, regDateNTime=:regDateNTime, accStatus=:accStatus";
+                    // prepare query for execution
+                    $stmt = $con->prepare($query);
+                    // bind the parameters
+                    $stmt->bindParam(':username', $username);
+                    $stmt->bindParam(':password', $password);
+                    $stmt->bindParam(':fName', $fName);
+                    $stmt->bindParam(':lName', $lName);
+                    $stmt->bindParam(':gender', $gender);
+                    $stmt->bindParam(':dOB', $dOB);
+                    $stmt->bindParam(':accStatus', $accStatus);
 
-                // specify when this record was inserted to the database
-                $regDateNTime = date('Y-m-d H:i:s');
-                $stmt->bindParam(':regDateNTime', $regDateNTime);
+                    // specify when this record was inserted to the database
+                    $regDateNTime = date('Y-m-d H:i:s');
+                    $stmt->bindParam(':regDateNTime', $regDateNTime);
 
-                // Execute the query
-                if ($stmt->execute()) {
-                    echo "<div class='alert alert-success'>Record was saved.</div>";
-                } else {
-                    echo "<div class='alert alert-danger'>Unable to save record.</div>";
+                    // Execute the query
+                    if ($stmt->execute()) {
+                        echo "<div class='alert alert-success'>Record was saved.</div>";
+                    } else {
+                        echo "<div class='alert alert-danger'>Unable to save record.</div>";
+                    }
                 }
             }
             // show error
@@ -105,27 +120,33 @@
                 </tr>
                 <tr>
                     <td>Password</td>
-                    <td><input type='password' name='password' class='form-control'></td>
+                    <td><input type='password' name='pw' class='form-control'></td>
                 </tr>
                 <tr>
-                    <td>fName</td>
+                    <td>Confirm Password</td>
+                    <td><input type='password' name='cpw' class='form-control'></td>
+                </tr>
+                <tr>
+                    <td>First Name</td>
                     <td><input type='text' name='fName' class='form-control' /></td>
                 </tr>
                 <tr>
-                    <td>lName</td>
+                    <td>Last Name</td>
                     <td><input type='text' name='lName' class='form-control' /></td>
                 </tr>
                 <tr>
                     <td>Gender</td>
-                    <td><select name="gender" class='form-control'>
-                            <option value="">Please select ...</option>
-                            <option value="female">Female</option>
-                            <option value="male">Male</option>
-                        </select></td>
+                    <td><input type="radio" name="gender" value="male"> Male
+                        <input type="radio" name="gender" value="female"> Female
                 </tr>
                 <tr>
                     <td>Date of Birth</td>
                     <td><input type='date' name='dOB' class='form-control' /></td>
+                </tr>
+                <tr>
+                    <td>Account Status</td>
+                    <td><input type="radio" name="accStatus" value="active" /> Active
+                        <input type="radio" name="accStatus" value="inactive" /> Inactive
                 </tr>
                 <tr>
                     <td></td>
