@@ -79,7 +79,7 @@
 
                 if ($success == true) {
                     // insert query + add ex
-                    $query = "INSERT INTO products SET username=:username, password=:password, fName=:fName, lName=:lName, gender=:gender, dOB=:dOB, expiredDate=:expiredDate, regDateNTime=:regDateNTime, accStatus=:accStatus";
+                    $query = "INSERT INTO products SET username=:username, password=:password, fName=:fName, lName=:lName, gender=:gender, dOB=:dOB, regDateNTime=:regDateNTime, accStatus=:accStatus";
                     // prepare query for execution
                     $stmt = $con->prepare($query);
                     // bind the parameters
