@@ -110,7 +110,7 @@
 
 
                 if ($success == true) {
-                    // insert query + add ex
+                    // insert query
                     $query = "INSERT INTO customers SET username=:username, pw=:pw, fName=:fName, lName=:lName, gender=:gender, dOB=:dOB, regDateNTime=:regDateNTime, accStatus=:accStatus";
                     // prepare query for execution
                     $stmt = $con->prepare($query);
@@ -139,7 +139,7 @@
                         $dOB = "";
                         $accStatus = "";
                     } else {
-                        echo "<div class='alert alert-danger'>Unable to save record.</div>";
+                        echo "<div class='alert alert-danger'>Username already exist. Please enter another username.</div>";
                     }
                 }
             }
@@ -209,7 +209,7 @@
                     <td>
                         <input type="radio" name="gender" value="male" /> Male
                         <input type="radio" name="gender" value="female" /> Female
-                    </td>
+
                 </tr>
                 <tr>
                     <td>Date of Birth</td>
@@ -231,7 +231,7 @@
                                 <?php echo $accStatusError; ?>
                             </span>
                         <?php } ?>
-                    </td>
+
                 </tr>
                 <tr>
                     <td></td>
