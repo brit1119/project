@@ -16,16 +16,16 @@
         <div class="py-4">
             <ul class="nav nav-pills nav-fill">
                 <li class="nav-item">
-                    <a class="nav-link" href="index.php">Home</a>
+                    <a class="nav-link link-secondary" href="index.php">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="product_create.php">Create Product</a>
+                    <a class="nav-link link-secondary" href="product_create.php">Create Product</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="customer_create.php">Create Customer</a>
+                    <a class="nav-link link-secondary" href="customer_create.php">Create Customer</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="contact.php">Contact Us</a>
+                    <a class="nav-link link-secondary" href="contact.php">Contact Us</a>
                 </li>
             </ul>
         </div>
