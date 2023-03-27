@@ -56,22 +56,22 @@
 
 
                 if (empty($name)) {
-                    $nameError = "*Please enter product's name.";
+                    $nameError = "*Please enter a product name.";
                     $success = false;
                 }
 
                 if (empty($description)) {
-                    $desError = "*Please enter product's description.";
+                    $desError = "*Please enter product description.";
                     $success = false;
                 }
 
                 if (empty($price)) {
-                    $priceError = "*Please enter product's price.";
+                    $priceError = "*Please enter product price.";
                     $success = false;
                 }
 
                 if (empty($manufactureDate)) {
-                    $manuError = "*Please enter product's manufacture date.";
+                    $manuError = "*Please select product manufacture date.";
                     $success = false;
                 }
 

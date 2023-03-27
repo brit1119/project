@@ -56,26 +56,56 @@
                 $success = true;
 
 
-
-                if (empty($username) || empty($pw) || empty($cpw) || empty($fName) || empty($lName) || empty($dOB) || empty($accStatus)) {
-                    echo "<div class='alert alert-danger'>Please fill in all the field other than gender.</div>";
+                if (empty($username)) {
+                    $userError = "*Please enter a username.";
+                    $success = false;
+                } elseif (strlen($username) < 6) {
+                    $userError = "*Username must be at least 6 characters.";
                     $success = false;
                 }
 
-                if ($cpw !== $pw) {
-                    echo "<div class='alert alert-danger'>Password is not matched.</div>";
+
+                if (empty($pw)) {
+                    $pwError = "*Please enter a password.";
+                    $success = false;
+                } elseif (strlen($pw) < 8) {
+                    $pwError = "*Password must be at least 8 characters.";
                     $success = false;
                 }
 
-                if (strlen($username) < 6) {
-                    echo "<div class='alert alert-danger'>Username must be at least 6 characters.</div>";
+
+                if (empty($cpw)) {
+                    $cpwError = "*Please enter to confirm password.";
+                    $success = false;
+                } elseif ($cpw !== $pw) {
+                    $cpwError = "*Password not matched.";
                     $success = false;
                 }
 
-                if (strlen($pw) < 8 || strlen($cpw) < 8) {
-                    echo "<div class='alert alert-danger'>Password must be at least 8 characters.</div>";
+
+                if (empty($fName)) {
+                    $fNameError = "*Please enter first name.";
                     $success = false;
                 }
+
+                if (empty($lName)) {
+                    $lNameError = "*Please enter last name.";
+                    $success = false;
+                }
+
+                if (empty($dOB)) {
+                    $dOBError = "*Please select date of birth.";
+                    $success = false;
+                }
+
+                if (empty($accStatus)) {
+                    $accStatusError = "*Please select account status.";
+                    $success = false;
+                }
+
+
+
+
 
 
 
@@ -100,6 +130,14 @@
                     // Execute the query
                     if ($stmt->execute()) {
                         echo "<div class='alert alert-success'>Record was saved.</div>";
+                        $username = "";
+                        $pw = "";
+                        $cpw = "";
+                        $fName = "";
+                        $lName = "";
+                        $gender = "";
+                        $dOB = "";
+                        $accStatus = "";
                     } else {
                         echo "<div class='alert alert-danger'>Unable to save record.</div>";
                     }
@@ -118,37 +156,82 @@
             <table class='table table-hover table-responsive table-bordered'>
                 <tr>
                     <td>Username</td>
-                    <td><input type='text' name='username' class='form-control' /></td>
+                    <td><input type='text' name='username' class='form-control' value="<?php echo isset($username) ? htmlspecialchars($username) : ''; ?>" />
+                        <?php if (isset($userError)) { ?>
+                            <span class="text-danger">
+                                <?php echo $userError; ?>
+                            </span>
+                        <?php } ?>
+                    </td>
                 </tr>
                 <tr>
                     <td>Password</td>
-                    <td><input type='password' name='pw' class='form-control'></td>
+                    <td><input type='password' name='pw' class='form-control' value="<?php echo isset($pw) ? htmlspecialchars($pw) : ''; ?>" />
+                        <?php if (isset($pwError)) { ?>
+                            <span class="text-danger">
+                                <?php echo $pwError; ?>
+                            </span>
+                        <?php } ?>
+                    </td>
                 </tr>
                 <tr>
                     <td>Confirm Password</td>
-                    <td><input type='password' name='cpw' class='form-control'></td>
+                    <td><input type='password' name='cpw' class='form-control' value="<?php echo isset($cpw) ? htmlspecialchars($cpw) : ''; ?>" />
+                        <?php if (isset($cpwError)) { ?>
+                            <span class="text-danger">
+                                <?php echo $cpwError; ?>
+                            </span>
+                        <?php } ?>
+                    </td>
                 </tr>
                 <tr>
                     <td>First Name</td>
-                    <td><input type='text' name='fName' class='form-control' /></td>
+                    <td><input type='text' name='fName' class='form-control' value="<?php echo isset($fName) ? htmlspecialchars($fName) : ''; ?>" />
+                        <?php if (isset($fNameError)) { ?>
+                            <span class="text-danger">
+                                <?php echo $fNameError; ?>
+                            </span>
+                        <?php } ?>
+                    </td>
                 </tr>
                 <tr>
                     <td>Last Name</td>
-                    <td><input type='text' name='lName' class='form-control' /></td>
+                    <td><input type='text' name='lName' class='form-control' value="<?php echo isset($lName) ? htmlspecialchars($lName) : ''; ?>" />
+                        <?php if (isset($lNameError)) { ?>
+                            <span class="text-danger">
+                                <?php echo $lNameError; ?>
+                            </span>
+                        <?php } ?>
+                    </td>
                 </tr>
                 <tr>
                     <td>Gender</td>
-                    <td><input type="radio" name="gender" value="male" /> Male
+                    <td>
+                        <input type="radio" name="gender" value="male" /> Male
                         <input type="radio" name="gender" value="female" /> Female
+                    </td>
                 </tr>
                 <tr>
                     <td>Date of Birth</td>
-                    <td><input type='date' name='dOB' class='form-control' /></td>
+                    <td><input type='date' name='dOB' class='form-control' value="<?php echo isset($dOB) ? htmlspecialchars($dOB) : ''; ?>" />
+                        <?php if (isset($dOBError)) { ?>
+                            <span class="text-danger">
+                                <?php echo $dOBError; ?>
+                            </span>
+                        <?php } ?>
+                    </td>
                 </tr>
                 <tr>
                     <td>Account Status</td>
-                    <td><input type="radio" name="accStatus" value="active" /> Active
+                    <td>
+                        <input type="radio" name="accStatus" value="active" /> Active
                         <input type="radio" name="accStatus" value="inactive" /> Inactive
+                        <?php if (isset($accStatusError)) { ?>
+                            <span class="text-danger">
+                                <?php echo $accStatusError; ?>
+                            </span>
+                        <?php } ?>
+                    </td>
                 </tr>
                 <tr>
                     <td></td>
