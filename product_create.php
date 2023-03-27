@@ -55,29 +55,45 @@
                 $expiredDate = htmlspecialchars(strip_tags($_POST['expiredDate']));
 
 
-
-                if (empty($name) || empty($description) || empty($price) || empty($manufactureDate)) {
-                    echo "<div class='alert alert-danger'>Please fill in all the field other than Promo Price and Expired Date.</div>";
+                if (empty($name)) {
+                    $nameError = "*Please enter product's name.";
                     $success = false;
                 }
 
+                if (empty($description)) {
+                    $desError = "*Please enter product's description.";
+                    $success = false;
+                }
+
+                if (empty($price)) {
+                    $priceError = "*Please enter product's price.";
+                    $success = false;
+                }
+
+                if (empty($manufactureDate)) {
+                    $manuError = "*Please enter product's manufacture date.";
+                    $success = false;
+                }
+
+
+
                 if (!empty($promoPrice)) {
                     if ($promoPrice > $price) {
-                        echo "<div class='alert alert-danger'>Promo price must be lesser than price.</div>";
+                        $promoError = "*Promo price must be lesser than original price.";
                         $success = false;
                     }
                 }
 
                 if (!empty($expiredDate)) {
                     if ($manufactureDate >= $expiredDate) {
-                        echo "<div class='alert alert-danger'>Manufacturing Date must be ealier than Expired Date</div>";
+                        $ManuError = "*Manufacturing Date must be ealier than expired date.";
                         $success = false;
                     }
                 }
 
 
                 if ($success == true) {
-                    // insert query + add ex
+                    // insert query 
 
                     $query = "INSERT INTO products SET name=:name, description=:description, price=:price, created=:created, manufactureDate=:manufactureDate";
                     // prepare query for execution
@@ -86,9 +102,6 @@
                     $stmt->bindParam(':name', $name);
                     $stmt->bindParam(':description', $description);
                     $stmt->bindParam(':price', $price);
-
-                    //add ex
-
                     $stmt->bindParam(':manufactureDate', $manufactureDate);
 
 
@@ -99,8 +112,14 @@
                     // Execute the query
                     if ($stmt->execute()) {
                         echo "<div class='alert alert-success'>Record was saved.</div>";
+                        $name = "";
+                        $description = "";
+                        $price = "";
+                        $promoPrice = "";
+                        $manufactureDate = "";
+                        $expiredDate = "";
                     } else {
-                        echo "<div class='alert alert-danger'>Unable to save record.</div>";
+                        echo "<div class='alert alert-danger'>Unable to save record. Please fill in all fields.</div>";
                     }
                 }
             }
@@ -121,27 +140,61 @@
             <table class='table table-hover table-responsive table-bordered'>
                 <tr>
                     <td>Name</td>
-                    <td><input type='text' name='name' class='form-control' /></td>
+                    <td><input type='text' name='name' class='form-control' value="<?php echo isset($name) ? htmlspecialchars($name) : ''; ?>" />
+                        <?php if (isset($nameError)) { ?>
+                            <span class="text-danger"> <?php echo $nameError; ?> </span>
+                        <?php } ?>
+                    </td>
                 </tr>
                 <tr>
                     <td>Description</td>
-                    <td><textarea name='description' class='form-control'></textarea></td>
+                    <td><textarea name='description' class='form-control' value="<?php echo isset($description) ? htmlspecialchars($description) : ''; ?>"></textarea>
+                        <?php if (isset($desError)) { ?>
+                            <span class="text-danger">
+                                <?php echo $desError; ?>
+                            </span>
+                        <?php } ?>
+                    </td>
                 </tr>
                 <tr>
                     <td>Price</td>
-                    <td><input type='number' name='price' class='form-control' /></td>
+                    <td><input type='number' name='price' class='form-control' value="<?php echo isset($price) ? htmlspecialchars($price) : ''; ?>" />
+                        <?php if (isset($priceError)) { ?>
+                            <span class="text-danger">
+                                <?php echo $priceError; ?>
+                            </span>
+                        <?php } ?>
+                    </td>
                 </tr>
                 <tr>
                     <td>Promo Price</td>
-                    <td><input type='number' name='promoPrice' class='form-control' /></td>
+                    <td><input type='number' name='promoPrice' class='form-control' value="<?php echo isset($promoPrice) ? htmlspecialchars($promoPrice) : ''; ?>" />
+                        <?php if (isset($promoError)) { ?>
+                            <span class="text-danger">
+                                <?php echo $promoError; ?>
+                            </span>
+                        <?php } ?>
+                    </td>
                 </tr>
                 <tr>
                     <td>Manufacture Date</td>
-                    <td><input type='date' name='manufactureDate' class='form-control' /></td>
+                    <td><input type='date' name='manufactureDate' class='form-control' value="<?php echo isset($manufactureDate) ? htmlspecialchars($manufactureDate) : ''; ?>" />
+                        <?php if (isset($manuError)) { ?>
+                            <span class="text-danger">
+                                <?php echo $manuError; ?>
+                            </span>
+                        <?php } ?>
+                    </td>
                 </tr>
                 <tr>
                     <td>Expired Date</td>
-                    <td><input type='date' name='expiredDate' class='form-control' /></td>
+                    <td><input type='date' name='expiredDate' class='form-control' value="<?php echo isset($expiredDate) ? htmlspecialchars($expiredDate) : ''; ?>" />
+                        <?php if (isset($expiredError)) { ?>
+                            <span class="text-danger">
+                                <?php echo $expiredError; ?>
+                            </span>
+                        <?php } ?>
+                    </td>
                 </tr>
                 <tr>
                     <td></td>
