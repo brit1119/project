@@ -62,6 +62,14 @@
                 } elseif (strlen($username) < 6) {
                     $userError = "*Username must be at least 6 characters.";
                     $success = false;
+                } elseif (preg_match('/\s/', $username)) {
+                    //check if username contains space
+                    $userError = "*Username cannot contain white space.";
+                    $success = false;
+                } elseif (!preg_match('/^(?=.*[a-zA-Z])(?=.*\d)(?=.*[\W_])[a-zA-Z\d\W_]{6,}$/', $username)) {
+                    // check if username meets the requirements
+                    $userError = "*Username must be at least 6 characters and contain at least one letter, one number, and one symbol.";
+                    $success = false;
                 }
 
 
