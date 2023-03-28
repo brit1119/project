@@ -79,10 +79,7 @@
                 } elseif (strlen($pw) < 8) {
                     $pwError = "*Password must be at least 8 characters.";
                     $success = false;
-                }
-
-
-                if (empty($cpw)) {
+                } elseif (empty($cpw)) {
                     $cpwError = "*Please enter to confirm password.";
                     $success = false;
                 } elseif ($cpw !== $pw) {
