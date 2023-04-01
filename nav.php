@@ -12,13 +12,23 @@
 
 <body>
     <!-- container -->
-    <?php include 'nav.php'; ?>
-
     <div class="container">
-        <div class="page-header">
-            <h1>Contact Us</h1>
+        <div class="py-4">
+            <ul class="nav nav-pills nav-fill fs-4 fw-light">
+                <li class="nav-item">
+                    <a class="nav-link link-secondary" href="index.php">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link link-secondary" href="product_read.php">My Products</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link link-secondary" href="customer_create.php">My Customers</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link link-secondary" href="contact.php">Contact Us</a>
+                </li>
+            </ul>
         </div>
-    </div>
 
 
 

@@ -12,26 +12,11 @@
 
 <body>
     <!-- container -->
-    <div class="container">
-        <div class="py-4">
-            <ul class="nav nav-pills nav-fill">
-                <li class="nav-item">
-                    <a class="nav-link link-secondary" href="index.php">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link link-secondary" href="product_create.php">Create Product</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link link-secondary" href="customer_create.php">Create Customer</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link link-secondary" href="contact.php">Contact Us</a>
-                </li>
-            </ul>
-        </div>
+    <?php include 'nav.php'; ?>
 
+    <div class="container">
         <div class="page-header">
-            <h1>Create Customer</h1>
+            <h1>Customers</h1>
         </div>
 
         <!-- html form to create product will be here -->
