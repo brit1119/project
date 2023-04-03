@@ -75,20 +75,14 @@
                         exit();
                     } else {
                         // account is inactive
-                        $error = "Your account is currently inactive.";
                         echo "<div class='alert alert-danger'>Your account is currently inactive.</div>";
                     }
                 } else {
                     // login failed
-                    $error = "Invalid username or password.";
                     echo "<div class='alert alert-danger'>Invalid Username or Password</div>";
                 }
             }
         }
-
-
-
-
 
 
         ?>
