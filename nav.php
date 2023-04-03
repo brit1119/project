@@ -22,10 +22,31 @@
                     <a class="nav-link link-secondary" href="product_read.php">My Products</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link link-secondary" href="customer_create.php">My Customers</a>
+                    <a class="nav-link link-secondary" href="customer_read.php">My Customers</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link link-secondary" href="contact.php">Contact Us</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link link-secondary modal-dialog-centered">Log Out
+                        <div class="modal" tabindex="-1">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Log out</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>Are you sure you want to log out?</p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                        <button type="button" class="btn btn-danger">Log out</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
                 </li>
             </ul>
         </div>
