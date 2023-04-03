@@ -39,13 +39,13 @@
             } elseif (strlen($username) < 6) {
                 $userError = "*Username must be at least 6 characters.";
                 $success = false;
-            } elseif (preg_match('/\s/', $username)) {
+            } elseif ($username == trim($username)) {
                 //check if username contains space
                 $userError = "*Username cannot contain white space.";
                 $success = false;
-            } elseif (!preg_match('/^(?=.*[a-zA-Z])(?=.*\d)(?=.*[\W_])[a-zA-Z\d\W_]{6,}$/', $username)) {
+            } elseif (!preg_match('@[A-Z]@', $username) || !preg_match('@[a-z]@', $username) || !preg_match('@[0-9]@', $username)) {
                 // check if username meets the requirements
-                $userError = "*Username must be at least 6 characters and contain at least one letter, one number, and one symbol.";
+                $userError = "*Username must contain at least one letter, one number, and one symbol.";
                 $success = false;
             }
 
