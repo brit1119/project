@@ -36,25 +36,11 @@
             if (empty($username)) {
                 $userError = "*Please enter a username.";
                 $success = false;
-            } elseif (strlen($username) < 6) {
-                $userError = "*Username must be at least 6 characters.";
-                $success = false;
-            } elseif ($username == trim($username)) {
-                //check if username contains space
-                $userError = "*Username cannot contain white space.";
-                $success = false;
-            } elseif (!preg_match('@[A-Z]@', $username) || !preg_match('@[a-z]@', $username) || !preg_match('@[0-9]@', $username)) {
-                // check if username meets the requirements
-                $userError = "*Username must contain at least one letter, one number, and one symbol.";
-                $success = false;
             }
 
 
             if (empty($pw)) {
                 $pwError = "*Please enter a password.";
-                $success = false;
-            } elseif (strlen($pw) < 8) {
-                $pwError = "*Password must be at least 8 characters.";
                 $success = false;
             }
 
