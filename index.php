@@ -18,7 +18,7 @@
 
     <div class="container">
         <div class="page-header">
-            <h1>Welcome</h1>
+            <h1 class="mb-4 py-4 text-center">Welcome</h1>
         </div>
     </div>
 

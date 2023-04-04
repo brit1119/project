@@ -18,7 +18,7 @@
 
     <div class="container">
         <div class="page-header">
-            <h1>My Customer</h1>
+            <h1 class="mb-4 py-4 text-center">My Customer</h1>
         </div>
 
         <!-- PHP code to read records will be here -->

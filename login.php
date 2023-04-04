@@ -26,7 +26,7 @@
 
             // posted values
             $username = htmlspecialchars(strip_tags($_POST['username']));
-            $pw = htmlspecialchars(strip_tags($_POST['pw']));
+            $pw = $_POST['pw'];
 
             $success = true;
 
@@ -47,10 +47,9 @@
 
 
                 // prepare query for execution
-                $query = "SELECT * FROM customers WHERE username = :username AND pw = :pw";
+                $query = "SELECT * FROM customers WHERE username = :username";
                 $stmt = $con->prepare($query);
                 $stmt->bindParam(':username', $username);
-                $stmt->bindParam(':pw', $pw);
                 $stmt->execute();
 
                 //return result
@@ -62,18 +61,22 @@
                     //fetch data into user
                     $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-                    //check account status
-                    if ($user['accStatus'] == 'active') {
-                        // login successful
-                        // set the session variable
-                        $_SESSION['username'] = $username;
+                    //check password
+                    if ($user['pw'] == md5($pw)) {
 
-                        // redirect to the dashboard
-                        header("Location: index.php");
-                        exit();
-                    } else {
-                        // account is inactive
-                        echo "<div class='alert alert-danger'>Your account is currently inactive.</div>";
+                        //check account status
+                        if ($user['accStatus'] == 'active') {
+                            // login successful
+                            // set the session variable
+                            $_SESSION['username'] = $username;
+
+                            // redirect to the dashboard
+                            header("Location: index.php");
+                            exit();
+                        } else {
+                            // account is inactive
+                            echo "<div class='alert alert-danger'>Your account is currently inactive.</div>";
+                        }
                     }
                 } else {
                     // login failed
@@ -89,40 +92,41 @@
         <!-- html form here where the product information will be entered -->
 
 
-
-
-
-        <h1 class="mb-4 text-center">Log In</h1>
-        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-            <table class='table table-hover table-responsive table-bordered'>
-                <tr>
-                    <td>Username</td>
-                    <td><input type='text' name='username' class='form-control' value="<?php echo isset($username) ? htmlspecialchars($username) : ''; ?>" />
+        <h1 class="my-4 pt-4 text-center">Log In</h1>
+        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" class="row justify-content-center ">
+            <div class="col-md-6 col-lg-4">
+                <div class="mb-3">
+                    <label for="username1" class="form-label">Username</label>
+                    <input type="text" class="form-control" name='username' id="username1" aria-describedby="userHelp" value="<?php echo isset($username) ? htmlspecialchars($username) : ''; ?>">
+                    <div id="userHelp" class="form-text">
                         <?php if (isset($userError)) { ?>
                             <span class="text-danger">
                                 <?php echo $userError; ?>
                             </span>
                         <?php } ?>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Password</td>
-                    <td><input type='password' name='pw' class='form-control' value="<?php echo isset($pw) ? htmlspecialchars($pw) : ''; ?>" />
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="password1" class="form-label">Password</label>
+                    <input type="password" name='pw' class="form-control" id="password1" aria-describedby="pwHelp" value="<?php echo isset($pw) ? htmlspecialchars($pw) : ''; ?>">
+                    <div id="pwHelp" class="form-text">
                         <?php if (isset($pwError)) { ?>
                             <span class="text-danger">
                                 <?php echo $pwError; ?>
                             </span>
                         <?php } ?>
-                    </td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td>
-                        <input type='submit' name='submit' value='Log in' class='btn btn-primary' />
-                    </td>
-                </tr>
-            </table>
+                    </div>
+                </div>
+
+                <button type="submit" name="submit" class="btn btn-primary">Log In</button>
+            </div>
         </form>
+
+
+
+
+
+
 
 
     </div>

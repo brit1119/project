@@ -16,7 +16,7 @@
 
     <div class="container">
         <div class="page-header">
-            <h1>Contact Us</h1>
+            <h1 class="mb-4 py-4 text-center">Contact Us</h1>
         </div>
     </div>
 

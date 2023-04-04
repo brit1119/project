@@ -16,7 +16,7 @@
 
     <div class="container">
         <div class="page-header">
-            <h1>Products</h1>
+            <h1 class="mb-4 py-4 text-center">Create Product</h1>
         </div>
 
         <!-- html form to create product will be here -->

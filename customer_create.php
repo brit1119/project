@@ -16,7 +16,7 @@
 
     <div class="container">
         <div class="page-header">
-            <h1>Customers</h1>
+            <h1 class="mb-4 py-4 text-center">Create Customer</h1>
         </div>
 
         <!-- html form to create product will be here -->
@@ -29,8 +29,8 @@
 
                 // posted values
                 $username = htmlspecialchars(strip_tags($_POST['username']));
-                $pw = htmlspecialchars(strip_tags($_POST['pw']));
-                $cpw =  htmlspecialchars(strip_tags($_POST['cpw']));
+                $pw = $_POST['pw'];
+                $cpw =  $_POST['cpw'];
                 $fName = htmlspecialchars(strip_tags($_POST['fName']));
                 $lName = htmlspecialchars(strip_tags($_POST['lName']));
                 if (isset($_POST['gender'])) $gender = $_POST['gender'];
@@ -47,7 +47,7 @@
                 } elseif (strlen($username) < 6) {
                     $userError = "*Username must be at least 6 characters.";
                     $success = false;
-                } elseif ($username == trim($username)) {
+                } elseif ($username !== trim($username)) {
                     //check if username contains space
                     $userError = "*Username cannot contain white space.";
                     $success = false;
@@ -70,6 +70,8 @@
                 } elseif ($cpw !== $pw) {
                     $cpwError = "*Password not matched.";
                     $success = false;
+                } else {
+                    $pw = md5($pw);
                 }
 
 

@@ -14,7 +14,7 @@
 
     <div class="container my-4 py-4">
         <div class="page-header">
-            <h1>Product Details</h1>
+            <h1 class="mb-4 py-4 text-center">Product Details</h1>
         </div>
 
         <!-- PHP read one record will be here -->
