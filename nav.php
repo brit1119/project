@@ -9,10 +9,27 @@
                 <a class="nav-link link-secondary" href="product_read.php">My Products</a>
             </li>
             <li class="nav-item">
+                <a class="nav-link link-secondary" href="product_create.php">Create Product</a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link link-secondary" href="customer_read.php">My Customers</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link link-secondary" href="contact.php">Contact Us</a>
+                <a class="nav-link link-secondary" href="customer_create.php">Create Customer</a>
+            </li>
+            <li class="nav-item dropdown">
+                <button class="nav-link link-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                    Category
+                </button>
+                <ul class="dropdown-menu dropdown-menu-light">
+                    <li><a class="dropdown-item" href="category_create.php">Create Category</a></li>
+                    <li><a class="dropdown-item" href="category_read.php">My Category</a></li>
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                </ul>
             </li>
             <li class="nav-item">
                 <!-- Button trigger modal -->
