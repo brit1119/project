@@ -38,10 +38,16 @@
                 $promoPrice = htmlspecialchars(strip_tags($_POST['promoPrice']));
                 $manufactureDate = htmlspecialchars(strip_tags($_POST['manufactureDate']));
                 $expiredDate = htmlspecialchars(strip_tags($_POST['expiredDate']));
+                if (isset($_POST['catName'])) $catName = $_POST['catName'];
 
 
                 if (empty($name)) {
                     $nameError = "*Please enter a product name.";
+                    $success = false;
+                }
+
+                if (empty($catName)) {
+                    $catError = "*Please select a category.";
                     $success = false;
                 }
 
@@ -131,6 +137,26 @@
                         <?php } ?>
                     </td>
                 </tr>
+                <tr>
+                    <td>Category</td>
+                    <td>
+                        <select class="form-select" name="catName" value="<?php echo isset($catName) ? htmlspecialchars($catName) : ''; ?>">
+                            <option selected>Select a Category</option>
+
+                            <?php
+                            $query = "SELECT catName FROM category";
+                            $stmt = $pdo->query($query);
+                            while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                                echo '<option value="' . $row['catName'] . '">' . $row['catName'] . '</option>';
+                            }; ?>
+
+                        </select>
+                        <?php if (isset($catError)) { ?>
+                            <span class="text-danger"> <?php echo $catError; ?> </span>
+                        <?php } ?>
+                    </td>
+                </tr>
+
                 <tr>
                     <td>Description</td>
                     <td><textarea name='description' class='form-control' value="<?php echo isset($description) ? htmlspecialchars($description) : ''; ?>"></textarea>

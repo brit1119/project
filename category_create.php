@@ -16,7 +16,7 @@
 
     <div class="container">
         <div class="page-header">
-            <h1 class="mb-4 py-4 text-center">Create Customer</h1>
+            <h1 class="mb-4 py-4 text-center">Create Category</h1>
         </div>
 
         <!-- html form to create product will be here -->
@@ -115,7 +115,7 @@
                     <td></td>
                     <td>
                         <input type='submit' value='Save' class='btn btn-primary' />
-                        <a href='index.php' class='btn btn-danger'>Back to read products</a>
+                        <a href='category_read.php' class='btn btn-danger'>Back to My Category</a>
                     </td>
                 </tr>
             </table>

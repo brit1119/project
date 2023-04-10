@@ -5,32 +5,46 @@
             <li class="nav-item active">
                 <a class="nav-link link-secondary" href="index.php">Home</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link link-secondary" href="product_read.php">My Products</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link link-secondary" href="product_create.php">Create Product</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link link-secondary" href="customer_read.php">My Customers</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link link-secondary" href="customer_create.php">Create Customer</a>
+            <li class="nav-item dropdown">
+                <div class="dropdown-center">
+                    <button class="nav-link link-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                        Products
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-light">
+                        <li><a class="dropdown-item" href="product_read.php">My Products</a></li>
+                        <li><a class="dropdown-item" href="product_create.php">Create Product</a></li>
+                    </ul>
+                </div>
             </li>
             <li class="nav-item dropdown">
-                <button class="nav-link link-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                    Category
-                </button>
-                <ul class="dropdown-menu dropdown-menu-light">
-                    <li><a class="dropdown-item" href="category_create.php">Create Category</a></li>
-                    <li><a class="dropdown-item" href="category_read.php">My Category</a></li>
-                    <li>
-                        <hr class="dropdown-divider">
-                    </li>
-                    <li><a class="dropdown-item" href="#">Another action</a></li>
-                    <li><a class="dropdown-item" href="#">Something else here</a></li>
-                </ul>
+                <div class="dropdown-center">
+                    <button class="nav-link link-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                        Category
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-light">
+                        <li><a class="dropdown-item" href="category_read.php">My Category</a></li>
+                        <li><a class="dropdown-item" href="category_create.php">Create Category</a></li>
+
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="#">Another action</a></li>
+                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                    </ul>
+                </div>
             </li>
+            <li class="nav-item dropdown">
+                <div class="dropdown-center">
+                    <button class="nav-link link-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                        Customers
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-light">
+                        <li><a class="dropdown-item" href="customer_read.php">My Customers</a></li>
+                        <li><a class="dropdown-item" href="customer_create.php">Create Customer</a></li>
+                    </ul>
+                </div>
+            </li>
+
             <li class="nav-item">
                 <!-- Button trigger modal -->
                 <a class="nav-link link-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal">
