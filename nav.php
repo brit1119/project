@@ -24,15 +24,10 @@
                     <ul class="dropdown-menu dropdown-menu-light">
                         <li><a class="dropdown-item" href="category_read.php">My Category</a></li>
                         <li><a class="dropdown-item" href="category_create.php">Create Category</a></li>
-
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-                        <li><a class="dropdown-item" href="#">Another action</a></li>
-                        <li><a class="dropdown-item" href="#">Something else here</a></li>
                     </ul>
                 </div>
             </li>
+
             <li class="nav-item dropdown">
                 <div class="dropdown-center">
                     <button class="nav-link link-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">

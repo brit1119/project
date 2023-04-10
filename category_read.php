@@ -71,13 +71,13 @@
                 echo "<td>";
 
                 // read one record
-                echo "<a href='category_read_one.php?catName={$catName}' class='btn btn-info m-r-1em'>Read</a>";
+                echo "<a href='category_read_one.php?catId={$catId}' class='btn btn-info m-r-1em'>Read</a>";
 
                 // we will use this links on next part of this post
-                echo "<a href='update.php?catName={$catName}' class='btn btn-primary m-r-1em'>Edit</a>";
+                echo "<a href='update.php?catId={$catId}' class='btn btn-primary m-r-1em'>Edit</a>";
 
                 // we will use this links on next part of this post
-                echo "<a href='#' onclick='delete_user({$catName});'  class='btn btn-danger'>Delete</a>";
+                echo "<a href='#' onclick='delete_user({$catId});'  class='btn btn-danger'>Delete</a>";
                 echo "</td>";
                 echo "</tr>";
             }

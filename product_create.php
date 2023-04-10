@@ -11,6 +11,8 @@
 </head>
 
 <body>
+
+
     <!-- container -->
     <?php include 'nav.php'; ?>
 
@@ -22,6 +24,7 @@
         <!-- html form to create product will be here -->
         <!-- PHP insert code will be here -->
         <?php
+
         if ($_POST) {
             // include database connection
             include 'config/database.php';
@@ -86,11 +89,12 @@
                 if ($success == true) {
                     // insert query 
 
-                    $query = "INSERT INTO products SET name=:name, description=:description, price=:price, created=:created, manufactureDate=:manufactureDate";
+                    $query = "INSERT INTO products SET name=:name, catName=:catName ,description=:description, price=:price, created=:created, manufactureDate=:manufactureDate";
                     // prepare query for execution
                     $stmt = $con->prepare($query);
                     // bind the parameters
                     $stmt->bindParam(':name', $name);
+                    $stmt->bindParam(':catName', $catName);
                     $stmt->bindParam(':description', $description);
                     $stmt->bindParam(':price', $price);
                     $stmt->bindParam(':manufactureDate', $manufactureDate);
@@ -104,6 +108,7 @@
                     if ($stmt->execute()) {
                         echo "<div class='alert alert-success'>Record was saved.</div>";
                         $name = "";
+                        $catName = "";
                         $description = "";
                         $price = "";
                         $promoPrice = "";
@@ -140,12 +145,13 @@
                 <tr>
                     <td>Category</td>
                     <td>
-                        <select class="form-select" name="catName" value="<?php echo isset($catName) ? htmlspecialchars($catName) : ''; ?>">
+                        <select class='form-select' name='catName' value="<?php echo isset($catName) ? htmlspecialchars($catName) : ''; ?>">
                             <option selected>Select a Category</option>
 
                             <?php
                             $query = "SELECT catName FROM category";
-                            $stmt = $pdo->query($query);
+                            $stmt = $con->query($query);
+                            $stmt->execute();
                             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                                 echo '<option value="' . $row['catName'] . '">' . $row['catName'] . '</option>';
                             }; ?>
