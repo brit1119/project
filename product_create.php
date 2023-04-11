@@ -149,6 +149,7 @@
                             <option selected>Select a Category</option>
 
                             <?php
+                            include 'config/database.php';
                             $query = "SELECT catName FROM category";
                             $stmt = $con->query($query);
                             $stmt->execute();
