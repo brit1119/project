@@ -1,7 +1,8 @@
 <!-- container -->
+
 <div class="container">
     <div class="py-4">
-        <ul class="nav nav-pills nav-fill fs-4 fw-light">
+        <ul class="nav nav-pills nav-fill fs-4 fw-light" method="post">
             <li class="nav-item active">
                 <a class="nav-link link-secondary" href="index.php">Home</a>
             </li>
@@ -59,7 +60,8 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                                <a href="login.php" type="button" class="btn btn-primary">Log out</a>
+                                <a href="logout.php" type="button" class="btn btn-primary">Log out</a>
+
                             </div>
                         </div>
                     </div>

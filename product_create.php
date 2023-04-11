@@ -24,10 +24,9 @@
         <!-- html form to create product will be here -->
         <!-- PHP insert code will be here -->
         <?php
+        include 'config/database.php';
 
         if ($_POST) {
-            // include database connection
-            include 'config/database.php';
             try {
 
                 $success = true;
@@ -149,16 +148,17 @@
                             <option selected>Select a Category</option>
 
                             <?php
-                            include 'config/database.php';
-                            $query = "SELECT catName FROM category";
-                            $stmt = $con->query($query);
+
+                            $query = "SELECT catId, catName FROM category";
+                            $stmt = $con->prepare($query);
                             $stmt->execute();
                             $num = $stmt->rowCount();
                             if ($num > 0) {
-                                while ($row = $stmt->fetchAll(PDO::FETCH_ASSOC)) {
-                                    $catName = $row['catName'];
+                                while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                                    extract($row);
+
                             ?>
-                                    <option value="<?php echo $catName; ?>"> </option>
+                                    <option value="<?php echo $catId; ?>"><?php echo $catName; ?> </option>
                             <?php
                                 }
                             }

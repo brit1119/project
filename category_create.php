@@ -30,7 +30,6 @@
                 // posted values
                 $catName = htmlspecialchars(strip_tags($_POST['catName']));
                 $catDes = htmlspecialchars(strip_tags($_POST['catDes']));
-                if (isset($_POST['catStatus'])) $catStatus = $_POST['catStatus'];
 
 
                 $success = true;
@@ -42,21 +41,17 @@
                 } elseif (empty($catDes)) {
                     $catError = "*Please enter category description.";
                     $success = false;
-                } elseif (empty($catStatus)) {
-                    $catError = "*Please select category status.";
-                    $success = false;
                 }
 
 
                 if ($success == true) {
                     // insert query
-                    $query = "INSERT INTO category SET catName=:catName, catDes=:catDes, catStatus=:catStatus, catCreated=:catCreated";
+                    $query = "INSERT INTO category SET catName=:catName, catDes=:catDes, catCreated=:catCreated";
                     // prepare query for execution
                     $stmt = $con->prepare($query);
                     // bind the parameters
                     $stmt->bindParam(':catName', $catName);
                     $stmt->bindParam(':catDes', $catDes);
-                    $stmt->bindParam(':catStatus', $catStatus);
 
                     // specify when this record was inserted to the database
                     $catCreated = date('Y-m-d');
@@ -67,7 +62,6 @@
                         echo "<div class='alert alert-success'>Record was saved.</div>";
                         $catName = "";
                         $catDes = "";
-                        $catStatus = "";
                     } else {
                         echo "<div class='alert alert-danger'>Unable to save record.</div>";
                     }
@@ -103,13 +97,6 @@
                             </span>
                         <?php } ?>
                     </td>
-                </tr>
-                <tr>
-                    <td>Category Status</td>
-                    <td>
-                        <input type="radio" name="catStatus" value="available" /> Available
-                        <input type="radio" name="catStatus" value="unavailable" /> Unavailable
-
                 </tr>
                 <tr>
                     <td></td>
