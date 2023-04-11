@@ -20,6 +20,14 @@
         <!-- PHP insert code will be here -->
         <?php
         session_start(); // start the session
+        if (isset($_SESSION['warning'])) {
+            // display the warning message
+            echo '<div class="alert alert-danger">' . $_SESSION['warning'] . '</div>';
+
+            // unset the warning message
+            unset($_SESSION['warning']);
+        }
+
 
         if (isset($_POST['submit'])) {
             include 'config/database.php';
