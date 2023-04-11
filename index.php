@@ -1,9 +1,4 @@
-<?php
-session_start();
-if (!isset($_SESSION["username"])) {
-    header("Location:login.php");
-}
-?>
+<?php include 'protect.php'; ?>
 
 <!DOCTYPE HTML>
 <html>

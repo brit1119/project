@@ -1,3 +1,5 @@
+<?php include 'protect.php'; ?>
+
 <!DOCTYPE HTML>
 <html>
 
