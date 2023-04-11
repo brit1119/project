@@ -152,9 +152,16 @@
                             $query = "SELECT catName FROM category";
                             $stmt = $con->query($query);
                             $stmt->execute();
-                            while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                                echo '<option value="' . $row['catName'] . '">' . $row['catName'] . '</option>';
-                            }; ?>
+                            $num = $stmt->rowCount();
+                            if ($num > 0) {
+                                while ($row = $stmt->fetchAll(PDO::FETCH_ASSOC)) {
+                                    $catName = $row['catName'];
+                            ?>
+                                    <option value="<?php echo $catName; ?>"> </option>
+                            <?php
+                                }
+                            }
+                            ?>
 
                         </select>
                         <?php if (isset($catError)) { ?>
