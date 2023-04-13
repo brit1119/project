@@ -52,7 +52,6 @@
             echo "<th>ID</th>";
             echo "<th>Name</th>";
             echo "<th>Description</th>";
-            echo "<th>Status</th>";
             echo "<th>Date Created</th>";
             echo "<th>Action</th>";
             echo "</tr>";
@@ -68,7 +67,6 @@
                 echo "<td>{$catId}</td>";
                 echo "<td>{$catName}</td>";
                 echo "<td>{$catDes}</td>";
-                echo "<td>{$catStatus}</td>";
                 echo "<td>{$catCreated}</td>";
                 echo "<td>";
 
