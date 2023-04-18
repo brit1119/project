@@ -30,7 +30,7 @@
         include 'config/database.php';
 
         // select the category name based on the category ID
-        $query = "SELECT catName FROM category WHERE catId = ?";
+        $query = "SELECT id, name, description, price FROM category INNER JOIN products ON category.catId = products.catId WHERE products.catId = ?;";
         $stmt = $con->prepare($query);
         $stmt->bindParam(1, $catId);
         $stmt->execute();
@@ -43,35 +43,25 @@
             // display the category name
             echo "<h3 class='py-4'>{$catName}</h3>";
 
-            // select all products that belong to the specific category
-            $query = "SELECT * FROM products WHERE catId= ?";
-            $stmt = $con->prepare($query);
-            $stmt->bindParam(1, $catId);
-            $stmt->execute();
 
-            // check if any products were found
-            if ($stmt->rowCount() > 0) {
-                // display the products in a table
-                echo "<table class='table table-hover table-responsive table-bordered'>";
+            // display the products in a table
+            echo "<table class='table table-hover table-responsive table-bordered'>";
+            echo "<tr>";
+            echo "<th>ID</th>";
+            echo "<th>Name</th>";
+            echo "<th>Description</th>";
+            echo "<th>Price</th>";
+            echo "</tr>";
+            while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                extract($row);
                 echo "<tr>";
-                echo "<th>ID</th>";
-                echo "<th>Name</th>";
-                echo "<th>Description</th>";
-                echo "<th>Price</th>";
+                echo "<td>{$id}</td>";
+                echo "<td>{$name}</td>";
+                echo "<td>{$description}</td>";
+                echo "<td>{$price}</td>";
                 echo "</tr>";
-                while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                    extract($row);
-                    echo "<tr>";
-                    echo "<td>{$id}</td>";
-                    echo "<td>{$name}</td>";
-                    echo "<td>{$description}</td>";
-                    echo "<td>{$price}</td>";
-                    echo "</tr>";
-                }
-                echo "</table>";
-            } else {
-                echo "<div class='alert alert-danger'>No products found for this category.</div>";
             }
+            echo "</table>";
         } else {
             echo "<div class='alert alert-danger'>Category not found.</div>";
         }
