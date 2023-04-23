@@ -34,7 +34,7 @@
                 $success = true;
 
                 // posted values
-                $name = htmlspecialchars(strip_tags($_POST['name']));
+                $productName = htmlspecialchars(strip_tags($_POST['productName']));
                 $description = htmlspecialchars(strip_tags($_POST['description']));
                 $price = htmlspecialchars(strip_tags($_POST['price']));
 
@@ -45,7 +45,7 @@
                 if (isset($_POST['catName'])) $catName = $_POST['catName'];
 
 
-                if (empty($name)) {
+                if (empty($productName)) {
                     $nameError = "*Please enter a product name.";
                     $success = false;
                 }
@@ -90,11 +90,11 @@
                 if ($success == true) {
                     // insert query 
 
-                    $query = "INSERT INTO products SET name=:name, catName=:catName ,description=:description, price=:price, created=:created, manufactureDate=:manufactureDate";
+                    $query = "INSERT INTO products SET productName=:productName, catName=:catName ,description=:description, price=:price, created=:created, manufactureDate=:manufactureDate";
                     // prepare query for execution
                     $stmt = $con->prepare($query);
                     // bind the parameters
-                    $stmt->bindParam(':name', $name);
+                    $stmt->bindParam(':productName', $productName);
                     $stmt->bindParam(':catName', $catName);
                     $stmt->bindParam(':description', $description);
                     $stmt->bindParam(':price', $price);
@@ -108,7 +108,7 @@
                     // Execute the query
                     if ($stmt->execute()) {
                         echo "<div class='alert alert-success'>Record was saved.</div>";
-                        $name = "";
+                        $productName = "";
                         $catName = "";
                         $description = "";
                         $price = "";
@@ -137,7 +137,7 @@
             <table class='table table-hover table-responsive table-bordered'>
                 <tr>
                     <td>Name</td>
-                    <td><input type='text' name='name' class='form-control' value="<?php echo isset($name) ? htmlspecialchars($name) : ''; ?>" />
+                    <td><input type='text' name='productName' class='form-control' value="<?php echo isset($productName) ? htmlspecialchars($productName) : ''; ?>" />
                         <?php if (isset($nameError)) { ?>
                             <span class="text-danger"> <?php echo $nameError; ?> </span>
                         <?php } ?>

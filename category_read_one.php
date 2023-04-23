@@ -15,7 +15,7 @@
     <!-- container -->
     <?php include 'nav.php'; ?>
 
-    <div class="container my-4 py-4">
+    <div class="container">
         <div class="page-header">
             <h1 class="mb-4 py-4 text-center">Category's Detail</h1>
         </div>
@@ -30,7 +30,7 @@
         include 'config/database.php';
 
         // select the category name based on the category ID
-        $query = "SELECT id, name, description, price FROM category INNER JOIN products ON category.catId = products.catId WHERE products.catId = ?;";
+        $query = "SELECT catName, productId, productName, description, price FROM category INNER JOIN products ON category.catId = products.catId WHERE products.catId = ?;";
         $stmt = $con->prepare($query);
         $stmt->bindParam(1, $catId);
         $stmt->execute();
@@ -55,10 +55,10 @@
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 extract($row);
                 echo "<tr>";
-                echo "<td>{$id}</td>";
-                echo "<td>{$name}</td>";
+                echo "<td>{$productId}</td>";
+                echo "<td>{$productName}</td>";
                 echo "<td>{$description}</td>";
-                echo "<td>{$price}</td>";
+                echo "<td class='text-end'>" . number_format($price, 2, '.', '') . "</td>";
                 echo "</tr>";
             }
             echo "</table>";

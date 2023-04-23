@@ -12,6 +12,8 @@
 
 <body>
 
+    <?php include 'nav.php'; ?>
+
     <!-- container -->
 
     <div class="container my-4 py-4">

@@ -9,6 +9,16 @@
             <li class="nav-item dropdown">
                 <div class="dropdown-center">
                     <button class="nav-link link-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                        Orders
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-light">
+                        <li><a class="dropdown-item" href="order_read.php">My Orders</a></li>
+                        <li><a class="dropdown-item" href="order_create.php">Create Order</a></li>
+                    </ul>
+                </div>
+            <li class="nav-item dropdown">
+                <div class="dropdown-center">
+                    <button class="nav-link link-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                         Products
                     </button>
                     <ul class="dropdown-menu dropdown-menu-light">

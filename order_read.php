@@ -20,7 +20,7 @@
 
     <div class="container">
         <div class="page-header">
-            <h1 class="mb-4 py-4 text-center">My Products</h1>
+            <h1 class="mb-4 py-4 text-center">My Orders</h1>
         </div>
 
         <!-- PHP code to read records will be here -->
@@ -28,7 +28,7 @@
         // include database connection
         include 'config/database.php';
 
-        $query = "SELECT * FROM products";
+        $query = "SELECT * FROM orders";
 
         if ($_POST) {
             $search = htmlspecialchars(strip_tags($_POST['search']));
@@ -62,7 +62,7 @@
 
         <?php
 
-        echo "<div class='col-6'><a href='product_create.php' class='btn btn-primary m-b-1em'>Create New Product</a></div>";
+        echo "<div class='col-6'><a href='order_create.php' class='btn btn-primary m-b-1em'>Create New Order</a></div>";
 
 
         //check if more than 0 record found
@@ -73,10 +73,9 @@
 
             //creating our table heading
             echo "<tr>";
-            echo "<th>Product ID</th>";
-            echo "<th>Product Name</th>";
-            echo "<th>Description</th>";
-            echo "<th>Price</th>";
+            echo "<th>Order ID</th>";
+            echo "<th>Username</th>";
+            echo "<th>Order Date</th>";
             echo "<th>Action</th>";
             echo "</tr>";
 
@@ -88,19 +87,18 @@
                 extract($row);
                 // creating new table row per record
                 echo "<tr>";
-                echo "<td>{$productId}</td>";
-                echo "<td>{$productName}</td>";
-                echo "<td>{$description}</td>";
-                echo "<td>" . number_format($price, 2, '.', '') . "</td>";
+                echo "<td>{$orderId}</td>";
+                echo "<td>{$username}</td>";
+                echo "<td>{$orderDate}</td>";
                 echo "<td>";
                 // read one record
-                echo "<a href='product_read_one.php?productId={$productId}' class='btn btn-info m-r-1em'>Read</a>";
+                echo "<a href='product_read_one.php?orderId={$orderId}' class='btn btn-info m-r-1em'>Read</a>";
 
                 // we will use this links on next part of this post
-                echo "<a href='update.php?productId={$productId}' class='btn btn-primary m-r-1em'>Edit</a>";
+                echo "<a href='update.php?orderId={$orderId}' class='btn btn-primary m-r-1em'>Edit</a>";
 
                 // we will use this links on next part of this post
-                echo "<a href='#' onclick='delete_user({$productId});'  class='btn btn-danger'>Delete</a>";
+                echo "<a href='#' onclick='delete_user({$orderId});'  class='btn btn-danger'>Delete</a>";
                 echo "</td>";
                 echo "</tr>";
             }

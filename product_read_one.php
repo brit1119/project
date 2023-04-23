@@ -11,6 +11,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
 
 <body>
+    <?php include 'nav.php'; ?>
 
     <!-- container -->
 
@@ -23,7 +24,7 @@
         <?php
         // get passed parameter value, in this case, the record ID
         // isset() is a PHP function used to verify if a value is there or not
-        $id = isset($_GET['id']) ? $_GET['id'] : die('ERROR: Record ID not found.');
+        $productId = isset($_GET['productId']) ? $_GET['productId'] : die('ERROR: Record ID not found.');
 
         //include database connection
         include 'config/database.php';
@@ -31,11 +32,11 @@
         // read current record's data
         try {
             // prepare select query
-            $query = "SELECT id, name, description, price FROM products WHERE id = ? LIMIT 0,1";
+            $query = "SELECT productId, productName, description, price FROM products WHERE id = ? LIMIT 0,1";
             $stmt = $con->prepare($query);
 
             // this is the first question mark
-            $stmt->bindParam(1, $id);
+            $stmt->bindParam(1, $productId);
 
             // execute our query
             $stmt->execute();
@@ -45,7 +46,7 @@
 
             // values to fill up our form
             //or extract all at once (extract($row))
-            $name = $row['name'];
+            $productName = $row['productName'];
             $description = $row['description'];
             $price = $row['price'];
         }
@@ -62,7 +63,7 @@
         <table class='table table-hover table-responsive table-bordered'>
             <tr>
                 <td>Name</td>
-                <td><?php echo htmlspecialchars($name, ENT_QUOTES);  ?></td>
+                <td><?php echo htmlspecialchars($productName, ENT_QUOTES);  ?></td>
             </tr>
             <tr>
                 <td>Description</td>
@@ -75,7 +76,7 @@
             <tr>
                 <td></td>
                 <td>
-                    <a href='index.php' class='btn btn-danger'>Back to read products</a>
+                    <a href='product_read.php' class='btn btn-danger'>Back to read products</a>
                 </td>
             </tr>
         </table>
