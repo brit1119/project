@@ -1,7 +1,7 @@
 <?php include 'protect.php'; ?>
 
 <!DOCTYPE HTML>
-<html>
+<html lang="en" data-bs-theme="dark">
 
 <head>
     <title>PDO - Create a Record - PHP CRUD Tutorial</title>

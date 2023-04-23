@@ -1,7 +1,7 @@
 <?php include 'protect.php'; ?>
 
 <!DOCTYPE HTML>
-<html>
+<html lang="en" data-bs-theme="dark">
 
 <head>
     <title>PDO - Create a Record - PHP CRUD Tutorial</title>
@@ -28,16 +28,12 @@
         // include database connection
         include 'config/database.php';
 
+        // select all data
         $query = "SELECT * FROM products";
-
         if ($_POST) {
             $search = htmlspecialchars(strip_tags($_POST['search']));
             $query = "SELECT * FROM products WHERE name LIKE '%$search%';";
         }
-
-
-
-        // select all data
 
         $stmt = $con->prepare($query);
         $stmt->execute();
@@ -46,23 +42,22 @@
         $num = $stmt->rowCount();
 
 
-
-        // link to create record form
         ?>
 
-        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" class="row g-2 pt-3">
-            <div class="col-4">
+
+        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" class="row justify-content-between g-2 pt-3">
+            <div class='col-8'><a href='product_create.php' class='btn btn-primary m-b-1em'>Create New Product</a></div>
+            <div class="col">
                 <label for="search" class="visually-hidden">Search</label>
                 <input type="text" class="form-control" name="search" id="search" placeholder="Search">
             </div>
-            <div class="col-2">
-                <button type="submit" class="btn btn-primary mb-3">Search</button>
+            <div class="col-1">
+                <button type="submit" class="col-12 btn btn-primary mb-3">Search</button>
             </div>
+
         </form>
 
         <?php
-
-        echo "<div class='col-6'><a href='product_create.php' class='btn btn-primary m-b-1em'>Create New Product</a></div>";
 
 
         //check if more than 0 record found
@@ -74,7 +69,7 @@
             //creating our table heading
             echo "<tr>";
             echo "<th>Product ID</th>";
-            echo "<th>Product Name</th>";
+            echo "<th>Name</th>";
             echo "<th>Description</th>";
             echo "<th>Price</th>";
             echo "<th>Action</th>";
@@ -88,19 +83,19 @@
                 extract($row);
                 // creating new table row per record
                 echo "<tr>";
-                echo "<td>{$productId}</td>";
-                echo "<td>{$productName}</td>";
+                echo "<td class='col-1'>{$productId}</td>";
+                echo "<td class='col-2'>{$productName}</td>";
                 echo "<td>{$description}</td>";
-                echo "<td>" . number_format($price, 2, '.', '') . "</td>";
-                echo "<td>";
+                echo "<td class='col-1' align='end'>" . number_format($price, 2, '.', '') . "</td>";
+                echo "<td class='col-3'>";
                 // read one record
-                echo "<a href='product_read_one.php?productId={$productId}' class='btn btn-info m-r-1em'>Read</a>";
+                echo "<a href='product_read_one.php?productId={$productId}' class='btn btn-info m-r-1em mx-1'>Read</a>";
 
                 // we will use this links on next part of this post
-                echo "<a href='update.php?productId={$productId}' class='btn btn-primary m-r-1em'>Edit</a>";
+                echo "<a href='update.php?productId={$productId}' class='btn btn-primary m-r-1em mx-1'>Edit</a>";
 
                 // we will use this links on next part of this post
-                echo "<a href='#' onclick='delete_user({$productId});'  class='btn btn-danger'>Delete</a>";
+                echo "<a href='#' onclick='delete_user({$productId});' class='btn btn-danger mx-1'>Delete</a>";
                 echo "</td>";
                 echo "</tr>";
             }
