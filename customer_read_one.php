@@ -21,11 +21,13 @@
             <h1 class="mb-4 py-4 text-center">Customer's Details</h1>
         </div>
 
+
+
         <!-- PHP read one record will be here -->
         <?php
         // get passed parameter value, in this case, the record ID
         // isset() is a PHP function used to verify if a value is there or not
-        $username = isset($_GET['username']) ? $_GET['username'] : die('ERROR: Record Username not found.');
+        $name = isset($_GET['username']) ? $_GET['username'] : die('ERROR: Record Username not found.');
 
         //include database connection
         include 'config/database.php';
@@ -37,7 +39,7 @@
             $stmt = $con->prepare($query);
 
             // this is the first question mark
-            $stmt->bindParam(1, $username);
+            $stmt->bindParam(1, $name);
 
             // execute our query
             $stmt->execute();
@@ -48,13 +50,13 @@
             // values to fill up our form
             //or extract all at once (extract($row))
 
-            $username = $row['username'];
+            $name = $row['username'];
             $fName = $row['fName'];
             $lName = $row['lName'];
             $gender = $row['gender'];
             $dOB = $row['dOB'];
             $regDateNTime = $row['regDateNTime'];
-            $accStatus = $row['regDateNTime'];
+            $accStatus = $row['accStatus'];
         }
 
         // show error
@@ -68,37 +70,39 @@
         <!--we have our html table here where the record will be displayed-->
         <table class='table table-hover table-responsive table-bordered'>
             <tr>
-                <td>Username</td>
-                <td><?php echo htmlspecialchars($username, ENT_QUOTES);  ?></td>
+                <td><b>Username</b></td>
+                <td><?php echo htmlspecialchars($name, ENT_QUOTES);  ?></td>
             </tr>
             <tr>
-                <td>First Name</td>
+                <td><b>First Name</b></td>
                 <td><?php echo htmlspecialchars($fName, ENT_QUOTES);  ?></td>
             </tr>
             <tr>
-                <td>Last Name</td>
+                <td><b>Last Name</b></td>
                 <td><?php echo htmlspecialchars($lName, ENT_QUOTES);  ?></td>
             </tr>
             <tr>
-                <td>Gender</td>
+                <td><b>Gender</b></td>
                 <td><?php echo htmlspecialchars($gender, ENT_QUOTES);  ?></td>
             </tr>
             <tr>
-                <td>Date of Birth</td>
+                <td><b>Date of Birth</b></td>
                 <td><?php echo htmlspecialchars($dOB, ENT_QUOTES);  ?></td>
             </tr>
             <tr>
-                <td>Registration Date and Time</td>
+                <td><b>Registration Date and Time</b></td>
                 <td><?php echo htmlspecialchars($regDateNTime, ENT_QUOTES);  ?></td>
             </tr>
             <tr>
-                <td>Account Status</td>
+                <td><b>Account Status</b></td>
                 <td><?php echo htmlspecialchars($accStatus, ENT_QUOTES);  ?></td>
             </tr>
             <tr>
                 <td></td>
                 <td>
-                    <a href='customer_read.php' class='btn btn-danger'>Back to customer</a>
+                    <a href='update.php?username={$name}' class='btn btn-primary m-r-1em'>Edit</a>
+                    <a href='#' onclick='delete_user({$name});' class='btn btn-danger'>Delete</a>
+                    <a href='customer_read.php' class='btn btn-dark'>Back to customer</a>
                 </td>
             </tr>
         </table>

@@ -11,28 +11,27 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
 
 <body>
-
     <!-- container -->
     <?php include 'nav.php'; ?>
 
     <div class="container">
         <div class="page-header">
-            <h1 class="mb-4 py-4 text-center">Category's Detail</h1>
+            <h1 class="mb-4 py-4 text-center">Order Detail</h1>
         </div>
 
         <!-- PHP read one record will be here -->
         <?php
         // get passed parameter value, in this case, the record ID
         // isset() is a PHP function used to verify if a value is there or not
-        $catId = isset($_GET['catId']) ? $_GET['catId'] : die('ERROR: Record ID not found.');
+        $orderId = isset($_GET['orderId']) ? $_GET['orderId'] : die('ERROR: Record ID not found.');
 
         // include database connection
         include 'config/database.php';
 
         // select the category name based on the category ID
-        $query = "SELECT catName, productId, productName, description, price FROM category INNER JOIN products ON category.catId = products.catId WHERE products.catId = ?;";
+        $query = "SELECT orderDetailsId, orderDetails.orderId, productName, quantity FROM orderDetails INNER JOIN orders ON orders.orderId = orderDetails.orderId INNER JOIN products ON orderDetails.productId = products.productId WHERE orders.orderId = ?;";
         $stmt = $con->prepare($query);
-        $stmt->bindParam(1, $catId);
+        $stmt->bindParam(1, $orderId);
         $stmt->execute();
 
         // check if the category ID exists
@@ -41,29 +40,37 @@
             extract($row);
 
             // display the category name
-            echo "<h3 class='py-4'>{$catName}</h3>";
+            echo "<h3 class='py-4'>Order ID {$orderId}</h3>";
 
 
             // display the products in a table
             echo "<table class='table table-hover table-responsive table-bordered'>";
             echo "<tr>";
-            echo "<th>ID</th>";
-            echo "<th>Name</th>";
-            echo "<th>Description</th>";
-            echo "<th>Price</th>";
+            echo "<th>Order Details ID</th>";
+            echo "<th>Product Name</th>";
+            echo "<th>Quantity</th>";
+            echo "<th>Action</th>";
             echo "</tr>";
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 extract($row);
                 echo "<tr>";
-                echo "<td>{$productId}</td>";
+                echo "<td>{$orderDetailsId}</td>";
                 echo "<td>{$productName}</td>";
-                echo "<td>{$description}</td>";
-                echo "<td class='text-end'>" . number_format($price, 2, '.', '') . "</td>";
+                echo "<td>{$quantity}</td>";
+                echo "<td>";
+
+                // we will use this links on next part of this post
+                echo "<a href='update.php?orderDetailsId={$orderDetailsId}' class='btn btn-primary m-r-1em'>Edit</a>";
+
+                // we will use this links on next part of this post
+                echo "<a href='#' onclick='delete_user({$orderDetailsId});'  class='btn btn-danger'>Delete</a>";
+                echo "</td>";
+                echo "</tr>";
                 echo "</tr>";
             }
             echo "</table>";
         } else {
-            echo "<div class='alert alert-danger'>Category not found.</div>";
+            echo "<div class='alert alert-danger'>Order details not found.</div>";
         }
         ?>
 

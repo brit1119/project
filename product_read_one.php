@@ -32,7 +32,7 @@
         // read current record's data
         try {
             // prepare select query
-            $query = "SELECT productId, productName, description, price FROM products WHERE id = ? LIMIT 0,1";
+            $query = "SELECT productId, productName, description, price FROM products WHERE productId = ? LIMIT 0,1";
             $stmt = $con->prepare($query);
 
             // this is the first question mark
@@ -62,21 +62,23 @@
         <!--we have our html table here where the record will be displayed-->
         <table class='table table-hover table-responsive table-bordered'>
             <tr>
-                <td>Name</td>
+                <td><b>Name</b></td>
                 <td><?php echo htmlspecialchars($productName, ENT_QUOTES);  ?></td>
             </tr>
             <tr>
-                <td>Description</td>
+                <td><b>Description</b></td>
                 <td><?php echo htmlspecialchars($description, ENT_QUOTES);  ?></td>
             </tr>
             <tr>
-                <td>Price</td>
-                <td><?php echo htmlspecialchars($price, ENT_QUOTES);  ?></td>
+                <td><b>Price</b></td>
+                <td>RM<?php echo htmlspecialchars($price, ENT_QUOTES);  ?></td>
             </tr>
             <tr>
                 <td></td>
                 <td>
-                    <a href='product_read.php' class='btn btn-danger'>Back to read products</a>
+                    <a href='update.php?productId={$productId}' class='btn btn-primary m-r-1em'>Edit</a>
+                    <a href='#' onclick='delete_user({$productId});' class='btn btn-danger'>Delete</a>
+                    <a href='product_read.php' class='btn btn-dark'>Back to read products</a>
                 </td>
             </tr>
         </table>
