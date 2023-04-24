@@ -18,7 +18,7 @@
                 } ?>" href="order_read.php"><span>Order</span> <i class="bi bi-chevron-down"></i></a>
                     <ul>
                         <li><a href="order_read.php">My Orders</a></li>
-                        <li><a class="dropdown"><a class="nav-link 
+                        <li><a class="nav-link 
                 <?php if (basename($_SERVER['PHP_SELF']) == 'order_create.php') {
                     echo "active";
                 } ?>" href="order_create.php">Create Order</a></li>
