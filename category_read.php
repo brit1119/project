@@ -57,6 +57,10 @@
 
             <?php
 
+
+            //total number
+            echo "<h5 class='py-4 text-light'>Total: {$num}</h5>";
+
             //check if more than 0 record found
             if ($num > 0) {
 

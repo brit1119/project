@@ -30,7 +30,7 @@
             // include database connection
             include 'config/database.php';
 
-            $query = "SELECT * FROM orders";
+            $query = "SELECT o.orderId, c.fName, c.lName, o.orderDate FROM orders o INNER JOIN customers c ON o.username = c.username";
 
             if ($_POST) {
                 $search = htmlspecialchars(strip_tags($_POST['search']));
@@ -63,7 +63,12 @@
 
             </form>
 
+
+
             <?php
+
+            //total number
+            echo "<h5 class='py-4 text-light'>Total: {$num}</h5>";
 
             //check if more than 0 record found
             if ($num > 0) {
@@ -74,7 +79,7 @@
                 //creating our table heading
                 echo "<tr>";
                 echo "<th>Order ID</th>";
-                echo "<th>Username</th>";
+                echo "<th>Customer Name</th>";
                 echo "<th>Order Date</th>";
                 echo "<th>Action</th>";
                 echo "</tr>";
@@ -89,7 +94,7 @@
                     // creating new table row per record
                     echo "<tr>";
                     echo "<td class='col-1 text-end'>{$orderId}</td>";
-                    echo "<td class='col-1'>{$username}</td>";
+                    echo "<td class='col-2'>{$fName} {$lName}</td>";
                     echo "<td class='col'>{$orderDate}</td>";
                     echo "<td class='col-3'>";
                     // read one record
