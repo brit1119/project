@@ -20,7 +20,7 @@
     <div class="container">
         <section>
             <div class="page-header">
-                <h1 class="mb-4 py-4 text-center">Category's Detail</h1>
+                <h1 class="mb-4 py-4 text-center text-light">Category's Detail</h1>
             </div>
 
             <!-- PHP read one record will be here -->
@@ -44,17 +44,19 @@
                 extract($row);
 
                 // display the category name
-                echo "<h3 class='py-4'>{$catName}</h3>";
+                echo "<h3 class='py-4 text-light'>{$catName}</h3>";
 
 
                 // display the products in a table
-                echo "<table class='table table-hover table-responsive table-bordered'>";
+                echo "<table class='table table-hover'>";
                 echo "<tr>";
                 echo "<th>ID</th>";
                 echo "<th>Name</th>";
                 echo "<th>Description</th>";
-                echo "<th>Price</th>";
+                echo "<th class='text-end'>Price</th>";
                 echo "</tr>";
+                echo "<tbody class='table-group-divider'>";
+
                 while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                     extract($row);
                     echo "<tr>";
@@ -64,6 +66,7 @@
                     echo "<td class='text-end'>" . number_format($price, 2, '.', '') . "</td>";
                     echo "</tr>";
                 }
+                echo "</tbody>";
                 echo "</table>";
             } else {
                 echo "<div class='alert alert-danger'>Category not found.</div>";

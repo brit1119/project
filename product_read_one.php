@@ -17,10 +17,10 @@
 
     <!-- container -->
 
-    <div class="container my-4 py-4">
+    <div class="container">
         <section>
             <div class="page-header">
-                <h1 class="mb-4 py-4 text-center">Product Details</h1>
+                <h1 class="mb-4 py-4 text-center text-light">Product Details</h1>
             </div>
 
             <!-- PHP read one record will be here -->
@@ -49,6 +49,7 @@
 
                 // values to fill up our form
                 //or extract all at once (extract($row))
+                $productId = $row['productId'];
                 $productName = $row['productName'];
                 $description = $row['description'];
                 $price = $row['price'];
@@ -63,9 +64,13 @@
 
             <!-- HTML read one record table will be here -->
             <!--we have our html table here where the record will be displayed-->
-            <table class='table table-hover table-responsive table-bordered'>
+            <table class='table table-hover table-dark table-striped-columns'>
                 <tr>
-                    <td><b>Name</b></td>
+                    <td class="col-3"><b>Product ID</b></td>
+                    <td><?php echo htmlspecialchars($productId, ENT_QUOTES);  ?></td>
+                </tr>
+                <tr>
+                    <td><b>Product Name</b></td>
                     <td><?php echo htmlspecialchars($productName, ENT_QUOTES);  ?></td>
                 </tr>
                 <tr>
@@ -74,14 +79,16 @@
                 </tr>
                 <tr>
                     <td><b>Price</b></td>
-                    <td>RM<?php echo htmlspecialchars($price, ENT_QUOTES);  ?></td>
+                    <td><?php echo htmlspecialchars($price, ENT_QUOTES);  ?></td>
                 </tr>
+            </table>
+            <table class="table table-borderless">
                 <tr>
-                    <td></td>
+                    <td class="col-3"></td>
                     <td>
                         <a href='update.php?productId={$productId}' class='btn btn-primary m-r-1em'>Edit</a>
                         <a href='#' onclick='delete_user({$productId});' class='btn btn-danger'>Delete</a>
-                        <a href='product_read.php' class='btn btn-dark'>Back to read products</a>
+                        <a href='product_read.php' class='btn btn-dark border-secondary-subtle'>Back to read products</a>
                     </td>
                 </tr>
             </table>

@@ -50,7 +50,7 @@
                     <input type="text" class="form-control" name="search" id="search" placeholder="Search">
                 </div>
                 <div class="col-1">
-                    <button type="submit" class="col-12 btn btn-primary mb-3">Search</button>
+                    <button type="submit" class="col-12 btn btn-outline-primary mb-3">Search</button>
                 </div>
 
             </form>
@@ -82,14 +82,14 @@
                     // creating new table row per record
 
                     echo "<tr>";
-                    echo "<td>{$catId}</td>";
+                    echo "<td class='text-end'>{$catId}</td>";
                     echo "<td>{$catName}</td>";
                     echo "<td class='col-5'>{$catDes}</td>";
                     echo "<td>{$catCreated}</td>";
                     echo "<td class='col-3'>";
 
                     // read one record
-                    echo "<a href='category_read_one.php?catId={$catId}' class='btn btn-info m-r-1em mx-1'>Read</a>";
+                    echo "<a href='category_read_one.php?catId={$catId}' class='btn btn-dark border-secondary-subtle m-r-1em mx-1'>More</a>";
 
                     // we will use this links on next part of this post
                     echo "<a href='update.php?catId={$catId}' class='btn btn-primary m-r-1em mx-1'>Edit</a>";

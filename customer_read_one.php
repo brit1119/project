@@ -18,13 +18,11 @@
 
     <!-- container -->
 
-    <div class="container my-4 py-4">
+    <div class="container">
         <section>
             <div class="page-header">
-                <h1 class="mb-4 py-4 text-center">Customer's Details</h1>
+                <h1 class="mb-4 py-4 text-center text-light">Customer's Details</h1>
             </div>
-
-
 
             <!-- PHP read one record will be here -->
             <?php
@@ -71,9 +69,9 @@
 
             <!-- HTML read one record table will be here -->
             <!--we have our html table here where the record will be displayed-->
-            <table class='table table-hover table-responsive table-bordered'>
+            <table class='table table-hover table-dark table-striped-columns'>
                 <tr>
-                    <td><b>Username</b></td>
+                    <td class="col-3"><b>Username</b></td>
                     <td><?php echo htmlspecialchars($name, ENT_QUOTES);  ?></td>
                 </tr>
                 <tr>
@@ -100,12 +98,14 @@
                     <td><b>Account Status</b></td>
                     <td><?php echo htmlspecialchars($accStatus, ENT_QUOTES);  ?></td>
                 </tr>
+            </table>
+            <table class="table table-borderless">
                 <tr>
-                    <td></td>
+                    <td class="col-3"></td>
                     <td>
                         <a href='update.php?username={$name}' class='btn btn-primary m-r-1em'>Edit</a>
                         <a href='#' onclick='delete_user({$name});' class='btn btn-danger'>Delete</a>
-                        <a href='customer_read.php' class='btn btn-dark'>Back to customer</a>
+                        <a href='customer_read.php' class='btn btn-dark border-secondary-subtle'>Back to customer</a>
                     </td>
                 </tr>
             </table>

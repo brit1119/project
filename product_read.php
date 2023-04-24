@@ -54,7 +54,7 @@
                     <input type="text" class="form-control" name="search" id="search" placeholder="Search">
                 </div>
                 <div class="col-1">
-                    <button type="submit" class="col-12 btn btn-primary mb-3">Search</button>
+                    <button type="submit" class="col-12 btn btn-outline-primary mb-3">Search</button>
                 </div>
 
             </form>
@@ -66,16 +66,17 @@
             if ($num > 0) {
 
                 // data from database will be here
-                echo "<table class='table table-hover table-responsive table-bordered'>"; //start table
+                echo "<table class='table table-hover'>"; //start table
 
                 //creating our table heading
                 echo "<tr>";
                 echo "<th>Product ID</th>";
                 echo "<th>Name</th>";
                 echo "<th>Description</th>";
-                echo "<th>Price</th>";
+                echo "<th class='text-end'>Price</th>";
                 echo "<th>Action</th>";
                 echo "</tr>";
+                echo "<tbody class='table-group-divider'>";
 
                 // table body will be here
                 // retrieve our table contents
@@ -85,13 +86,13 @@
                     extract($row);
                     // creating new table row per record
                     echo "<tr>";
-                    echo "<td class='col-1'>{$productId}</td>";
+                    echo "<td class='col-1 text-end'>{$productId}</td>";
                     echo "<td class='col-2'>{$productName}</td>";
                     echo "<td>{$description}</td>";
                     echo "<td class='col-1' align='end'>" . number_format($price, 2, '.', '') . "</td>";
                     echo "<td class='col-3'>";
                     // read one record
-                    echo "<a href='product_read_one.php?productId={$productId}' class='btn btn-info m-r-1em mx-1'>Read</a>";
+                    echo "<a href='product_read_one.php?productId={$productId}' class='btn btn-dark border-secondary-subtle m-r-1em mx-1'>More</a>";
 
                     // we will use this links on next part of this post
                     echo "<a href='update.php?productId={$productId}' class='btn btn-primary m-r-1em mx-1'>Edit</a>";
@@ -101,6 +102,7 @@
                     echo "</td>";
                     echo "</tr>";
                 }
+                echo "</tbody>";
 
 
 
