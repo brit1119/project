@@ -39,6 +39,55 @@ ORDER BY o.orderDate DESC LIMIT 0,1";
     $totalAmount = $row['totalAmount'];
 
 
+
+    //latest added customer
+    $query = "SELECT fName, lName, username, regDateNTime
+FROM customers
+ORDER BY regDateNTime DESC; LIMIT 0,1";
+    $stmt = $con->prepare($query);
+    $stmt->execute();
+    $row = $stmt->fetch(PDO::FETCH_ASSOC);
+    $fName = $row['fName'];
+    $lName = $row['lName'];
+    $username = $row['username'];
+    $regDateNTime = $row['regDateNTime'];
+
+
+
+
+    //best selling product
+    $query = "SELECT p.productName, c.catName, SUM(ord.quantity) AS totalSold
+FROM orders o
+INNER JOIN orderDetails ord ON o.orderID = ord.orderId
+INNER JOIN products p ON ord.productId = p.productId
+INNER JOIN category c ON p.catId = c.catId
+GROUP BY p.productId  
+ORDER BY `totalSold` DESC LIMIT 0,1";
+    $stmt = $con->prepare($query);
+    $stmt->execute();
+    $row = $stmt->fetch(PDO::FETCH_ASSOC);
+    $productName = $row['productName'];
+    $catName = $row['catName'];
+    $totalSold = $row['totalSold'];
+
+
+
+    //worst selling product
+    $query = "SELECT p.productName, c.catName, SUM(ord.quantity) AS totalSold
+FROM orders o
+INNER JOIN orderDetails ord ON o.orderID = ord.orderId
+INNER JOIN products p ON ord.productId = p.productId
+INNER JOIN category c ON p.catId = c.catId
+GROUP BY p.productId  
+ORDER BY `totalSold` ASC LIMIT 0,1";
+    $stmt = $con->prepare($query);
+    $stmt->execute();
+    $row = $stmt->fetch(PDO::FETCH_ASSOC);
+    $productName1 = $row['productName'];
+    $catName1 = $row['catName'];
+    $totalSold1 = $row['totalSold'];
+
+
     ?>
 
 
@@ -62,7 +111,7 @@ ORDER BY o.orderDate DESC LIMIT 0,1";
                             <div class="card-body">
                                 <h5 class="card-title text-light-emphasis">Latest Order </h5>
                                 <p class="card-text">
-                                <table class='table table-hover text-center mt-3 mb-5'>
+                                <table class='table table-hover text-center mt-4 mb-5'>
                                     <tr>
                                         <th>Customer Name</th>
                                         <th>Order Date</th>
@@ -80,88 +129,81 @@ ORDER BY o.orderDate DESC LIMIT 0,1";
                             </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-sm-6 mb-3 mb-sm-0">
-                            <div class="card">
-                                <div class="card-body">
-                                    <h5 class="card-title text-light-emphasis">Highest Purchased Product</h5>
-                                    <p class="card-text">
-                                    <table class='table table-hover text-center mt-3 mb-5'>
-                                        <tr>
-                                            <th>Product Name</th>
-                                            <th>Category</th>
-                                            <th>Sold Amount</th>
-                                        </tr>
-                                        <tr>
-                                            <td><?php echo $fName . " ";
-                                                echo $lName; ?></td>
-                                            <td><?php echo $orderDate; ?></td>
-                                        </tr>
-                                    </table>
-                                    </p>
-                                    <a href="order_read.php" class="btn-buy">View Products</a>
-                                </div>
+                    <div class="col-sm-6 mb-3 mb-sm-0">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title text-light-emphasis">Lastest Added Customer</h5>
+                                <p class="card-text">
+                                <table class='table table-hover text-center mt-4 mb-5'>
+                                    <tr>
+                                        <th>Customer Name</th>
+                                        <th>Username</th>
+                                        <th>Registration Date & Time</th>
+                                    </tr>
+                                    <tr>
+                                        <td><?php echo $fName . " ";
+                                            echo $lName; ?></td>
+                                        <td><?php echo $username; ?></td>
+                                        <td><?php echo $regDateNTime; ?></td>
+                                    </tr>
+                                </table>
+                                </p>
+                                <a href="order_read.php" class="btn-buy">View Customers</a>
                             </div>
                         </div>
                     </div>
-
-                    <div class="row">
-
-                        <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
-                            <div class="box">
-                                <h3>Free</h3>
-                                <h4><sup>$</sup>0<span> / month</span></h4>
-                                <ul>
-                                    <li>Aida dere</li>
-                                    <li>Nec feugiat nisl</li>
-                                    <li>Nulla at volutpat dola</li>
-                                    <li class="na">Pharetra massa</li>
-                                    <li class="na">Massa ultricies mi</li>
-                                </ul>
-                                <div class="btn-wrap">
-                                    <a href="#" class="btn-buy">Buy Now</a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-3 col-md-6 mt-4 mt-md-0" data-aos="fade-up" data-aos-delay="200">
-                            <div class="box featured">
-                                <h3>Business</h3>
-                                <h4><sup>$</sup>19<span> / month</span></h4>
-                                <ul>
-                                    <li>Aida dere</li>
-                                    <li>Nec feugiat nisl</li>
-                                    <li>Nulla at volutpat dola</li>
-                                    <li>Pharetra massa</li>
-                                    <li class="na">Massa ultricies mi</li>
-                                </ul>
-                                <div class="btn-wrap">
-                                    <a href="#" class="btn-buy">Buy Now</a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-3 col-md-6 mt-4 mt-lg-0" data-aos="fade-up" data-aos-delay="300">
-                            <div class="box">
-                                <h3>Developer</h3>
-                                <h4><sup>$</sup>29<span> / month</span></h4>
-                                <ul>
-                                    <li>Aida dere</li>
-                                    <li>Nec feugiat nisl</li>
-                                    <li>Nulla at volutpat dola</li>
-                                    <li>Pharetra massa</li>
-                                    <li>Massa ultricies mi</li>
-                                </ul>
-                                <div class="btn-wrap">
-                                    <a href="#" class="btn-buy">Buy Now</a>
-                                </div>
-                            </div>
-                        </div>
-
-
-                    </div>
-
                 </div>
+
+                <div class="row mt-5">
+
+                    <div class="col-sm-6 mb-3 mb-sm-0">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title text-light-emphasis">Best Selling Product</h5>
+                                <p class="card-text">
+                                <table class='table table-hover text-center mt-4 mb-5'>
+                                    <tr>
+                                        <th>Product Name</th>
+                                        <th>Category</th>
+                                        <th>Sold Amount</th>
+                                    </tr>
+                                    <tr>
+                                        <td><?php echo $productName; ?></td>
+                                        <td><?php echo $catName; ?></td>
+                                        <td><?php echo $totalSold; ?></td>
+                                    </tr>
+                                </table>
+                                </p>
+                                <a href="order_read.php" class="btn-buy">View Products</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 mb-3 mb-sm-0">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title text-light-emphasis">Worst Selling Product </h5>
+                                <p class="card-text">
+                                <table class='table table-hover text-center mt-4 mb-5'>
+                                    <tr>
+                                        <th>Product Name</th>
+                                        <th>Category</th>
+                                        <th>Sold Amount</th>
+                                    </tr>
+                                    <tr>
+                                        <td><?php echo $productName1; ?></td>
+                                        <td><?php echo $catName1; ?></td>
+                                        <td><?php echo $totalSold1; ?></td>
+                                    </tr>
+                                </table>
+                                </p>
+                                <a href="order_read.php" class="btn-buy">View Products</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
         </section><!-- End Pricing Section -->
 
     </div>
