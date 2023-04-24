@@ -32,15 +32,13 @@
             include 'config/database.php';
 
             // select the category name based on the category ID
-            $query = "SELECT orderDetailsId, orderDetails.orderId, productName, quantity FROM orderDetails INNER JOIN orders ON orders.orderId = orderDetails.orderId INNER JOIN products ON orderDetails.productId = products.productId WHERE orders.orderId = ?;";
+            $query = "SELECT orderDetailsId, productName, quantity FROM orderDetails INNER JOIN orders ON orders.orderId = orderDetails.orderId INNER JOIN products ON orderDetails.productId = products.productId WHERE orders.orderId = ?;";
             $stmt = $con->prepare($query);
             $stmt->bindParam(1, $orderId);
             $stmt->execute();
 
             // check if the category ID exists
             if ($stmt->rowCount() > 0) {
-                $row = $stmt->fetch(PDO::FETCH_ASSOC);
-                extract($row);
 
                 // display the category name
                 echo "<h3 class='py-4 text-light'>Order ID: {$orderId}</h3>";

@@ -13,7 +13,7 @@
                 } ?>" href="index.php">Home</a></li>
 
                 <li class="dropdown"><a class="nav-link 
-                <?php if (basename($_SERVER['PHP_SELF']) == 'order_read.php' || basename($_SERVER['PHP_SELF']) == 'order_create.php') {
+                <?php if (basename($_SERVER['PHP_SELF']) == 'order_read.php' || basename($_SERVER['PHP_SELF']) == 'order_create.php' || basename($_SERVER['PHP_SELF']) == 'order_read_one.php') {
                     echo "active";
                 } ?>" href="order_read.php"><span>Order</span> <i class="bi bi-chevron-down"></i></a>
                     <ul>
@@ -23,7 +23,7 @@
                 </li>
 
                 <li class="dropdown"><a class="nav-link 
-                <?php if (basename($_SERVER['PHP_SELF']) == 'product_read.php' || basename($_SERVER['PHP_SELF']) == 'product_create.php') {
+                <?php if (basename($_SERVER['PHP_SELF']) == 'product_read.php' || basename($_SERVER['PHP_SELF']) == 'product_create.php' || basename($_SERVER['PHP_SELF']) == 'product_read_one.php') {
                     echo "active";
                 } ?>" href="product_read.php"><span>Product</span> <i class="bi bi-chevron-down"></i></a>
                     <ul>
@@ -33,7 +33,7 @@
                 </li>
 
                 <li class="dropdown"><a class="nav-link 
-                <?php if (basename($_SERVER['PHP_SELF']) == 'category_read.php' || basename($_SERVER['PHP_SELF']) == 'category_create.php') {
+                <?php if (basename($_SERVER['PHP_SELF']) == 'category_read.php' || basename($_SERVER['PHP_SELF']) == 'category_create.php' || basename($_SERVER['PHP_SELF']) == 'category_read_one.php') {
                     echo "active";
                 } ?>" href="category_read.php"><span>Category</span> <i class="bi bi-chevron-down"></i></a>
                     <ul>
@@ -43,7 +43,7 @@
                 </li>
 
                 <li class="dropdown"><a class="nav-link 
-                <?php if (basename($_SERVER['PHP_SELF']) == 'customer_read.php' || basename($_SERVER['PHP_SELF']) == 'customer_create.php') {
+                <?php if (basename($_SERVER['PHP_SELF']) == 'customer_read.php' || basename($_SERVER['PHP_SELF']) == 'customer_create.php' || basename($_SERVER['PHP_SELF']) == 'customer_read_one.php') {
                     echo "active";
                 } ?>" href="customer_read.php"><span>Customer</span> <i class="bi bi-chevron-down"></i></a>
                     <ul>
