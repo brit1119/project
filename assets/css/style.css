@@ -297,6 +297,7 @@ h6 {
   visibility: visible;
 }
 
+
 @media (max-width: 1366px) {
   .navbar .dropdown .dropdown ul {
     left: -90%;
