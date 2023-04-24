@@ -64,6 +64,14 @@
                     echo "<td>{$productName}</td>";
                     echo "<td>{$description}</td>";
                     echo "<td class='text-end'>" . number_format($price, 2, '.', '') . "</td>";
+                    echo "<td>";
+
+                    // we will use this links on next part of this post
+                    echo "<a href='update.php?orderDetailsId={$orderDetailsId}' class='btn btn-outline-primary m-r-1em mx-1'>Edit</a>";
+
+                    // we will use this links on next part of this post
+                    echo "<a href='#' onclick='delete_user({$orderDetailsId});'  class='btn btn-outline-danger mx-1'>Delete</a>";
+                    echo "</td>";
                     echo "</tr>";
                 }
                 echo "</tbody>";

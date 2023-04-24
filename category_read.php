@@ -96,10 +96,10 @@
                     echo "<a href='category_read_one.php?catId={$catId}' class='btn btn-dark border-secondary-subtle m-r-1em mx-1'>More</a>";
 
                     // we will use this links on next part of this post
-                    echo "<a href='update.php?catId={$catId}' class='btn btn-primary m-r-1em mx-1'>Edit</a>";
+                    echo "<a href='update.php?catId={$catId}' class='btn btn-outline-primary m-r-1em mx-1'>Edit</a>";
 
                     // we will use this links on next part of this post
-                    echo "<a href='#' onclick='delete_user({$catId});'  class='btn btn-danger mx-1'>Delete</a>";
+                    echo "<a href='#' onclick='delete_user({$catId});'  class='btn btn-outline-danger mx-1'>Delete</a>";
                     echo "</td>";
                     echo "</tr>";
                 }

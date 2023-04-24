@@ -71,7 +71,6 @@
                     echo "<a href='#' onclick='delete_user({$orderDetailsId});'  class='btn btn-outline-danger mx-1'>Delete</a>";
                     echo "</td>";
                     echo "</tr>";
-                    echo "</tr>";
                 }
                 echo "</tbody>";
                 echo "</table>";
