@@ -119,7 +119,7 @@
             <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
                 <table class='table table-hover table-borderless'>
                     <tr>
-                        <td class="text-light">Username</td>
+                        <td class="text-light col-2">Username</td>
                         <td>
                             <select class='form-select' name='username' value="<?php echo isset($username) ? htmlspecialchars($username) : ''; ?>">
                                 <option selected>Select a Username</option>

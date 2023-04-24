@@ -149,10 +149,10 @@
 
             <!-- html form here where the product information will be entered -->
             <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-                <table class='table table-hover table-responsive table-bordered'>
+                <table class='table table-hover table-borderless'>
                     <tr>
-                        <td>Username</td>
-                        <td><input type='text' name='username' class='form-control' value="<?php echo isset($username) ? htmlspecialchars($username) : ''; ?>" />
+                        <td class="text-light col-2">Username</td>
+                        <td><input type='text' name='username' class='form-control' placeholder="Enter a username" value="<?php echo isset($username) ? htmlspecialchars($username) : ''; ?>" />
                             <?php if (isset($userError)) { ?>
                                 <span class="text-danger">
                                     <?php echo $userError; ?>
@@ -161,8 +161,8 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>Password</td>
-                        <td><input type='password' name='pw' class='form-control' value="<?php echo isset($pw) ? htmlspecialchars($pw) : ''; ?>" />
+                        <td class="text-light">Password</td>
+                        <td><input type='password' name='pw' class='form-control' placeholder="Enter password" value="<?php echo isset($pw) ? htmlspecialchars($pw) : ''; ?>" />
                             <?php if (isset($pwError)) { ?>
                                 <span class="text-danger">
                                     <?php echo $pwError; ?>
@@ -171,8 +171,8 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>Confirm Password</td>
-                        <td><input type='password' name='cpw' class='form-control' value="<?php echo isset($cpw) ? htmlspecialchars($cpw) : ''; ?>" />
+                        <td class="text-light">Confirm Password</td>
+                        <td><input type='password' name='cpw' class='form-control' placeholder="Enter to confirm password" value="<?php echo isset($cpw) ? htmlspecialchars($cpw) : ''; ?>" />
                             <?php if (isset($cpwError)) { ?>
                                 <span class="text-danger">
                                     <?php echo $cpwError; ?>
@@ -181,8 +181,8 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>First Name</td>
-                        <td><input type='text' name='fName' class='form-control' value="<?php echo isset($fName) ? htmlspecialchars($fName) : ''; ?>" />
+                        <td class="text-light">First Name</td>
+                        <td><input type='text' name='fName' class='form-control' placeholder="Enter first name" value="<?php echo isset($fName) ? htmlspecialchars($fName) : ''; ?>" />
                             <?php if (isset($fNameError)) { ?>
                                 <span class="text-danger">
                                     <?php echo $fNameError; ?>
@@ -191,8 +191,8 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>Last Name</td>
-                        <td><input type='text' name='lName' class='form-control' value="<?php echo isset($lName) ? htmlspecialchars($lName) : ''; ?>" />
+                        <td class="text-light">Last Name</td>
+                        <td><input type='text' name='lName' class='form-control' placeholder="Enter Last Name" value="<?php echo isset($lName) ? htmlspecialchars($lName) : ''; ?>" />
                             <?php if (isset($lNameError)) { ?>
                                 <span class="text-danger">
                                     <?php echo $lNameError; ?>
@@ -201,15 +201,21 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>Gender</td>
+                        <td class="text-light">Gender</td>
                         <td>
-                            <input type="radio" name="gender" value="male" /> Male
-                            <input type="radio" name="gender" value="female" /> Female
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="gender" id="male">
+                                <label class="form-check-label" for="male">Male</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="gender" id="female">
+                                <label class="form-check-label" for="female">Female</label>
+                            </div>
 
                     </tr>
                     <tr>
-                        <td>Date of Birth</td>
-                        <td><input type='date' name='dOB' class='form-control' value="<?php echo isset($dOB) ? htmlspecialchars($dOB) : ''; ?>" />
+                        <td class="text-light">Date of Birth</td>
+                        <td><input type='date' name='dOB' class='form-control' placeholder="Enter date of birth" value="<?php echo isset($dOB) ? htmlspecialchars($dOB) : ''; ?>" />
                             <?php if (isset($dOBError)) { ?>
                                 <span class="text-danger">
                                     <?php echo $dOBError; ?>
@@ -218,10 +224,16 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>Account Status</td>
+                        <td class="text-light">Account Status</td>
                         <td>
-                            <input type="radio" name="accStatus" value="active" /> Active
-                            <input type="radio" name="accStatus" value="inactive" /> Inactive
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="accStatus" id="active">
+                                <label class="form-check-label" for="active">Active</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="accStatus" id="inactive">
+                                <label class="form-check-label" for="inactive">Inactive</label>
+                            </div>
                             <?php if (isset($accStatusError)) { ?>
                                 <span class="text-danger">
                                     <?php echo $accStatusError; ?>
@@ -233,7 +245,7 @@
                         <td></td>
                         <td>
                             <input type='submit' value='Save' class='btn btn-primary' />
-                            <a href='customer_read.php' class='btn btn-danger'>Back to My Customer</a>
+                            <a href='customer_read.php' class='btn btn-dark border-secondary-subtle'>Back to My Customer</a>
                         </td>
                     </tr>
                 </table>

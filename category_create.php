@@ -81,10 +81,10 @@
 
             <!-- html form here where the product information will be entered -->
             <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-                <table class='table table-hover table-responsive table-bordered'>
+                <table class='table table-hover table-borderless'>
                     <tr>
-                        <td>Name</td>
-                        <td><input type='text' name='catName' class='form-control' value="<?php echo isset($catName) ? htmlspecialchars($catName) : ''; ?>" />
+                        <td class="text-light col-2">Category Name</td>
+                        <td><input type='text' name='catName' class='form-control' placeholder="Enter category name" value="<?php echo isset($catName) ? htmlspecialchars($catName) : ''; ?>" />
                             <?php if (isset($catError)) { ?>
                                 <span class="text-danger">
                                     <?php echo $catError; ?>
@@ -93,8 +93,8 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>Description</td>
-                        <td><input type='text' name='catDes' class='form-control' value="<?php echo isset($catDes) ? htmlspecialchars($catDes) : ''; ?>" />
+                        <td class="text-light">Description</td>
+                        <td><textarea name='catDes' class='form-control' placeholder="Enter description" value="<?php echo isset($catDes) ? htmlspecialchars($catDes) : ''; ?>"></textarea>
                             <?php if (isset($catError)) { ?>
                                 <span class="text-danger">
                                     <?php echo $catError; ?>
@@ -106,7 +106,7 @@
                         <td></td>
                         <td>
                             <input type='submit' value='Save' class='btn btn-primary' />
-                            <a href='category_read.php' class='btn btn-danger'>Back to My Category</a>
+                            <a href='category_read.php' class='btn btn-dark border-secondary-subtle'>Back to My Category</a>
                         </td>
                     </tr>
                 </table>

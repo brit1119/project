@@ -136,17 +136,18 @@
 
             <!-- html form here where the product information will be entered -->
             <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-                <table class='table table-hover table-responsive table-bordered'>
+                <table class='table table-hover table-borderless'>
                     <tr>
-                        <td>Name</td>
-                        <td><input type='text' name='productName' class='form-control' value="<?php echo isset($productName) ? htmlspecialchars($productName) : ''; ?>" />
+                        <td class="text-light col-2">Name</td>
+                        <td>
+                            <input type='text' name='productName' class='form-control' placeholder="Enter a product name" value="<?php echo isset($productName) ? htmlspecialchars($productName) : ''; ?>" />
                             <?php if (isset($nameError)) { ?>
                                 <span class="text-danger"> <?php echo $nameError; ?> </span>
                             <?php } ?>
                         </td>
                     </tr>
                     <tr>
-                        <td>Category</td>
+                        <td class="text-light">Category</td>
                         <td>
                             <select class='form-select' name='catName' value="<?php echo isset($catName) ? htmlspecialchars($catName) : ''; ?>">
                                 <option selected>Select a Category</option>
@@ -176,8 +177,8 @@
                     </tr>
 
                     <tr>
-                        <td>Description</td>
-                        <td><textarea name='description' class='form-control' value="<?php echo isset($description) ? htmlspecialchars($description) : ''; ?>"></textarea>
+                        <td class="text-light">Description</td>
+                        <td><textarea name='description' class='form-control' placeholder="Enter description" value="<?php echo isset($description) ? htmlspecialchars($description) : ''; ?>"></textarea>
                             <?php if (isset($desError)) { ?>
                                 <span class="text-danger">
                                     <?php echo $desError; ?>
@@ -186,8 +187,8 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>Price</td>
-                        <td><input type='number' name='price' class='form-control' value="<?php echo isset($price) ? htmlspecialchars($price) : ''; ?>" />
+                        <td class="text-light">Price</td>
+                        <td><input type='number' name='price' class='form-control' placeholder="Enter a price" value="<?php echo isset($price) ? htmlspecialchars($price) : ''; ?>" />
                             <?php if (isset($priceError)) { ?>
                                 <span class="text-danger">
                                     <?php echo $priceError; ?>
@@ -196,8 +197,8 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>Promo Price</td>
-                        <td><input type='number' name='promoPrice' class='form-control' value="<?php echo isset($promoPrice) ? htmlspecialchars($promoPrice) : ''; ?>" />
+                        <td class="text-light">Promo Price</td>
+                        <td><input type='number' name='promoPrice' class='form-control' placeholder="Enter promotion price" value="<?php echo isset($promoPrice) ? htmlspecialchars($promoPrice) : ''; ?>" />
                             <?php if (isset($promoError)) { ?>
                                 <span class="text-danger">
                                     <?php echo $promoError; ?>
@@ -206,7 +207,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>Manufacture Date</td>
+                        <td class="text-light">Manufacture Date</td>
                         <td><input type='date' name='manufactureDate' class='form-control' value="<?php echo isset($manufactureDate) ? htmlspecialchars($manufactureDate) : ''; ?>" />
                             <?php if (isset($manuError)) { ?>
                                 <span class="text-danger">
@@ -216,7 +217,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>Expired Date</td>
+                        <td class="text-light">Expired Date</td>
                         <td><input type='date' name='expiredDate' class='form-control' value="<?php echo isset($expiredDate) ? htmlspecialchars($expiredDate) : ''; ?>" />
                             <?php if (isset($expiredError)) { ?>
                                 <span class="text-danger">
@@ -229,7 +230,7 @@
                         <td></td>
                         <td>
                             <input type='submit' value='Save' class='btn btn-primary' />
-                            <a href='index.php' class='btn btn-danger'>Back to read products</a>
+                            <a href='index.php' class='btn btn-dark border-secondary-subtle'>Back to read products</a>
                         </td>
                     </tr>
                 </table>
