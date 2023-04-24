@@ -7,6 +7,7 @@
     <!-- Latest compiled and minified Bootstrap CSS (Apply your Bootstrap here -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link href="assets/css/style.css" rel="stylesheet">
 
 </head>
 
@@ -99,36 +100,45 @@
 
         <!-- html form here where the product information will be entered -->
 
-
-        <h1 class="my-4 pt-4 text-center">Log In</h1>
-        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" class="row justify-content-center ">
-            <div class="col-md-6 col-lg-4">
-                <div class="mb-3">
-                    <label for="username1" class="form-label">Username</label>
-                    <input type="text" class="form-control" name='username' id="username1" aria-describedby="userHelp" value="<?php echo isset($username) ? htmlspecialchars($username) : ''; ?>">
-                    <div id="userHelp" class="form-text">
-                        <?php if (isset($userError)) { ?>
-                            <span class="text-danger">
-                                <?php echo $userError; ?>
-                            </span>
-                        <?php } ?>
+        <div class="row align-items-center">
+            <div class="col-lg-6 order-2 order-lg-1 d-flex flex-column align-items-lg-center">
+                <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" class="col-6">
+                    <h1 class="my-4 pt-4">Log In</h1>
+                    <div class="mb-3">
+                        <label for="username1" class="form-label text-secondary">Username</label>
+                        <input type="text" class="form-control" name='username' id="username1" aria-describedby="userHelp" value="<?php echo isset($username) ? htmlspecialchars($username) : ''; ?>">
+                        <div id="userHelp" class="form-text">
+                            <?php if (isset($userError)) { ?>
+                                <span class="text-danger">
+                                    <?php echo $userError; ?>
+                                </span>
+                            <?php } ?>
+                        </div>
                     </div>
-                </div>
-                <div class="mb-3">
-                    <label for="password1" class="form-label">Password</label>
-                    <input type="password" name='pw' class="form-control" id="password1" aria-describedby="pwHelp" value="<?php echo isset($pw) ? htmlspecialchars($pw) : ''; ?>">
-                    <div id="pwHelp" class="form-text">
-                        <?php if (isset($pwError)) { ?>
-                            <span class="text-danger">
-                                <?php echo $pwError; ?>
-                            </span>
-                        <?php } ?>
+                    <div class="mb-3">
+                        <label for="password1" class="form-label text-secondary">Password</label>
+                        <input type="password" name='pw' class="form-control" id="password1" aria-describedby="pwHelp" value="<?php echo isset($pw) ? htmlspecialchars($pw) : ''; ?>">
+                        <div id="pwHelp" class="form-text">
+                            <?php if (isset($pwError)) { ?>
+                                <span class="text-danger">
+                                    <?php echo $pwError; ?>
+                                </span>
+                            <?php } ?>
+                        </div>
                     </div>
-                </div>
 
-                <button type="submit" name="submit" class="btn btn-primary">Log In</button>
+                    <button type="submit" name="submit" class="my-3 btn btn-primary">Log In</button>
+
+                </form>
             </div>
-        </form>
+            <div class="image col-lg-6 order-1 order-lg-2 aos-init aos-animate" data-aos="zoom-in" data-aos-delay="100">
+                <img src="assets/img/features.svg" alt="" class="img-fluid">
+            </div>
+        </div>
+
+
+
+
 
 
 
@@ -139,17 +149,15 @@
 
     </div>
     <!-- end .container -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
-    <script src="js/jquery.min.js"></script>
-    <script src="js/popper.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/main.js"></script>
-    <script defer="" src="https://static.cloudflareinsights.com/beacon.min.js/vb26e4fa9e5134444860be286fd8771851679335129114" integrity="sha512-M3hN/6cva/SjwrOtyXeUa5IuCT0sedyfT+jK/OV+s+D0RnzrTfwjwJHhd+wYfMm9HJSrZ1IKksOdddLuN6KOzw==" data-cf-beacon="{&quot;rayId&quot;:&quot;7b225ae4ab043c5d&quot;,&quot;token&quot;:&quot;cd0b4b3a733644fc843ef0b185f98241&quot;,&quot;version&quot;:&quot;2023.3.0&quot;,&quot;si&quot;:100}" crossorigin="anonymous"></script>
+
 
 
 
     <!-- end .container -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+
+    <!-- Template Main JS File -->
+    <script src="assets/js/main.js"></script>
 </body>
 
 </html>
