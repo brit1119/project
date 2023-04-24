@@ -20,7 +20,7 @@
     <!-- container -->
 
     <div class="container">
-        <section>
+        <section class="pricing section-bg">
             <div class="page-header">
                 <h1 class="mb-4 py-4 text-center">My Customer</h1>
             </div>
@@ -43,7 +43,7 @@
             ?>
 
             <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" class="row justify-content-between g-2 pt-3">
-                <div class='col-8'><a href='customer_create.php' class='btn btn-primary m-b-1em'>Create New Customer</a></div>
+                <div class='col-8'><a href='customer_create.php' class='btn-buy m-b-1em fs-5 fw-medium'>Create New Customer</a></div>
 
                 <div class="col">
                     <label for="search" class="visually-hidden">Search</label>
