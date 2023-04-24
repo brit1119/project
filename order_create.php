@@ -21,8 +21,8 @@
 
     <div class="container">
         <section>
-            <div class="section-title text-light">
-                <h2>Create Order</h2>
+            <div class="page-header">
+                <h1 class="mb-4 py-4 text-center">Create Order</h1>
             </div>
 
             <?php

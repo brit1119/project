@@ -18,99 +18,100 @@
     <?php include 'nav.php'; ?>
 
     <div class="container">
-        <div class="page-header">
-            <h1 class="mb-4 py-4 text-center">Create Category</h1>
-        </div>
+        <section>
+            <div class="page-header">
+                <h1 class="mb-4 py-4 text-center">Create Category</h1>
+            </div>
 
-        <!-- html form to create product will be here -->
-        <!-- PHP insert code will be here -->
-        <?php
-        if ($_POST) {
-            // include database connection
-            include 'config/database.php';
-            try {
+            <!-- html form to create product will be here -->
+            <!-- PHP insert code will be here -->
+            <?php
+            if ($_POST) {
+                // include database connection
+                include 'config/database.php';
+                try {
 
-                // posted values
-                $catName = htmlspecialchars(strip_tags($_POST['catName']));
-                $catDes = htmlspecialchars(strip_tags($_POST['catDes']));
-
-
-                $success = true;
+                    // posted values
+                    $catName = htmlspecialchars(strip_tags($_POST['catName']));
+                    $catDes = htmlspecialchars(strip_tags($_POST['catDes']));
 
 
-                if (empty($catName)) {
-                    $catError = "*Please enter a category name.";
-                    $success = false;
-                } elseif (empty($catDes)) {
-                    $catError = "*Please enter category description.";
-                    $success = false;
-                }
+                    $success = true;
 
 
-                if ($success == true) {
-                    // insert query
-                    $query = "INSERT INTO category SET catName=:catName, catDes=:catDes, catCreated=:catCreated";
-                    // prepare query for execution
-                    $stmt = $con->prepare($query);
-                    // bind the parameters
-                    $stmt->bindParam(':catName', $catName);
-                    $stmt->bindParam(':catDes', $catDes);
+                    if (empty($catName)) {
+                        $catError = "*Please enter a category name.";
+                        $success = false;
+                    } elseif (empty($catDes)) {
+                        $catError = "*Please enter category description.";
+                        $success = false;
+                    }
 
-                    // specify when this record was inserted to the database
-                    $catCreated = date('Y-m-d');
-                    $stmt->bindParam(':catCreated', $catCreated);
 
-                    // Execute the query
-                    if ($stmt->execute()) {
-                        echo "<div class='alert alert-success'>Record was saved.</div>";
-                        $catName = "";
-                        $catDes = "";
-                    } else {
-                        echo "<div class='alert alert-danger'>Unable to save record.</div>";
+                    if ($success == true) {
+                        // insert query
+                        $query = "INSERT INTO category SET catName=:catName, catDes=:catDes, catCreated=:catCreated";
+                        // prepare query for execution
+                        $stmt = $con->prepare($query);
+                        // bind the parameters
+                        $stmt->bindParam(':catName', $catName);
+                        $stmt->bindParam(':catDes', $catDes);
+
+                        // specify when this record was inserted to the database
+                        $catCreated = date('Y-m-d');
+                        $stmt->bindParam(':catCreated', $catCreated);
+
+                        // Execute the query
+                        if ($stmt->execute()) {
+                            echo "<div class='alert alert-success'>Record was saved.</div>";
+                            $catName = "";
+                            $catDes = "";
+                        } else {
+                            echo "<div class='alert alert-danger'>Unable to save record.</div>";
+                        }
                     }
                 }
+                // show error
+                catch (PDOException $exception) {
+                    die('ERROR: ' . $exception->getMessage());
+                }
             }
-            // show error
-            catch (PDOException $exception) {
-                die('ERROR: ' . $exception->getMessage());
-            }
-        }
-        ?>
+            ?>
 
 
-        <!-- html form here where the product information will be entered -->
-        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-            <table class='table table-hover table-responsive table-bordered'>
-                <tr>
-                    <td>Name</td>
-                    <td><input type='text' name='catName' class='form-control' value="<?php echo isset($catName) ? htmlspecialchars($catName) : ''; ?>" />
-                        <?php if (isset($catError)) { ?>
-                            <span class="text-danger">
-                                <?php echo $catError; ?>
-                            </span>
-                        <?php } ?>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Description</td>
-                    <td><input type='text' name='catDes' class='form-control' value="<?php echo isset($catDes) ? htmlspecialchars($catDes) : ''; ?>" />
-                        <?php if (isset($catError)) { ?>
-                            <span class="text-danger">
-                                <?php echo $catError; ?>
-                            </span>
-                        <?php } ?>
-                    </td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td>
-                        <input type='submit' value='Save' class='btn btn-primary' />
-                        <a href='category_read.php' class='btn btn-danger'>Back to My Category</a>
-                    </td>
-                </tr>
-            </table>
-        </form>
-
+            <!-- html form here where the product information will be entered -->
+            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+                <table class='table table-hover table-responsive table-bordered'>
+                    <tr>
+                        <td>Name</td>
+                        <td><input type='text' name='catName' class='form-control' value="<?php echo isset($catName) ? htmlspecialchars($catName) : ''; ?>" />
+                            <?php if (isset($catError)) { ?>
+                                <span class="text-danger">
+                                    <?php echo $catError; ?>
+                                </span>
+                            <?php } ?>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Description</td>
+                        <td><input type='text' name='catDes' class='form-control' value="<?php echo isset($catDes) ? htmlspecialchars($catDes) : ''; ?>" />
+                            <?php if (isset($catError)) { ?>
+                                <span class="text-danger">
+                                    <?php echo $catError; ?>
+                                </span>
+                            <?php } ?>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>
+                            <input type='submit' value='Save' class='btn btn-primary' />
+                            <a href='category_read.php' class='btn btn-danger'>Back to My Category</a>
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </section>
 
     </div>
     <!-- end .container -->

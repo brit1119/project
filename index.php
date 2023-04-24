@@ -52,8 +52,8 @@ ORDER BY o.orderDate DESC LIMIT 0,1";
         <section id="pricing" class="pricing section-bg">
             <div class="container" data-aos="fade-up">
 
-                <div class="section-title text-light">
-                    <h2>Dashboard</h2>
+                <div class="page-header">
+                    <h1 class="mb-4 py-4 text-center text-light">Dashboard</h1>
                 </div>
 
                 <div class="row">
