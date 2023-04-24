@@ -62,7 +62,7 @@
             <?php
 
             //total number
-            echo "<h5 class='py-4 text-light'>Total: {$num}</h5>";
+            echo "<h5 class='py-2 mt-5 text-light'>Total: {$num}</h5>";
 
 
             //check if more than 0 record found
