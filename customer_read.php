@@ -69,8 +69,7 @@
                 //creating our table heading
                 echo "<tr>";
                 echo "<th>Username</th>";
-                echo "<th>First Name</th>";
-                echo "<th>Last Name</th>";
+                echo "<th>Customer Name</th>";
                 echo "<th>Registration Date & Time</th>";
                 echo "<th>Action</th>";
                 echo "</tr>";
@@ -85,8 +84,7 @@
                     // creating new table row per record
                     echo "<tr>";
                     echo "<td class='col-1'>{$username}</td>";
-                    echo "<td class='col-1'>{$fName}</td>";
-                    echo "<td class='col-1'>{$lName}</td>";
+                    echo "<td class='col-2'>{$fName} {$lName}</td>";
                     echo "<td>{$regDateNTime}</td>";
                     echo "<td class='col-3'>";
 
