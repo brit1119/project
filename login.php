@@ -2,7 +2,7 @@
 <html lang="en" data-bs-theme="dark">
 
 <head>
-    <title>PDO - Create a Record - PHP CRUD Tutorial</title>
+    <title>Log In</title>
     <meta charset="utf-8">
     <!-- Latest compiled and minified Bootstrap CSS (Apply your Bootstrap here -->
     <meta name="viewport" content="width=device-width, initial-scale=1">

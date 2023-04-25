@@ -4,7 +4,7 @@
 <html lang="en" data-bs-theme="dark">
 
 <head>
-    <title>PDO - Read One Record - PHP CRUD Tutorial</title>
+    <title>Order's Details</title>
     <!-- Latest compiled and minified Bootstrap CSS -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
