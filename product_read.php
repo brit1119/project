@@ -32,17 +32,11 @@
 
             // select all data
             $query = "SELECT * FROM products";
+
             if ($_POST) {
                 $search = htmlspecialchars(strip_tags($_POST['search']));
-                $query = "SELECT * FROM products WHERE name LIKE '%$search%';";
+                $query = "SELECT * FROM products WHERE productName LIKE '%$search%';";
             }
-
-            $stmt = $con->prepare($query);
-            $stmt->execute();
-
-            // this is how to get number of rows returned
-            $num = $stmt->rowCount();
-
 
             ?>
 
@@ -60,6 +54,15 @@
             </form>
 
             <?php
+
+            $stmt = $con->prepare($query);
+            $stmt->execute();
+
+            // this is how to get number of rows returned
+            $num = $stmt->rowCount();
+
+
+
 
             //total number
             echo "<h5 class='py-2 mt-5 text-light'>Total: {$num}</h5>";
