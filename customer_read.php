@@ -34,6 +34,10 @@
 
             // select all data
             $query = "SELECT * FROM customers";
+            if ($_POST) {
+                $search = htmlspecialchars(strip_tags($_POST['search']));
+                $query = "SELECT * FROM customers WHERE fName LIKE '%$search%';";
+            }
             $stmt = $con->prepare($query);
             $stmt->execute();
 

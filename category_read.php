@@ -35,6 +35,10 @@
 
             // select all data
             $query = "SELECT * FROM category";
+            if ($_POST) {
+                $search = htmlspecialchars(strip_tags($_POST['search']));
+                $query = "SELECT * FROM category WHERE catName LIKE '%$search%';";
+            }
             $stmt = $con->prepare($query);
             $stmt->execute();
 

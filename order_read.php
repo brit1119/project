@@ -34,7 +34,7 @@
 
             if ($_POST) {
                 $search = htmlspecialchars(strip_tags($_POST['search']));
-                $query = "SELECT * FROM products WHERE name LIKE '%$search%';";
+                $query = "SELECT o.orderId, c.fName, c.lName, o.orderDate FROM orders o INNER JOIN customers c ON o.username = c.username WHERE c.fName LIKE '%$search%';";
             }
 
 
