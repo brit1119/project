@@ -84,7 +84,7 @@
                             foreach ($data as $row) {
                                 $values[] = "('" . implode("', '", $row) . "')";
                             }
-                            $query2 .= implode(", ", $values);
+                            $query2 = $query2 . implode(", ", $values);
                             $stmt2 = $con->prepare($query2);
 
                             //execute 2nd query
@@ -278,7 +278,7 @@
                     <tr>
                         <td></td>
                         <td>
-                            <input type='submit' value='Save' class='btn btn-primary' />
+                            <input type='submit' value='Create Order' class='btn btn-primary' />
                             <a href='order_read.php' class='btn btn-dark border-secondary-subtle'>Back to My Orders</a>
                         </td>
                     </tr>

@@ -229,7 +229,7 @@
                     <tr>
                         <td></td>
                         <td>
-                            <input type='submit' value='Save' class='btn btn-primary' />
+                            <input type='submit' value='Create Product' class='btn btn-primary' />
                             <a href='index.php' class='btn btn-dark border-secondary-subtle'>Back to read products</a>
                         </td>
                     </tr>

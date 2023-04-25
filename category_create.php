@@ -105,7 +105,7 @@
                     <tr>
                         <td></td>
                         <td>
-                            <input type='submit' value='Save' class='btn btn-primary' />
+                            <input type='submit' value='Create Category' class='btn btn-primary' />
                             <a href='category_read.php' class='btn btn-dark border-secondary-subtle'>Back to My Category</a>
                         </td>
                     </tr>

@@ -244,7 +244,7 @@
                     <tr>
                         <td></td>
                         <td>
-                            <input type='submit' value='Save' class='btn btn-primary' />
+                            <input type='submit' value='Create Customer' class='btn btn-primary' />
                             <a href='customer_read.php' class='btn btn-dark border-secondary-subtle'>Back to My Customer</a>
                         </td>
                     </tr>
