@@ -85,7 +85,6 @@
                                 $values[] = "('" . implode("', '", $row) . "')";
                             }
                             $query2 .= implode(", ", $values);
-
                             $stmt2 = $con->prepare($query2);
 
                             //execute 2nd query
