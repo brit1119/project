@@ -34,10 +34,8 @@
 
             if ($_POST) {
                 $search = htmlspecialchars(strip_tags($_POST['search']));
-                $query = "SELECT o.orderId, c.fName, c.lName, o.orderDate FROM orders o INNER JOIN customers c ON o.username = c.username WHERE c.fName LIKE '%$search%';";
+                $query = "SELECT o.orderId, c.fName, c.lName, o.orderDate FROM orders o INNER JOIN customers c ON o.username = c.username WHERE (c.fName LIKE '%$search%') OR (o.orderId = '$search');";
             }
-
-
 
             // select all data
 
@@ -117,7 +115,7 @@
             }
             // if no records found
             else {
-                echo "<div class='alert alert-danger'>No records found.</div>";
+                echo "<div class='alert alert-danger'>No orders found.</div>";
             }
             ?>
         </section>

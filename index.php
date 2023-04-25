@@ -148,7 +148,7 @@ ORDER BY `totalSold` ASC LIMIT 0,1";
                                     </tr>
                                 </table>
                                 </p>
-                                <a href="order_read.php" class="btn-buy">View Customers</a>
+                                <a href="customer_read.php" class="btn-buy">View Customers</a>
                             </div>
                         </div>
                     </div>
@@ -174,7 +174,7 @@ ORDER BY `totalSold` ASC LIMIT 0,1";
                                     </tr>
                                 </table>
                                 </p>
-                                <a href="order_read.php" class="btn-buy">View Products</a>
+                                <a href="product_read.php" class="btn-buy">View Products</a>
                             </div>
                         </div>
                     </div>
@@ -196,7 +196,7 @@ ORDER BY `totalSold` ASC LIMIT 0,1";
                                     </tr>
                                 </table>
                                 </p>
-                                <a href="order_read.php" class="btn-buy">View Products</a>
+                                <a href="product_read.php" class="btn-buy">View Products</a>
                             </div>
                         </div>
                     </div>
