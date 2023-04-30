@@ -132,7 +132,7 @@ ORDER BY `totalSold` ASC LIMIT 0,1";
                     <div class="col-sm-6 mb-3 mb-sm-0">
                         <div class="card">
                             <div class="card-body">
-                                <h5 class="card-title text-light-emphasis">Lastest Added Customer</h5>
+                                <h5 class="card-title text-light-emphasis">Latest Added Customer</h5>
                                 <p class="card-text">
                                 <table class='table table-hover text-center mt-4 mb-5'>
                                     <tr>
@@ -181,7 +181,7 @@ ORDER BY `totalSold` ASC LIMIT 0,1";
                     <div class="col-sm-6 mb-3 mb-sm-0">
                         <div class="card">
                             <div class="card-body">
-                                <h5 class="card-title text-light-emphasis">Worst Selling Product </h5>
+                                <h5 class="card-title text-light-emphasis">Lowest Selling Product </h5>
                                 <p class="card-text">
                                 <table class='table table-hover text-center mt-4 mb-5'>
                                     <tr>
