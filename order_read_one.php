@@ -31,45 +31,53 @@
             // include database connection
             include 'config/database.php';
 
+
+
             // select the category name based on the category ID
-            $query = "SELECT orderDetailsId, productName, quantity FROM orderDetails INNER JOIN orders ON orders.orderId = orderDetails.orderId INNER JOIN products ON orderDetails.productId = products.productId WHERE orders.orderId = ?;";
+            $query = "SELECT o.orderId, c.fName, c.lName, o.orderDate FROM orders o INNER JOIN customers c ON o.username = c.username WHERE o.orderId = $orderId;";
             $stmt = $con->prepare($query);
             $stmt->bindParam(1, $orderId);
             $stmt->execute();
+            $row = $stmt->fetch(PDO::FETCH_ASSOC);
+            extract($row);
+
+            // display the Title
+            echo "<h5 class='py-4 text-light'>Order ID  <span class='fw-normal text-body pe-5 fs-3'>{$orderId}</span>  Customer <span class='fw-normal text-body pe-5 fs-3'>{$fName} {$lName}</span> Order Date <span class='fw-normal text-body pe-5 fs-3'>{$orderDate}</span></h3>";
 
             // check if the category ID exists
             if ($stmt->rowCount() > 0) {
 
-                // display the category name
-                echo "<h3 class='py-4 text-light'>Order ID: {$orderId}</h3>";
+                // select order details
+                $query = "SELECT p.productName, p.price, ord.quantity, ord.quantity * p.price AS totalAmount FROM orders o INNER JOIN orderDetails ord ON o.orderId = ord.orderId INNER JOIN products p ON ord.productId = p.productId WHERE ord.orderId = $orderId ORDER BY ord.orderDetailsId DESC;";
+                $stmt = $con->prepare($query);
+                $stmt->execute();
 
+                if ($stmt->rowCount() > 0) {
 
-                // display the products in a table
-                echo "<table class='table table-hover'>";
-                echo "<tr>";
-                echo "<th>Order Details ID</th>";
-                echo "<th>Product Name</th>";
-                echo "<th>Quantity</th>";
-                echo "<th>Action</th>";
-                echo "</tr>";
-                echo "<tbody class='table-group-divider'>";
-
-                while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                    extract($row);
+                    // display the products in a table
+                    echo "<table class='table table-hover'>";
                     echo "<tr>";
-                    echo "<td>{$orderDetailsId}</td>";
-                    echo "<td>{$productName}</td>";
-                    echo "<td>{$quantity}</td>";
-                    echo "<td>";
-
-                    // we will use this links on next part of this post
-                    echo "<a href='update.php?orderDetailsId={$orderDetailsId}' class='btn btn-outline-primary m-r-1em mx-1'>Edit</a>";
-
-                    // we will use this links on next part of this post
-                    echo "<a href='#' onclick='delete_user({$orderDetailsId});'  class='btn btn-outline-danger mx-1'>Delete</a>";
-                    echo "</td>";
+                    echo "<th>Product Name</th>";
+                    echo "<th>Price</th>";
+                    echo "<th align='center'>Quantity</th>";
+                    echo "<th>Total Amount</th>";
                     echo "</tr>";
+                    echo "<tbody class='table-group-divider'>";
+
+
+
+                    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                        extract($row);
+                        echo "<tr>";
+                        echo "<td>{$productName}</td>";
+                        echo "<td class='col-1' align='end'>" . number_format($price, 2, '.', '') . "</td>";
+                        echo "<td align='center'>{$quantity}</td>";
+                        echo "<td align='end'>" . number_format($totalAmount, 2, '.', '') . "</td>";
+
+                        echo "</tr>";
+                    }
                 }
+
                 echo "</tbody>";
                 echo "</table>";
             } else {

@@ -64,7 +64,6 @@
 
                     if ($success == true) {
 
-                        $flag = true;
                         //query1 
                         $query1 = "INSERT INTO orders SET username=:username, orderDate=:orderDate";
                         $stmt1 = $con->prepare($query1);
@@ -135,99 +134,15 @@
                                 ?>
 
                             </select>
-                            <?php echo $customer;
-                            if (isset($userError)) { ?>
+                            <?php if (isset($userError)) { ?>
                                 <span class="text-danger"> <?php echo $userError; ?> </span>
                             <?php } ?>
                         </td>
                     </tr>
-                    <tr>
-                        <td class="text-light">Product</td>
-                        <td class="input-group">
-                            <div class="col-9">
-                                <select class='form-select' name='product[]' value="<?php echo isset($product) ? htmlspecialchars($product) : ''; ?>">
-                                    <option selected value="">Select a Product</option>
 
-                                    <?php
 
-                                    $query = "SELECT productId, productName FROM products";
-                                    $stmt = $con->prepare($query);
-                                    $stmt->execute();
-                                    $num = $stmt->rowCount();
-                                    if ($num > 0) {
-                                        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                                            extract($row);
+                    <tr class="pRow">
 
-                                    ?>
-                                            <option value="<?php echo $productId; ?>"><?php echo $productName; ?> </option>
-                                    <?php
-                                        }
-                                    }
-                                    ?>
-
-                                </select>
-                                <?php if (isset($idError)) { ?>
-                                    <span class="text-danger"> <?php echo $idError; ?> </span>
-                                <?php } ?>
-
-                            </div>
-
-                            <div class="col-3">
-                                <div class="input-group">
-                                    <span class="input-group-text">Quantity</span>
-                                    <input type="number" name='quantity[]' class="form-control" value="<?php echo isset($quantity) ? htmlspecialchars($quantity) : ''; ?>">
-                                </div>
-                                <?php if (isset($quantityError)) { ?>
-                                    <span class="text-danger"><?php echo $quantityError; ?></span>
-                                <?php } ?>
-                            </div>
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td class="text-light">Product</td>
-                        <td class="input-group">
-                            <div class="col-9">
-                                <select class='form-select' name='product[]' value="<?php echo isset($product) ? htmlspecialchars($product) : ''; ?>">
-                                    <option selected value="">Select a Product</option>
-
-                                    <?php
-
-                                    $query = "SELECT productId, productName FROM products";
-                                    $stmt = $con->prepare($query);
-                                    $stmt->execute();
-                                    $num = $stmt->rowCount();
-                                    if ($num > 0) {
-                                        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                                            extract($row);
-
-                                    ?>
-                                            <option value="<?php echo $productId; ?>"><?php echo $productName; ?> </option>
-                                    <?php
-                                        }
-                                    }
-                                    ?>
-
-                                </select>
-                                <?php if (isset($idError)) { ?>
-                                    <span class="text-danger"> <?php echo $idError; ?> </span>
-                                <?php } ?>
-
-                            </div>
-
-                            <div class="col-3">
-                                <div class="input-group">
-                                    <span class="input-group-text">Quantity</span>
-                                    <input type="number" name='quantity[]' class="form-control" value="<?php echo isset($quantity) ? htmlspecialchars($quantity) : ''; ?>">
-                                </div>
-                                <?php if (isset($quantityError)) { ?>
-                                    <span class="text-danger"><?php echo $quantityError; ?></span>
-                                <?php } ?>
-                            </div>
-                        </td>
-                    </tr>
-
-                    <tr>
                         <td class="text-light">Product</td>
                         <td class="input-group">
                             <div class="col-9">
@@ -271,96 +186,15 @@
                     </tr>
 
 
-                    <tr>
-                        <td class="text-light">Product</td>
-                        <td class="input-group">
-                            <div class="col-9">
-                                <select class='form-select' name='product[]' value="<?php echo isset($product) ? htmlspecialchars($product) : ''; ?>">
-                                    <option selected value="">Select a Product</option>
-
-                                    <?php
-
-                                    $query = "SELECT productId, productName FROM products";
-                                    $stmt = $con->prepare($query);
-                                    $stmt->execute();
-                                    $num = $stmt->rowCount();
-                                    if ($num > 0) {
-                                        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                                            extract($row);
-
-                                    ?>
-                                            <option value="<?php echo $productId; ?>"><?php echo $productName; ?> </option>
-                                    <?php
-                                        }
-                                    }
-                                    ?>
-
-                                </select>
-                                <?php if (isset($idError)) { ?>
-                                    <span class="text-danger"> <?php echo $idError; ?> </span>
-                                <?php } ?>
-
-                            </div>
-
-                            <div class="col-3">
-                                <div class="input-group">
-                                    <span class="input-group-text">Quantity</span>
-                                    <input type="number" name='quantity[]' class="form-control" value="<?php echo isset($quantity) ? htmlspecialchars($quantity) : ''; ?>">
-                                </div>
-                                <?php if (isset($quantityError)) { ?>
-                                    <span class="text-danger"><?php echo $quantityError; ?></span>
-                                <?php } ?>
-                            </div>
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td class="text-light">Product</td>
-                        <td class="input-group">
-                            <div class="col-9">
-                                <select class='form-select' name='product[]' value="<?php echo isset($product) ? htmlspecialchars($product) : ''; ?>">
-                                    <option selected value="">Select a Product</option>
-
-                                    <?php
-
-                                    $query = "SELECT productId, productName FROM products";
-                                    $stmt = $con->prepare($query);
-                                    $stmt->execute();
-                                    $num = $stmt->rowCount();
-                                    if ($num > 0) {
-                                        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                                            extract($row);
-
-                                    ?>
-                                            <option value="<?php echo $productId; ?>"><?php echo $productName; ?> </option>
-                                    <?php
-                                        }
-                                    }
-                                    ?>
-
-                                </select>
-                                <?php if (isset($idError)) { ?>
-                                    <span class="text-danger"> <?php echo $idError; ?> </span>
-                                <?php } ?>
-
-                            </div>
-
-                            <div class="col-3">
-                                <div class="input-group">
-                                    <span class="input-group-text">Quantity</span>
-                                    <input type="number" name='quantity[]' class="form-control" value="<?php echo isset($quantity) ? htmlspecialchars($quantity) : ''; ?>">
-                                </div>
-                                <?php if (isset($quantityError)) { ?>
-                                    <span class="text-danger"><?php echo $quantityError; ?></span>
-                                <?php } ?>
-                            </div>
-                        </td>
-                    </tr>
 
 
                     <tr>
                         <td></td>
                         <td>
+                            <div class="input-group justify-content-end">
+                                <input type="button" value="+" class="addP btn btn-warning border-dark col-1" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Add more product">
+                                <input type="button" value="-" class="deleteP btn btn-warning border-dark col-1" />
+                            </div>
                             <input type='submit' value='Create Order' class='btn btn-primary' />
                             <a href='order_read.php' class='btn btn-dark border-secondary-subtle'>Back to My Orders</a>
                         </td>
@@ -374,6 +208,26 @@
 
 
     <!-- end .container -->
+
+    <!-- add and delete product-->
+    <script>
+        document.addEventListener('click', function(event) {
+            if (event.target.matches('.addP')) {
+                var element = document.querySelector('.pRow');
+                var clone = element.cloneNode(true);
+                element.after(clone);
+            }
+            if (event.target.matches('.deleteP')) {
+                var total = document.querySelectorAll('.pRow').length;
+                if (total > 1) {
+                    var element = document.querySelector('.pRow');
+                    element.remove(element);
+                }
+            }
+        }, false);
+    </script>
+
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
     <!-- Vendor JS Files -->
     <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
