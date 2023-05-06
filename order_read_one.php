@@ -58,9 +58,9 @@
                     echo "<table class='table table-hover'>";
                     echo "<tr>";
                     echo "<th>Product Name</th>";
-                    echo "<th>Price</th>";
-                    echo "<th align='center'>Quantity</th>";
-                    echo "<th>Total Amount</th>";
+                    echo "<th class='text-end'>Price</th>";
+                    echo "<th class='text-center'>Quantity</th>";
+                    echo "<th class='text-end'>Total Amount</th>";
                     echo "</tr>";
                     echo "<tbody class='table-group-divider'>";
 

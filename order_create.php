@@ -127,7 +127,9 @@
                                         extract($row);
 
                                 ?>
-                                        <option value="<?php echo $username; ?>"><?php echo $fName . ' ' . $lName; ?> </option>
+                                        <option value="<?php echo $username; ?>">
+                                            <?php echo $fName . ' ' . $lName; ?>
+                                        </option>
                                 <?php
                                     }
                                 }
