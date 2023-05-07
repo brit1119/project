@@ -88,7 +88,7 @@
                     <td>
                         <a href='update.php?productId={$productId}' class='btn btn-outline-primary m-r-1em'>Edit</a>
                         <a href='#' onclick='delete_user({$productId});' class='btn btn-outline-danger'>Delete</a>
-                        <a href='product_read.php' class='btn btn-dark border-secondary-subtle'>Back to read products</a>
+                        <a href='product_read.php' class='btn btn-dark border-secondary-subtle'>Back to My Products</a>
                     </td>
                 </tr>
             </table>

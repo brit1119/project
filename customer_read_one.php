@@ -105,7 +105,7 @@
                     <td>
                         <a href='update.php?username={$name}' class='btn btn-outline-primary m-r-1em'>Edit</a>
                         <a href='#' onclick='delete_user({$name});' class='btn btn-outline-danger'>Delete</a>
-                        <a href='customer_read.php' class='btn btn-dark border-secondary-subtle'>Back to customer</a>
+                        <a href='customer_read.php' class='btn btn-dark border-secondary-subtle'>Back to My Customers</a>
                     </td>
                 </tr>
             </table>

@@ -96,7 +96,7 @@
                     echo "<a href='customer_read_one.php?username={$username}' class='btn btn-dark border-secondary-subtle m-r-1em mx-1'>More</a>";
 
                     // we will use this links on next part of this post
-                    echo "<a href='update.php?username={$username}' class='btn btn-outline-primary m-r-1em mx-1'>Edit</a>";
+                    echo "<a href='customer_update.php?username={$username}' class='btn btn-outline-primary m-r-1em mx-1'>Edit</a>";
 
                     // we will use this links on next part of this post
                     echo "<a href='#' onclick='delete_user({$username});'  class='btn btn-outline-danger mx-1'>Delete</a>";
