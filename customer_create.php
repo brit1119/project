@@ -56,7 +56,7 @@
                         $success = false;
                     } elseif (!preg_match('@[A-Z]@', $user) || !preg_match('@[a-z]@', $user) || !preg_match('@[0-9]@', $user)) {
                         // check if username meets the requirements
-                        $userError = "*Username must contain at least one letter, one number, and one symbol.";
+                        $userError = "*Username must contain at least one upper case, one lower case, and one number.";
                         $success = false;
                     }
 

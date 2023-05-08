@@ -206,7 +206,6 @@
                         <td>Username</td>
                         <td><?php echo htmlspecialchars($user, ENT_QUOTES);  ?></td>
                     </tr>
-                    </tr>
                     <tr>
                         <td>First name</td>
                         <td><input type='text' name='fName' value="<?php echo htmlspecialchars($fName, ENT_QUOTES);  ?>" class='form-control' />

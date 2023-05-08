@@ -83,7 +83,7 @@
 
                     if (!empty($expiredDate)) {
                         if ($manufactureDate >= $expiredDate) {
-                            $ManuError = "*Manufacturing Date must be ealier than expired date.";
+                            $expiredError = "*Expired date must be later than manufacture date.";
                             $success = false;
                         }
                     }
