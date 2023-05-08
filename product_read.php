@@ -80,7 +80,7 @@
                 echo "<th>Product Name</th>";
                 echo "<th>Description</th>";
                 echo "<th class='text-end'>Price</th>";
-                echo "<th class='text-end'>Total Sold Amount</th>";
+                echo "<th class='text-center'>Total Sold Amount</th>";
                 echo "<th>Action</th>";
                 echo "</tr>";
                 echo "<tbody class='table-group-divider'>";
@@ -97,7 +97,7 @@
                     echo "<td class='col-2'>{$productName}</td>";
                     echo "<td>{$description}</td>";
                     echo "<td class='col-1' align='end'>" . number_format($price, 2, '.', '') . "</td>";
-                    echo "<td align='end'>{$totalSold}</td>";
+                    echo "<td class='text-center'>{$totalSold}</td>";
                     echo "<td class='col-3'>";
                     // read one record
                     echo "<a href='product_read_one.php?productId={$productId}' class='btn btn-dark border-secondary-subtle m-r-1em mx-1'>More</a>";

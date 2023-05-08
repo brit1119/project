@@ -30,11 +30,11 @@
             // include database connection
             include 'config/database.php';
 
-            $query = "SELECT o.orderId, c.fName, c.lName, o.orderDate FROM orders o INNER JOIN customers c ON o.username = c.username";
+            $query = "SELECT o.orderId, c.fName, c.lName, o.orderDate, COUNT(ord.productId) AS totalItems FROM orders o INNER JOIN customers c ON o.username = c.username INNER JOIN orderDetails ord ON o.orderId = ord.orderId GROUP BY o.orderId, c.fName, c.lName, o.orderDate ORDER BY o.orderId ASC;";
 
             if ($_POST) {
                 $search = htmlspecialchars(strip_tags($_POST['search']));
-                $query = "SELECT o.orderId, c.fName, c.lName, o.orderDate FROM orders o INNER JOIN customers c ON o.username = c.username WHERE (c.fName LIKE '%$search%') OR (o.orderId = '$search');";
+                $query = "SELECT o.orderId, c.fName, c.lName, o.orderDate, COUNT(ord.productId) AS totalItems FROM orders o INNER JOIN customers c ON o.username = c.username INNER JOIN orderDetails ord ON o.orderId = ord.orderId GROUP BY o.orderId, c.fName, c.lName, o.orderDate ORDER BY o.orderId ASC WHERE (c.fName LIKE '%$search%') OR (o.orderId = '$search');";
             }
 
             // select all data
@@ -79,6 +79,7 @@
                 echo "<th>Order ID</th>";
                 echo "<th>Customer Name</th>";
                 echo "<th>Order Date</th>";
+                echo "<th class='text-center'>Total Items Ordered</th>";
                 echo "<th>Action</th>";
                 echo "</tr>";
                 echo "<tbody class='table-group-divider'>";
@@ -94,6 +95,7 @@
                     echo "<td class='col-1 text-end'>{$orderId}</td>";
                     echo "<td class='col-2'>{$fName} {$lName}</td>";
                     echo "<td class='col'>{$orderDate}</td>";
+                    echo "<td class='text-center''>{$totalItems}</td>";
                     echo "<td class='col-3'>";
                     // read one record
                     echo "<a href='order_read_one.php?orderId={$orderId}' class='btn btn-dark border-secondary-subtle m-r-1em mx-1'>More</a>";
