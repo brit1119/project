@@ -32,7 +32,7 @@
                 try {
 
                     // posted values
-                    $username = htmlspecialchars(strip_tags($_POST['username']));
+                    $user = htmlspecialchars(strip_tags($_POST['username']));
                     $pw = $_POST['pw'];
                     $cpw =  $_POST['cpw'];
                     $fName = htmlspecialchars(strip_tags($_POST['fName']));
@@ -41,21 +41,20 @@
                     $dOB = htmlspecialchars(strip_tags($_POST['dOB']));
                     if (isset($_POST['accStatus'])) $accStatus = $_POST['accStatus'];
 
-
                     $success = true;
 
 
-                    if (empty($username)) {
+                    if (empty($user)) {
                         $userError = "*Please enter a username.";
                         $success = false;
-                    } elseif (strlen($username) < 6) {
+                    } elseif (strlen($user) < 6) {
                         $userError = "*Username must be at least 6 characters.";
                         $success = false;
-                    } elseif ($username !== trim($username)) {
+                    } elseif ($user !== trim($user)) {
                         //check if username contains space
                         $userError = "*Username cannot contain white space.";
                         $success = false;
-                    } elseif (!preg_match('@[A-Z]@', $username) || !preg_match('@[a-z]@', $username) || !preg_match('@[0-9]@', $username)) {
+                    } elseif (!preg_match('@[A-Z]@', $user) || !preg_match('@[a-z]@', $user) || !preg_match('@[0-9]@', $user)) {
                         // check if username meets the requirements
                         $userError = "*Username must contain at least one letter, one number, and one symbol.";
                         $success = false;
@@ -74,8 +73,6 @@
                     } elseif ($cpw !== $pw) {
                         $cpwError = "*Password not matched.";
                         $success = false;
-                    } else {
-                        $pw = md5($pw);
                     }
 
 
@@ -111,8 +108,8 @@
                         // prepare query for execution
                         $stmt = $con->prepare($query);
                         // bind the parameters
-                        $stmt->bindParam(':username', $username);
-                        $stmt->bindParam(':pw', $pw);
+                        $stmt->bindParam(':username', $user);
+                        $stmt->bindParam(':pw', md5($pw));
                         $stmt->bindParam(':fName', $fName);
                         $stmt->bindParam(':lName', $lName);
                         $stmt->bindParam(':gender', $gender);
@@ -126,7 +123,7 @@
                         // Execute the query
                         if ($stmt->execute()) {
                             echo "<div class='alert alert-success'>Record was saved.</div>";
-                            $username = "";
+                            $user = "";
                             $pw = "";
                             $cpw = "";
                             $fName = "";
@@ -135,7 +132,7 @@
                             $dOB = "";
                             $accStatus = "";
                         } else {
-                            echo "<div class='alert alert-danger'>Username already exist. Please enter another username.</div>";
+                            echo "<div class='alert alert-danger'>Username already exist. Please enter another username. ";
                         }
                     }
                 }
@@ -152,7 +149,7 @@
                 <table class='table table-hover table-borderless'>
                     <tr>
                         <td class="text-light col-2">Username</td>
-                        <td><input type='text' name='username' class='form-control' placeholder="Enter a username" value="<?php echo isset($username) ? htmlspecialchars($username) : ''; ?>" />
+                        <td><input type='text' name='username' class='form-control' placeholder="Enter a username" value="<?php echo isset($user) ? htmlspecialchars($user) : ''; ?>" />
                             <?php if (isset($userError)) { ?>
                                 <span class="text-danger">
                                     <?php echo $userError; ?>
@@ -204,14 +201,14 @@
                         <td class="text-light">Gender</td>
                         <td>
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="gender" id="male">
+                                <input class="form-check-input" type="radio" name="gender" value="male" id="male" <?php if (isset($gender) && $gender === 'male') echo 'checked'; ?>>
                                 <label class="form-check-label" for="male">Male</label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="gender" id="female">
+                                <input class="form-check-input" type="radio" name="gender" value="female" id="female" <?php if (isset($gender) && $gender === 'female') echo 'checked'; ?>>
                                 <label class="form-check-label" for="female">Female</label>
                             </div>
-
+                        </td>
                     </tr>
                     <tr>
                         <td class="text-light">Date of Birth</td>
@@ -227,11 +224,11 @@
                         <td class="text-light">Account Status</td>
                         <td>
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="accStatus" id="active">
+                                <input class="form-check-input" type="radio" name="accStatus" value="active" id="active" <?php if (isset($accStatus) && $accStatus === 'active') echo 'checked'; ?>>
                                 <label class="form-check-label" for="active">Active</label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="accStatus" id="inactive">
+                                <input class="form-check-input" type="radio" name="accStatus" value="inactive" id="inactive" <?php if (isset($accStatus) && $accStatus === 'inactive') echo 'checked'; ?>>
                                 <label class="form-check-label" for="inactive">Inactive</label>
                             </div>
                             <?php if (isset($accStatusError)) { ?>
