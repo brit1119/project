@@ -43,7 +43,7 @@ ORDER BY o.orderDate DESC LIMIT 0,1";
     //latest added customer
     $query = "SELECT fName, lName, username, regDateNTime
 FROM customers
-ORDER BY regDateNTime DESC; LIMIT 0,1";
+ORDER BY regDateNTime DESC LIMIT 0,1";
     $stmt = $con->prepare($query);
     $stmt->execute();
     $row = $stmt->fetch(PDO::FETCH_ASSOC);

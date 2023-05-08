@@ -34,10 +34,11 @@
             // delete message prompt will be here
 
             // select all data
-            $query = "SELECT * FROM category";
+            $query = "SELECT c.catId, catName, catDes, catcreated, COUNT(productName) AS totalP FROM category c INNER JOIN products p ON c.catId = p.catId GROUP BY c.catId ORDER BY c.catId ASC";
+
             if ($_POST) {
                 $search = htmlspecialchars(strip_tags($_POST['search']));
-                $query = "SELECT * FROM category WHERE catName LIKE '%$search%';";
+                $query = "SELECT c.catId, catName, catDes, catcreated, COUNT(productName) AS totalP FROM category c INNER JOIN products p ON c.catId = p.catId GROUP BY c.catId ORDER BY c.catId ASC WHERE catName LIKE '%$search%';";
             }
             $stmt = $con->prepare($query);
             $stmt->execute();
@@ -77,6 +78,7 @@
                 echo "<th>Name</th>";
                 echo "<th>Description</th>";
                 echo "<th>Date Created</th>";
+                echo "<th class='text-center'>Total Product Amount</th>";
                 echo "<th>Action</th>";
                 echo "</tr>";
                 echo "<tbody class='table-group-divider'>";
@@ -94,13 +96,11 @@
                     echo "<td>{$catName}</td>";
                     echo "<td class='col-5'>{$catDes}</td>";
                     echo "<td>{$catCreated}</td>";
-                    echo "<td class='col-3'>";
+                    echo "<td class='text-center'>{$totalP}</td>";
+                    echo "<td class='col-2'>";
 
                     // read one record
                     echo "<a href='category_read_one.php?catId={$catId}' class='btn btn-dark border-secondary-subtle m-r-1em mx-1'>More</a>";
-
-                    // we will use this links on next part of this post
-                    echo "<a href='update.php?catId={$catId}' class='btn btn-outline-primary m-r-1em mx-1'>Edit</a>";
 
                     // we will use this links on next part of this post
                     echo "<a href='#' onclick='delete_user({$catId});'  class='btn btn-outline-danger mx-1'>Delete</a>";

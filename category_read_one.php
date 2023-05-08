@@ -32,19 +32,26 @@
             // include database connection
             include 'config/database.php';
 
+
+            $query = "SELECT catName FROM category WHERE catId = $catId LIMIT 0,1";
+            $stmt = $con->prepare($query);
+            $stmt->execute();
+            $row = $stmt->fetch(PDO::FETCH_ASSOC);
+            $catName = $row['catName'];
+
+            echo "<h3 class='py-4 text-light'>{$catName}</h3>";
+
             // select the category name based on the category ID
-            $query = "SELECT catName, productId, productName, description, price FROM category INNER JOIN products ON category.catId = products.catId WHERE products.catId = ?;";
+            $query = "SELECT catName, productId, productName, description, price FROM category c INNER JOIN products p ON c.catId = p.catId WHERE p.catId = ?;";
             $stmt = $con->prepare($query);
             $stmt->bindParam(1, $catId);
             $stmt->execute();
 
             // check if the category ID exists
             if ($stmt->rowCount() > 0) {
-                $row = $stmt->fetch(PDO::FETCH_ASSOC);
-                extract($row);
+
 
                 // display the category name
-                echo "<h3 class='py-4 text-light'>{$catName}</h3>";
 
 
                 // display the products in a table
