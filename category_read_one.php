@@ -51,7 +51,7 @@
                 echo "<table class='table table-hover'>";
                 echo "<tr>";
                 echo "<th>ID</th>";
-                echo "<th>Name</th>";
+                echo "<th>Product Name</th>";
                 echo "<th>Description</th>";
                 echo "<th class='text-end'>Price</th>";
                 echo "</tr>";
@@ -64,14 +64,6 @@
                     echo "<td>{$productName}</td>";
                     echo "<td>{$description}</td>";
                     echo "<td class='text-end'>" . number_format($price, 2, '.', '') . "</td>";
-                    echo "<td>";
-
-                    // we will use this links on next part of this post
-                    echo "<a href='update.php?orderDetailsId={$orderDetailsId}' class='btn btn-outline-primary m-r-1em mx-1'>Edit</a>";
-
-                    // we will use this links on next part of this post
-                    echo "<a href='#' onclick='delete_user({$orderDetailsId});'  class='btn btn-outline-danger mx-1'>Delete</a>";
-                    echo "</td>";
                     echo "</tr>";
                 }
                 echo "</tbody>";
@@ -80,6 +72,14 @@
                 echo "<div class='alert alert-danger'>Category not found.</div>";
             }
             ?>
+
+            <table class="table table-borderless">
+                <tr>
+                    <td class="align-item-start">
+                        <a href='category_read.php' class='btn btn-dark border-primary'>Back to My Category</a>
+                    </td>
+                </tr>
+            </table>
         </section>
 
     </div>

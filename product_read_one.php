@@ -35,7 +35,7 @@
             // read current record's data
             try {
                 // prepare select query
-                $query = "SELECT productId, productName, description, price FROM products WHERE productId = ? LIMIT 0,1";
+                $query = "SELECT productId, productName, catName, description, price, promoPrice, manufactureDate, expiredDate FROM products p INNER JOIN category c ON p.catId = c.catId WHERE productId = ? LIMIT 0,1";
                 $stmt = $con->prepare($query);
 
                 // this is the first question mark
@@ -51,8 +51,12 @@
                 //or extract all at once (extract($row))
                 $productId = $row['productId'];
                 $productName = $row['productName'];
+                $catName = $row['catName'];
                 $description = $row['description'];
                 $price = $row['price'];
+                $promoPrice = $row['promoPrice'];
+                $manufactureDate = $row['manufactureDate'];
+                $expiredDate = $row['expiredDate'];
             }
 
             // show error
@@ -74,6 +78,10 @@
                     <td><?php echo htmlspecialchars($productName, ENT_QUOTES);  ?></td>
                 </tr>
                 <tr>
+                    <td><b>Category</b></td>
+                    <td><?php echo htmlspecialchars($catName, ENT_QUOTES);  ?></td>
+                </tr>
+                <tr>
                     <td><b>Description</b></td>
                     <td><?php echo htmlspecialchars($description, ENT_QUOTES);  ?></td>
                 </tr>
@@ -81,12 +89,24 @@
                     <td><b>Price</b></td>
                     <td><?php echo htmlspecialchars($price, ENT_QUOTES);  ?></td>
                 </tr>
+                <tr>
+                    <td><b>Promotion Price</b></td>
+                    <td><?php echo htmlspecialchars($promoPrice, ENT_QUOTES);  ?></td>
+                </tr>
+                <tr>
+                    <td><b>Manufacture date</b></td>
+                    <td><?php echo htmlspecialchars($manufactureDate, ENT_QUOTES);  ?></td>
+                </tr>
+                <tr>
+                    <td><b>Expired Date</b></td>
+                    <td><?php echo htmlspecialchars($expiredDate, ENT_QUOTES);  ?></td>
+                </tr>
             </table>
             <table class="table table-borderless">
                 <tr>
                     <td class="col-3"></td>
                     <td>
-                        <a href='update.php?productId={$productId}' class='btn btn-outline-primary m-r-1em'>Edit</a>
+                        <a href='product_update.php?productId=<?php echo $productId; ?>' class='btn btn-outline-primary m-r-1em'>Edit</a>
                         <a href='#' onclick='delete_user({$productId});' class='btn btn-outline-danger'>Delete</a>
                         <a href='product_read.php' class='btn btn-dark border-secondary-subtle'>Back to My Products</a>
                     </td>

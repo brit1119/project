@@ -196,21 +196,23 @@
                     <tr>
                         <td class='col-2'>Category</td>
                         <td>
-                            <select class='form-select' name='catName'>
+                            <select class='form-select' name='catName' value="<?php isset($cat) ? $cat : ' ';
+                                                                                isset($catName) ? $catName : ' '; ?>">
                                 <option selected>
 
                                     <?php
-                                    if ($_POST) {
+                                    if ($_POST['catName']) {
                                         $query = "SELECT catName FROM category WHERE catId = $catName";
                                         $stmt = $con->prepare($query);
                                         $stmt->bindParam(1, $catId);
                                         $stmt->execute();
                                         $row = $stmt->fetch(PDO::FETCH_ASSOC);
                                         $cat = $row['catName'];
-                                        echo htmlspecialchars($cat, ENT_QUOTES);
+                                        echo $cat;
                                     } else {
-                                        echo htmlspecialchars($catName, ENT_QUOTES);
+                                        echo $catName;
                                     }
+
                                     ?>
                                 </option>
 
