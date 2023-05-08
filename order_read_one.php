@@ -84,7 +84,18 @@
                 echo "<div class='alert alert-danger'>Order details not found.</div>";
             }
             ?>
+
+            <table class="table table-borderless">
+                <tr>
+                    <td class="align-item-start">
+                        <a href='order_read.php' class='btn btn-dark border-primary'>Back to My Orders</a>
+                    </td>
+                </tr>
+            </table>
+
+
         </section>
+
 
 
     </div>

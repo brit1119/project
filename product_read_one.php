@@ -79,7 +79,7 @@
                 </tr>
                 <tr>
                     <td><b>Category</b></td>
-                    <td><?php echo htmlspecialchars($catName, ENT_QUOTES);  ?></td>
+                    <td><?php echo $catName ?></td>
                 </tr>
                 <tr>
                     <td><b>Description</b></td>

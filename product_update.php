@@ -216,7 +216,6 @@
                                     ?>
                                 </option>
 
-
                                 <?php
 
                                 $query = "SELECT catId, catName FROM category";

@@ -31,11 +31,11 @@
             include 'config/database.php';
 
             // select all data
-            $query = "SELECT * FROM products";
+            $query = "SELECT p.productId, p.productName, p.description, p.price, SUM(ord.quantity) AS totalSold FROM orderDetails ord INNER JOIN products p ON ord.productId = p.productId GROUP BY p.productId ORDER BY `productId` ASC";
 
             if ($_POST) {
                 $search = htmlspecialchars(strip_tags($_POST['search']));
-                $query = "SELECT * FROM products WHERE productName LIKE '%$search%';";
+                $query = "SELECT p.productId, p.productName, p.description, p.price, SUM(ord.quantity) AS totalSold FROM orderDetails ord INNER JOIN products p ON ord.productId = p.productId GROUP BY p.productId  WHERE productName LIKE '%$search%';";
             }
 
             ?>
@@ -77,9 +77,10 @@
                 //creating our table heading
                 echo "<tr>";
                 echo "<th>Product ID</th>";
-                echo "<th>Name</th>";
+                echo "<th>Product Name</th>";
                 echo "<th>Description</th>";
                 echo "<th class='text-end'>Price</th>";
+                echo "<th class='text-end'>Total Sold Amount</th>";
                 echo "<th>Action</th>";
                 echo "</tr>";
                 echo "<tbody class='table-group-divider'>";
@@ -96,6 +97,7 @@
                     echo "<td class='col-2'>{$productName}</td>";
                     echo "<td>{$description}</td>";
                     echo "<td class='col-1' align='end'>" . number_format($price, 2, '.', '') . "</td>";
+                    echo "<td align='end'>{$totalSold}</td>";
                     echo "<td class='col-3'>";
                     // read one record
                     echo "<a href='product_read_one.php?productId={$productId}' class='btn btn-dark border-secondary-subtle m-r-1em mx-1'>More</a>";
