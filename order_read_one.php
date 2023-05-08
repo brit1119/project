@@ -73,9 +73,20 @@
                         echo "<td class='col-1' align='end'>" . number_format($price, 2, '.', '') . "</td>";
                         echo "<td align='center'>{$quantity}</td>";
                         echo "<td align='end'>" . number_format($totalAmount, 2, '.', '') . "</td>";
-
                         echo "</tr>";
                     }
+
+                    $query = "SELECT SUM(ord.quantity * p.price) AS total FROM orderDetails ord INNER JOIN products p ON ord.productId = p.productId WHERE ord.orderId = $orderId LIMIT 0,1";
+                    $stmt = $con->prepare($query);
+                    $stmt->execute();
+                    $row = $stmt->fetch(PDO::FETCH_ASSOC);
+                    $total = $row['total'];
+                    echo "<tr>";
+                    echo "<td></td>";
+                    echo "<td></td>";
+                    echo "<td></td>";
+                    echo "<td class='fs-4 text-end text-light'><b>Total:</b> {$total}</td>";
+                    echo "</tr>";
                 }
 
                 echo "</tbody>";
