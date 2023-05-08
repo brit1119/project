@@ -30,11 +30,11 @@
             // include database connection
             include 'config/database.php';
 
-            $query = "SELECT o.orderId, c.fName, c.lName, o.orderDate, COUNT(ord.productId) AS totalItems FROM orders o INNER JOIN customers c ON o.username = c.username INNER JOIN orderDetails ord ON o.orderId = ord.orderId GROUP BY o.orderId, c.fName, c.lName, o.orderDate ORDER BY o.orderId ASC;";
+            $query = "SELECT o.orderId, c.fName, c.lName, o.orderDate, COUNT(ord.productId) AS totalItems FROM orders o INNER JOIN customers c ON o.username = c.username INNER JOIN orderDetails ord ON o.orderId = ord.orderId GROUP BY o.orderId, c.fName, c.lName, o.orderDate ORDER BY o.orderId DESC;";
 
             if ($_POST) {
                 $search = htmlspecialchars(strip_tags($_POST['search']));
-                $query = "SELECT o.orderId, c.fName, c.lName, o.orderDate, COUNT(ord.productId) AS totalItems FROM orders o INNER JOIN customers c ON o.username = c.username INNER JOIN orderDetails ord ON o.orderId = ord.orderId GROUP BY o.orderId, c.fName, c.lName, o.orderDate ORDER BY o.orderId ASC WHERE (c.fName LIKE '%$search%') OR (o.orderId = '$search');";
+                $query = "SELECT o.orderId, c.fName, c.lName, o.orderDate, COUNT(ord.productId) AS totalItems FROM orders o INNER JOIN customers c ON o.username = c.username INNER JOIN orderDetails ord ON o.orderId = ord.orderId GROUP BY o.orderId, c.fName, c.lName, o.orderDate ORDER BY o.orderId DESC WHERE (c.fName LIKE '%$search%') OR (o.orderId = '$search');";
             }
 
             // select all data

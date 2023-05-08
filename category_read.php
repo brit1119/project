@@ -34,11 +34,11 @@
             // delete message prompt will be here
 
             // select all data
-            $query = "SELECT c.catId, catName, catDes, catcreated, COUNT(productName) AS totalP FROM category c INNER JOIN products p ON c.catId = p.catId GROUP BY c.catId ORDER BY c.catId ASC";
+            $query = "SELECT c.catId, catName, catDes, catCreated, COUNT(productName) AS totalP FROM category c INNER JOIN products p ON c.catId = p.catId GROUP BY c.catId ORDER BY c.catId ASC";
 
             if ($_POST) {
                 $search = htmlspecialchars(strip_tags($_POST['search']));
-                $query = "SELECT c.catId, catName, catDes, catcreated, COUNT(productName) AS totalP FROM category c INNER JOIN products p ON c.catId = p.catId GROUP BY c.catId ORDER BY c.catId ASC WHERE catName LIKE '%$search%';";
+                $query = "SELECT c.catId, catName, catDes, catCreated, COUNT(productName) AS totalP FROM category c INNER JOIN products p ON c.catId = p.catId GROUP BY c.catId ORDER BY c.catId ASC WHERE catName LIKE '%$search%';";
             }
             $stmt = $con->prepare($query);
             $stmt->execute();
