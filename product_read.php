@@ -30,6 +30,15 @@
             // include database connection
             include 'config/database.php';
 
+            // delete msg 
+            $action = isset($_GET['action']) ? $_GET['action'] : "";
+
+            // if it was redirected from delete.php
+            if ($action == 'deleted') {
+                echo "<div class='alert alert-success'>Record was deleted.</div>";
+            }
+
+
             // select all data
             $query = "SELECT p.productId, p.productName, p.description, p.price, SUM(ord.quantity) AS totalSold FROM orderDetails ord INNER JOIN products p ON ord.productId = p.productId GROUP BY p.productId ORDER BY `productId` ASC";
 
@@ -106,7 +115,7 @@
                     echo "<a href='product_update.php?productId={$productId}' class='btn btn-outline-primary m-r-1em mx-1'>Edit</a>";
 
                     // we will use this links on next part of this post
-                    echo "<a href='#' onclick='product_delete_user({$productId});' class='btn btn-outline-danger mx-1'>Delete</a>";
+                    echo "<a href='product_delete.php' onclick='delete_user({$productId});' class='btn btn-outline-danger mx-1'>Delete</a>";
                     echo "</td>";
                     echo "</tr>";
                 }
@@ -131,6 +140,19 @@
     <script src="assets/js/main.js"></script>
 
     <!-- confirm delete record will be here -->
+    <script type='text/javascript'>
+        // confirm record deletion
+        function delete_user(productId) {
+
+            var answer = confirm('Are you sure?');
+            if (answer) {
+                // if user clicked ok,
+                // pass the id to delete.php and execute the delete query
+                window.location = 'product_delete.php?productId=' + productId;
+            }
+        }
+    </script>
+
 
 </body>
 
