@@ -55,7 +55,7 @@
             // read current record's data
             try {
                 // prepare select query
-                $query = "SELECT productId, productName, description, catName, price ,promoPrice, manufactureDate, expiredDate FROM products p INNER JOIN category c ON p.catId = c.catId WHERE productId =  ? ";
+                $query = "SELECT productId, productName, description, p.catId AS catId, catName, price ,promoPrice, manufactureDate, expiredDate FROM products p INNER JOIN category c ON p.catId = c.catId WHERE productId =  ? ";
                 $stmt = $con->prepare($query);
 
                 // this is the first question mark
@@ -71,6 +71,7 @@
                 $productId = $row['productId'];
                 $productName = $row['productName'];
                 $description = $row['description'];
+                $catID = $row['catId'];
                 $catName = $row['catName'];
                 $price = $row['price'];
                 $promoPrice = $row['promoPrice'];
@@ -164,6 +165,12 @@
                         // Execute the query
                         if ($stmt->execute()) {
                             echo "<div class='alert alert-success'>Record was updated.</div>";
+                            $query = "SELECT p.catId AS catId  FROM products p INNER JOIN category c ON p.catId = c.catId WHERE productId =  ? ";
+                            $stmt = $con->prepare($query);
+                            $stmt->bindParam(1, $productId);
+                            $stmt->execute();
+                            $row = $stmt->fetch(PDO::FETCH_ASSOC);
+                            $catID = $row['catId'];
                         } else {
                             echo "<div class='alert alert-danger'>Unable to update record. Please try again.</div>";
                         }
@@ -196,25 +203,8 @@
                     <tr>
                         <td class='col-2'>Category</td>
                         <td>
-                            <select class='form-select' name='catName' value="<?php isset($cat) ? $cat : ' ';
-                                                                                isset($catName) ? $catName : ' '; ?>">
-                                <option selected>
+                            <select class='form-select' name='catName'>
 
-                                    <?php
-                                    if ($_POST['catName']) {
-                                        $query = "SELECT catName FROM category WHERE catId = $catName";
-                                        $stmt = $con->prepare($query);
-                                        $stmt->bindParam(1, $catId);
-                                        $stmt->execute();
-                                        $row = $stmt->fetch(PDO::FETCH_ASSOC);
-                                        $cat = $row['catName'];
-                                        echo $cat;
-                                    } else {
-                                        echo $catName;
-                                    }
-
-                                    ?>
-                                </option>
 
                                 <?php
 
@@ -227,7 +217,9 @@
                                         extract($row);
 
                                 ?>
-                                        <option value=" <?php echo $catId; ?>"><?php echo $catName; ?> </option>
+                                        <option value=" <?php echo $catId; ?>" <?php if ($catID == $catId) {
+                                                                                    echo "selected";
+                                                                                } ?>><?php echo $catName; ?> </option>
                                 <?php
                                     }
                                 }
