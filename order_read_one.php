@@ -85,7 +85,7 @@
                     echo "<td></td>";
                     echo "<td></td>";
                     echo "<td></td>";
-                    echo "<td class='fs-4 text-end text-light'><b>Total:</b> {$total}</td>";
+                    echo "<td class='fs-4 text-end text-light'><b class='text-light'>Total:</b> {$total}</td>";
                     echo "</tr>";
                 }
 

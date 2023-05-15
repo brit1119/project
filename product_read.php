@@ -38,6 +38,10 @@
                 echo "<div class='alert alert-success'>Record was deleted.</div>";
             }
 
+            if ($action == 'failed') {
+                echo "<div class='alert alert-danger'>Record was failed to delete.</div>";
+            }
+
 
             // select all data
             $query = "SELECT * FROM products";

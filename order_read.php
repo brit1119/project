@@ -101,7 +101,7 @@
                     echo "<a href='order_read_one.php?orderId={$orderId}' class='btn btn-dark border-secondary-subtle m-r-1em mx-1'>More</a>";
 
                     // we will use this links on next part of this post
-                    echo "<a href='#' onclick='delete_user({$orderId});'  class='btn btn-outline-danger mx-1'>Delete</a>";
+                    echo "<a onclick='delete_user({$orderId});'  class='btn btn-outline-danger mx-1'>Delete</a>";
                     echo "</td>";
                     echo "</tr>";
                 }
@@ -126,6 +126,19 @@
     <script src="assets/js/main.js"></script>
 
     <!-- confirm delete record will be here -->
+    <script type='text/javascript'>
+        // confirm record deletion
+        function delete_user(orderId) {
+
+            var answer = confirm('Are you sure? ' + orderId);
+
+            if (answer) {
+                // if user clicked ok,
+                // pass the id to delete.php and execute the delete query
+                window.location = 'order_delete.php?orderId=' + orderId;
+            }
+        }
+    </script>
 
 </body>
 

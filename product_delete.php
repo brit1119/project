@@ -7,18 +7,28 @@ try {
     $productId = isset($_GET['productId']) ? $_GET['productId'] :  die('ERROR: Record ID not found.');
 
 
-    // delete query
-    $query = "DELETE FROM products WHERE productId = ?";
+    // check wether have product in any order
+    $query = "SELECT productId FROM orderDetails WHERE productId = ? LIMIT 0,1";
     $stmt = $con->prepare($query);
     $stmt->bindParam(1, $productId);
-    echo $productId;
+    $stmt->execute();
+    $num = $stmt->rowCount();
 
-    if ($stmt->execute()) {
-        // redirect to read records page and
-        // tell the user record was deleted
-        header('Location: product_read.php?action=deleted');
+    if ($num > 0) {
+        header('Location:product_read.php?action=failed');
     } else {
-        die('Unable to delete record.');
+        // delete query
+        $query = "DELETE FROM products WHERE productId = ?";
+        $stmt = $con->prepare($query);
+        $stmt->bindParam(1, $productId);
+
+        if ($stmt->execute()) {
+            // redirect to read records page and
+            // tell the user record was deleted
+            header('Location: product_read.php?action=deleted');
+        } else {
+            die('Unable to delete record.');
+        }
     }
 }
 // show error
