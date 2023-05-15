@@ -73,7 +73,6 @@
                     }
 
 
-
                     if (!empty($promoPrice)) {
                         if ($promoPrice > $price) {
                             $promoError = "*Promo price must be lesser than original price.";
@@ -92,15 +91,17 @@
                     if ($success == true) {
                         // insert query 
 
-                        $query = "INSERT INTO products SET productName=:productName, catName=:catName ,description=:description, price=:price, created=:created, manufactureDate=:manufactureDate";
+                        $query = "INSERT INTO products SET productName=:productName, catId=:catId ,description=:description, price=:price, promoPrice=:promoPrice, manufactureDate=:manufactureDate, expiredDate=:expiredDate, created=:created";
                         // prepare query for execution
                         $stmt = $con->prepare($query);
                         // bind the parameters
                         $stmt->bindParam(':productName', $productName);
-                        $stmt->bindParam(':catName', $catName);
+                        $stmt->bindParam(':catId', $catName);
                         $stmt->bindParam(':description', $description);
                         $stmt->bindParam(':price', $price);
+                        $stmt->bindParam(':promoPrice', $promoPrice);
                         $stmt->bindParam(':manufactureDate', $manufactureDate);
+                        $stmt->bindParam(':expiredDate', $expiredDate);
 
 
                         // specify when this record was inserted to the database
@@ -149,7 +150,7 @@
                     <tr>
                         <td class="text-light">Category</td>
                         <td>
-                            <select class='form-select' name='catName' value="<?php echo isset($catName) ? htmlspecialchars($catName) : ''; ?>">
+                            <select class='form-select' name='catName'>
                                 <option selected>Select a Category</option>
 
                                 <?php

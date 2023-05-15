@@ -6,15 +6,17 @@ try {
     // isset() is a PHP function used to verify if a value is there or not
     $productId = isset($_GET['productId']) ? $_GET['productId'] :  die('ERROR: Record ID not found.');
 
+
     // delete query
     $query = "DELETE FROM products WHERE productId = ?";
     $stmt = $con->prepare($query);
     $stmt->bindParam(1, $productId);
+    echo $productId;
 
     if ($stmt->execute()) {
         // redirect to read records page and
         // tell the user record was deleted
-        header('Location: index.php?action=deleted');
+        header('Location: product_read.php?action=deleted');
     } else {
         die('Unable to delete record.');
     }

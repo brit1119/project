@@ -40,11 +40,11 @@
 
 
             // select all data
-            $query = "SELECT p.productId, p.productName, p.description, p.price, SUM(ord.quantity) AS totalSold FROM orderDetails ord INNER JOIN products p ON ord.productId = p.productId GROUP BY p.productId ORDER BY `productId` ASC";
+            $query = "SELECT * FROM products";
 
             if ($_POST) {
                 $search = htmlspecialchars(strip_tags($_POST['search']));
-                $query = "SELECT p.productId, p.productName, p.description, p.price, SUM(ord.quantity) AS totalSold FROM orderDetails ord INNER JOIN products p ON ord.productId = p.productId GROUP BY p.productId  WHERE productName LIKE '%$search%';";
+                $query = "SELECT * FROM products  WHERE productName LIKE '%$search%';";
             }
 
             ?>
@@ -89,7 +89,6 @@
                 echo "<th>Product Name</th>";
                 echo "<th>Description</th>";
                 echo "<th class='text-end'>Price</th>";
-                echo "<th class='text-center'>Total Sold Amount</th>";
                 echo "<th>Action</th>";
                 echo "</tr>";
                 echo "<tbody class='table-group-divider'>";
@@ -106,7 +105,6 @@
                     echo "<td class='col-2'>{$productName}</td>";
                     echo "<td>{$description}</td>";
                     echo "<td class='col-1' align='end'>" . number_format($price, 2, '.', '') . "</td>";
-                    echo "<td class='text-center'>{$totalSold}</td>";
                     echo "<td class='col-3'>";
                     // read one record
                     echo "<a href='product_read_one.php?productId={$productId}' class='btn btn-dark border-secondary-subtle m-r-1em mx-1'>More</a>";
@@ -115,7 +113,7 @@
                     echo "<a href='product_update.php?productId={$productId}' class='btn btn-outline-primary m-r-1em mx-1'>Edit</a>";
 
                     // we will use this links on next part of this post
-                    echo "<a href='product_delete.php' onclick='delete_user({$productId});' class='btn btn-outline-danger mx-1'>Delete</a>";
+                    echo "<a onclick='delete_user({$productId});' class='btn btn-outline-danger mx-1'>Delete</a>";
                     echo "</td>";
                     echo "</tr>";
                 }
@@ -144,7 +142,8 @@
         // confirm record deletion
         function delete_user(productId) {
 
-            var answer = confirm('Are you sure?');
+            var answer = confirm('Are you sure? ' + productId);
+
             if (answer) {
                 // if user clicked ok,
                 // pass the id to delete.php and execute the delete query
