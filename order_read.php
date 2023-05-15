@@ -30,6 +30,21 @@
             // include database connection
             include 'config/database.php';
 
+
+            // delete msg 
+            $action = isset($_GET['action']) ? $_GET['action'] : "";
+
+            // if it was redirected from delete.php
+            if ($action == 'deleted') {
+                echo "<div class='alert alert-success'>Record was deleted.</div>";
+            }
+
+            if ($action == 'failed') {
+                echo "<div class='alert alert-danger'>Record was failed to delete.</div>";
+            }
+
+
+
             $query = "SELECT o.orderId, c.fName, c.lName, o.orderDate, COUNT(ord.productId) AS totalItems FROM orders o INNER JOIN customers c ON o.username = c.username INNER JOIN orderDetails ord ON o.orderId = ord.orderId GROUP BY o.orderId, c.fName, c.lName, o.orderDate ORDER BY o.orderId DESC;";
 
             if ($_POST) {
