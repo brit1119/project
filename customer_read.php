@@ -30,7 +30,22 @@
             // include database connection
             include 'config/database.php';
 
+
+
+
             // delete message prompt will be here
+            $action = isset($_GET['action']) ? $_GET['action'] : "";
+
+            // if it was redirected from delete.php
+            if ($action == 'deleted') {
+                echo "<div class='alert alert-success'>Record was deleted.</div>";
+            }
+
+            if ($action == 'failed') {
+                echo "<div class='alert alert-danger'>Record was failed to delete.</div>";
+            }
+
+
 
             // select all data
             $query = "SELECT * FROM customers";
@@ -82,24 +97,28 @@
                 // table body will be here
                 // retrieve our table contents
                 while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                    // extract row
-                    // this will make $row['firstname'] to just $firstname only
-                    extract($row);
+                    // extract($row); extract row
+
+                    $user = $row['username'];
+                    $fName = $row['fName'];
+                    $lName = $row['lName'];
+                    $regDateNTime = $row['regDateNTime'];
+
                     // creating new table row per record
                     echo "<tr>";
-                    echo "<td class='col-1'>{$username}</td>";
+                    echo "<td class='col-1'>{$user}</td>";
                     echo "<td class='col-2'>{$fName} {$lName}</td>";
                     echo "<td>{$regDateNTime}</td>";
                     echo "<td class='col-3'>";
 
                     // read one record
-                    echo "<a href='customer_read_one.php?username={$username}' class='btn btn-dark border-secondary-subtle m-r-1em mx-1'>More</a>";
+                    echo "<a href='customer_read_one.php?username={$user}' class='btn btn-dark border-secondary-subtle m-r-1em mx-1'>More</a>";
 
                     // we will use this links on next part of this post
-                    echo "<a href='customer_update.php?username={$username}' class='btn btn-outline-primary m-r-1em mx-1'>Edit</a>";
+                    echo "<a href='customer_update.php?username={$user}' class='btn btn-outline-primary m-r-1em mx-1'>Edit</a>";
 
                     // we will use this links on next part of this post
-                    echo "<a href='#' onclick='delete_user({$username});'  class='btn btn-outline-danger mx-1'>Delete</a>";
+                    echo "<a onclick='delete_user({$user});'  class='btn btn-outline-danger mx-1'>Delete</a>";
                     echo "</td>";
                     echo "</tr>";
                 }
@@ -124,6 +143,19 @@
     <script src="assets/js/main.js"></script>
 
     <!-- confirm delete record will be here -->
+    <script type='text/javascript'>
+        // confirm record deletion
+        function delete_user(user) {
+
+            var answer = confirm('Are you sure? ' + user);
+
+            if (answer) {
+                // if user clicked ok,
+                // pass the id to delete.php and execute the delete query
+                window.location = 'customer_delete.php?username=' + user;
+            }
+        }
+    </script>
 
 </body>
 

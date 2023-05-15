@@ -30,6 +30,8 @@
             // include database connection
             include 'config/database.php';
 
+
+
             // delete msg 
             $action = isset($_GET['action']) ? $_GET['action'] : "";
 
@@ -41,6 +43,8 @@
             if ($action == 'failed') {
                 echo "<div class='alert alert-danger'>Record was failed to delete.</div>";
             }
+
+
 
 
             // select all data
