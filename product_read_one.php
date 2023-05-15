@@ -107,7 +107,7 @@
                     <td class="col-3"></td>
                     <td>
                         <a href='product_update.php?productId=<?php echo $productId; ?>' class='btn btn-outline-primary m-r-1em'>Edit</a>
-                        <a href='#' onclick='delete_user({$productId});' class='btn btn-outline-danger'>Delete</a>
+                        <a onclick='delete_user({$productId});' class='btn btn-outline-danger'>Delete</a>
                         <a href='product_read.php' class='btn btn-dark border-secondary-subtle'>Back to My Products</a>
                     </td>
                 </tr>
@@ -119,6 +119,21 @@
     <!-- end .container -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
     <script src="assets/js/main.js"></script>
+
+
+    <script type='text/javascript'>
+        // confirm record deletion
+        function delete_user(productId) {
+
+            var answer = confirm('Are you sure? ' + productId);
+
+            if (answer) {
+                // if user clicked ok,
+                // pass the id to delete.php and execute the delete query
+                window.location = 'product_delete.php?productId=' + productId;
+            }
+        }
+    </script>
 </body>
 
 

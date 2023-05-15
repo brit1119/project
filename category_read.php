@@ -32,6 +32,16 @@
             include 'config/database.php';
 
             // delete message prompt will be here
+            $action = isset($_GET['action']) ? $_GET['action'] : "";
+
+            // if it was redirected from delete.php
+            if ($action == 'deleted') {
+                echo "<div class='alert alert-success'>Record was deleted.</div>";
+            }
+
+            if ($action == 'failed') {
+                echo "<div class='alert alert-danger'>Record was failed to delete.</div>";
+            }
 
             // select all data
             $query = "SELECT c.catId, catName, catDes, catCreated, COUNT(productName) AS totalP FROM category c INNER JOIN products p ON c.catId = p.catId GROUP BY c.catId ORDER BY c.catId ASC";
@@ -103,7 +113,7 @@
                     echo "<a href='category_read_one.php?catId={$catId}' class='btn btn-dark border-secondary-subtle m-r-1em mx-1'>More</a>";
 
                     // we will use this links on next part of this post
-                    echo "<a href='#' onclick='delete_user({$catId});'  class='btn btn-outline-danger mx-1'>Delete</a>";
+                    echo "<a onclick='delete_user({$catId});'  class='btn btn-outline-danger mx-1'>Delete</a>";
                     echo "</td>";
                     echo "</tr>";
                 }
@@ -129,6 +139,20 @@
     <script src="assets/js/main.js"></script>
 
     <!-- confirm delete record will be here -->
+    <script type='text/javascript'>
+        // confirm record deletion
+        function delete_user(catId) {
+
+            var answer = confirm('Are you sure? ' + catId);
+
+            if (answer) {
+                // if user clicked ok,
+                // pass the id to delete.php and execute the delete query
+                window.location = 'category_delete.php?catId=' + catId;
+            }
+        }
+    </script>
+
 
     </body>
 
