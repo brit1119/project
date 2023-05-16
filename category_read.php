@@ -143,7 +143,7 @@
         // confirm record deletion
         function delete_user(catId) {
 
-            var answer = confirm('Are you sure? ' + catId);
+            var answer = confirm('Are you sure? Delete(' + catId + ')');
 
             if (answer) {
                 // if user clicked ok,

@@ -145,7 +145,7 @@
         // confirm record deletion
         function delete_user(orderId) {
 
-            var answer = confirm('Are you sure? ' + orderId);
+            var answer = confirm('Are you sure? Delete (' + orderId + ')');
 
             if (answer) {
                 // if user clicked ok,
