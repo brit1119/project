@@ -52,7 +52,7 @@
 
             if ($_POST) {
                 $search = htmlspecialchars(strip_tags($_POST['search']));
-                $query = "SELECT * FROM products  WHERE productName LIKE '%$search%';";
+                $query = "SELECT * FROM products WHERE productName LIKE '%$search%' OR productId LIKE '%$search%' OR description LIKE '%$search%';";
             }
 
             ?>

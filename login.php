@@ -86,6 +86,9 @@
                             // account is inactive
                             echo "<div class='alert alert-danger'>Your account is currently inactive.</div>";
                         }
+                    } else {
+                        // login failed
+                        echo "<div class='alert alert-danger'>Invalid Username or Password</div>";
                     }
                 } else {
                     // login failed

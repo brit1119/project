@@ -48,7 +48,7 @@
 
             if ($_POST) {
                 $search = htmlspecialchars(strip_tags($_POST['search']));
-                $query = "SELECT c.catId, catName, catDes, catCreated, COUNT(productName) AS totalP FROM category c INNER JOIN products p ON c.catId = p.catId GROUP BY c.catId ORDER BY c.catId ASC WHERE catName LIKE '%$search%';";
+                $query = "SELECT c.catId, catName, catDes, catCreated, COUNT(productName) AS totalP FROM category c INNER JOIN products p ON c.catId = p.catId WHERE catName LIKE '%$search%' OR c.catId LIKE '%$search%' OR catDes LIKE '%$search%' GROUP BY c.catId, catName, catDes, catCreated ORDER BY c.catId ASC;";
             }
             $stmt = $con->prepare($query);
             $stmt->execute();

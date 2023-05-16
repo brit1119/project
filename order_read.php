@@ -49,7 +49,7 @@
 
             if ($_POST) {
                 $search = htmlspecialchars(strip_tags($_POST['search']));
-                $query = "SELECT o.orderId, c.fName, c.lName, o.orderDate, COUNT(ord.productId) AS totalItems FROM orders o INNER JOIN customers c ON o.username = c.username INNER JOIN orderDetails ord ON o.orderId = ord.orderId GROUP BY o.orderId, c.fName, c.lName, o.orderDate ORDER BY o.orderId DESC WHERE (c.fName LIKE '%$search%') OR (o.orderId = '$search');";
+                $query = "SELECT o.orderId, c.fName, c.lName, o.orderDate, COUNT(ord.productId) AS totalItems FROM orders o INNER JOIN customers c ON o.username = c.username INNER JOIN orderDetails ord ON o.orderId = ord.orderId WHERE c.fName LIKE '%$search%' OR c.lName LIKE '%$search%' OR o.orderId LIKE '%$search%' GROUP BY o.orderId, c.fName, c.lName, o.orderDate ORDER BY o.orderId DESC ;";
             }
 
             // select all data

@@ -51,7 +51,7 @@
             $query = "SELECT * FROM customers";
             if ($_POST) {
                 $search = htmlspecialchars(strip_tags($_POST['search']));
-                $query = "SELECT * FROM customers WHERE fName LIKE '%$search%';";
+                $query = "SELECT * FROM customers WHERE fName LIKE '%$search%' OR lName LIKE '%$search%' OR username LIKE '%$search%';";
             }
             $stmt = $con->prepare($query);
             $stmt->execute();
