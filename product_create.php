@@ -189,7 +189,7 @@
                     </tr>
                     <tr>
                         <td class="text-light">Price</td>
-                        <td><input type='number' name='price' class='form-control' placeholder="Enter a price" value="<?php echo isset($price) ? htmlspecialchars($price) : ''; ?>" />
+                        <td><input type='number' step='0.01' name='price' class='form-control' placeholder="Enter a price" value="<?php echo isset($price) ? htmlspecialchars($price) : ''; ?>" />
                             <?php if (isset($priceError)) { ?>
                                 <span class="text-danger">
                                     <?php echo $priceError; ?>
@@ -199,7 +199,7 @@
                     </tr>
                     <tr>
                         <td class="text-light">Promo Price</td>
-                        <td><input type='number' name='promoPrice' class='form-control' placeholder="Enter promotion price" value="<?php echo isset($promoPrice) ? htmlspecialchars($promoPrice) : ''; ?>" />
+                        <td><input type='number' step='0.01' name='promoPrice' class='form-control' placeholder="Enter promotion price" value="<?php echo isset($promoPrice) ? htmlspecialchars($promoPrice) : ''; ?>" />
                             <?php if (isset($promoError)) { ?>
                                 <span class="text-danger">
                                     <?php echo $promoError; ?>
