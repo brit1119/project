@@ -4,7 +4,7 @@ include 'config/database.php';
 try {
     // get record ID
     // isset() is a PHP function used to verify if a value is there or not
-    $user = isset($_GET['user']) ? $_GET['user'] :  die('ERROR: Record ID not found.');
+    $user = isset($_GET['username']) ? $_GET['username'] :  die('ERROR: Record ID not found.');
 
 
     // check wether have product in any order
