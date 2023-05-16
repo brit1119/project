@@ -109,7 +109,7 @@
                     extract($row);
                     // creating new table row per record
                     echo "<tr>";
-                    echo "<td class='col-1 text-end'>{$productId}</td>";
+                    echo "<td class='col-1 text-center'>{$productId}</td>";
                     echo "<td class='col-2'>{$productName}</td>";
                     echo "<td>{$description}</td>";
                     echo "<td class='col-1' align='end'>" . number_format($price, 2, '.', '') . "</td>";

@@ -107,7 +107,7 @@
                     extract($row);
                     // creating new table row per record
                     echo "<tr>";
-                    echo "<td class='col-1 text-end'>{$orderId}</td>";
+                    echo "<td class='col-1 text-center'>{$orderId}</td>";
                     echo "<td class='col-2'>{$fName} {$lName}</td>";
                     echo "<td class='col'>{$orderDate}</td>";
                     echo "<td class='text-center''>{$totalItems}</td>";

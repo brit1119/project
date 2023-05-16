@@ -102,7 +102,7 @@
                     // creating new table row per record
 
                     echo "<tr>";
-                    echo "<td class='text-end'>{$catId}</td>";
+                    echo "<td class='text-center'>{$catId}</td>";
                     echo "<td>{$catName}</td>";
                     echo "<td class='col-5'>{$catDes}</td>";
                     echo "<td>{$catCreated}</td>";
