@@ -140,19 +140,11 @@
                     $dOB = htmlspecialchars(strip_tags($_POST['dOB']));
 
                     if (empty($_POST["lName"])) {
-                        $lNameErr = "*Last name is required" . $dOB . $gender;
+                        $lNameErr = "*Last name is required";
                         $success = false;
                     } else {
                         $lName = htmlspecialchars(strip_tags($_POST['lName']));
                     }
-
-
-
-                    // 22d7fe8c185003c98f97e5d6ced420c7
-                    // 22d7fe8c185003c98f97e5d6ced420c7
-
-
-
 
 
 

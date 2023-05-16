@@ -4,7 +4,7 @@ include 'config/database.php';
 try {
     // get record ID
     // isset() is a PHP function used to verify if a value is there or not
-    $username = isset($_GET['username']) ? $_GET['username'] :  die('ERROR: Record ID not found.');
+    $user = isset($_GET['username']) ? $_GET['username'] :  die('ERROR: Record ID not found.');
 
 
     // check wether have product in any order
@@ -20,7 +20,7 @@ try {
         // delete query
         $query = "DELETE FROM customers WHERE username = ?";
         $stmt = $con->prepare($query);
-        $stmt->bindParam(1, $username);
+        $stmt->bindParam(1, $user);
 
         if ($stmt->execute()) {
             // redirect to read records page and
