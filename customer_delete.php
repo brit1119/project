@@ -1,6 +1,7 @@
 <?php
 // include database connection
 include 'config/database.php';
+
 try {
     // get record ID
     // isset() is a PHP function used to verify if a value is there or not
